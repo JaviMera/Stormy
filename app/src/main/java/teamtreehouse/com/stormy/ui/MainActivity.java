@@ -6,32 +6,19 @@ import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.squareup.okhttp.Call;
-import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
-
-import org.json.JSONException;
-
-import java.io.IOException;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.ButterKnife;
+
 import javier.com.stormy.asynctasks.ForecastAsyncTask;
 import javier.com.stormy.url.ForecastUrl;
+
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.weather.Current;
 import teamtreehouse.com.stormy.weather.Forecast;
