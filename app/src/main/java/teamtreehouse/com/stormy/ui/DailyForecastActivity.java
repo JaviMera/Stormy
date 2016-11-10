@@ -12,25 +12,24 @@ import android.widget.Toast;
 
 import java.util.Arrays;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.adapters.DayAdapter;
-import teamtreehouse.com.stormy.weather.Day;
 import teamtreehouse.com.stormy.weather.DayData;
 
 public class DailyForecastActivity extends Activity {
 
     private DayData[] mDays;
 
-    @InjectView(android.R.id.list) ListView mListView;
-    @InjectView(android.R.id.empty) TextView mEmptyTextView;
+    @BindView(android.R.id.list) ListView mListView;
+    @BindView(android.R.id.empty) TextView mEmptyTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily_forecast);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         Intent intent = getIntent();
         Parcelable[] parcelables = intent.getParcelableArrayExtra(MainActivity.DAILY_FORECAST);

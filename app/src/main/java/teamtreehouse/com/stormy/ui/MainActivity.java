@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,125 +23,61 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
+import javier.com.stormy.asynctasks.ForecastAsyncTask;
+import javier.com.stormy.url.ForecastUrl;
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.weather.Current;
-import teamtreehouse.com.stormy.weather.Day;
 import teamtreehouse.com.stormy.weather.Forecast;
-import teamtreehouse.com.stormy.weather.Hour;
 
+public class MainActivity extends AppCompatActivity implements
+        ForecastAsyncTask.ForecastListener {
 
-public class MainActivity extends ActionBarActivity {
-
-    public static final String TAG = MainActivity.class.getSimpleName();
     public static final String DAILY_FORECAST = "DAILY_FORECAST";
     public static final String HOURLY_FORECAST = "HOURLY_FORECAST";
     public static final String TIMEZONE = "TIMEZONE_FORECAST";
 
-    private Forecast mForecast;
+    private double mLatitude;
+    private double mLongitude;
 
-    @InjectView(R.id.timeLabel) TextView mTimeLabel;
-    @InjectView(R.id.temperatureLabel) TextView mTemperatureLabel;
-    @InjectView(R.id.humidityValue) TextView mHumidityValue;
-    @InjectView(R.id.precipValue) TextView mPrecipValue;
-    @InjectView(R.id.summaryLabel) TextView mSummaryLabel;
-    @InjectView(R.id.iconImageView) ImageView mIconImageView;
-    @InjectView(R.id.refreshImageView) ImageView mRefreshImageView;
-    @InjectView(R.id.progressBar) ProgressBar mProgressBar;
+    @BindView(R.id.timeLabel) TextView mTimeLabel;
+    @BindView(R.id.temperatureLabel) TextView mTemperatureLabel;
+    @BindView(R.id.humidityValue) TextView mHumidityValue;
+    @BindView(R.id.precipValue) TextView mPrecipValue;
+    @BindView(R.id.summaryLabel) TextView mSummaryLabel;
+    @BindView(R.id.iconImageView) ImageView mIconImageView;
+    @BindView(R.id.refreshImageView) ImageView mRefreshImageView;
+    @BindView(R.id.progressBar) ProgressBar mProgressBar;
+
+    private Forecast mForecast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         mProgressBar.setVisibility(View.INVISIBLE);
 
-        final double latitude = 37.8267;
-        final double longitude = -122.423;
-
-        mRefreshImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getForecast(latitude, longitude);
-            }
-        });
-
-        getForecast(latitude, longitude);
-
-        Log.d(TAG, "Main UI code is running!");
-    }
-
-    private void getForecast(double latitude, double longitude) {
-        String apiKey = "36c50081595d2616e1939f48407ff830"; // TODO: Replace this with your own API key from forecast.io
-        String forecastUrl = "https://api.forecast.io/forecast/" + apiKey +
-                "/" + latitude + "," + longitude;
+        mLatitude = 37.8267;
+        mLongitude = -122.423;
 
         if (isNetworkAvailable()) {
+
             toggleRefresh();
+            ForecastUrl url = new ForecastUrl.Builder()
+                .withLatitude(mLatitude)
+                .withLongitude(mLongitude)
+                .create();
 
-            OkHttpClient client = new OkHttpClient();
-            Request request = new Request.Builder()
-                    .url(forecastUrl)
-                    .build();
-
-            Call call = client.newCall(request);
-            call.enqueue(new Callback() {
-                @Override
-                public void onFailure(Request request, IOException e) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            toggleRefresh();
-                        }
-                    });
-                    alertUserAboutError();
-                }
-
-                @Override
-                public void onResponse(Response response) throws IOException {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            toggleRefresh();
-                        }
-                    });
-
-                    try {
-                        String jsonData = response.body().string();
-                        Log.v(TAG, jsonData);
-                        if (response.isSuccessful()) {
-                            mForecast = parseForecastDetails(jsonData);
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    updateDisplay();
-                                }
-                            });
-                        } else {
-                            alertUserAboutError();
-                        }
-                    }
-                    catch (IOException e) {
-                        Log.e(TAG, "Exception caught: ", e);
-                    }
-                    catch (JSONException e) {
-                        Log.e(TAG, "Exception caught: ", e);
-                    }
-                }
-            });
-        }
-        else {
-            Toast.makeText(this, getString(R.string.network_unavailable_message),
-                    Toast.LENGTH_LONG).show();
+            new ForecastAsyncTask(this)
+                .execute(url);
         }
     }
 
@@ -155,25 +92,18 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    private void updateDisplay() {
-        Current current = mForecast.getCurrent();
+    private void updateDisplay(Forecast forecast) {
+
+        Current current = forecast.getCurrent();
 
         mTemperatureLabel.setText(current.getTemperature() + "");
-        mTimeLabel.setText("At " + current.getFormattedTime(mForecast.getTimezone()) + " it will be");
+        mTimeLabel.setText("At " + current.getFormattedTime(forecast.getTimezone()) + " it will be");
         mHumidityValue.setText(current.getHumidity() + "");
         mPrecipValue.setText(current.getPrecipChance() + "%");
         mSummaryLabel.setText(current.getSummary());
 
         Drawable drawable = getResources().getDrawable(current.getIconId());
         mIconImageView.setImageDrawable(drawable);
-    }
-
-    private Forecast parseForecastDetails(String jsonData) throws JSONException {
-
-        Gson gson = new GsonBuilder().create();
-        Forecast forecast = gson.fromJson(jsonData, Forecast.class);
-
-        return forecast;
     }
 
     private boolean isNetworkAvailable() {
@@ -206,6 +136,35 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent(this, HourlyForecastActivity.class);
         intent.putExtra(HOURLY_FORECAST, mForecast.getHourlyForecast());
         startActivity(intent);
+    }
+
+    @OnClick(R.id.refreshImageView)
+    public void onRefreshImageClick(View view){
+
+        toggleRefresh();
+
+        ForecastUrl url = new ForecastUrl.Builder()
+            .withLatitude(mLatitude)
+            .withLongitude(mLongitude)
+            .create();
+
+        new ForecastAsyncTask(this)
+            .execute(url);
+    }
+
+    @Override
+    public void onForecastRetrieved(Forecast forecast) {
+
+        if(forecast == null) {
+
+            alertUserAboutError();
+        }
+        else {
+
+            mForecast = forecast;
+            updateDisplay(mForecast);
+            toggleRefresh();
+        }
     }
 }
 

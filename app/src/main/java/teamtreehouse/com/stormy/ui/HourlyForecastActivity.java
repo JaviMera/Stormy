@@ -9,8 +9,8 @@ import android.support.v7.widget.RecyclerView;
 
 import java.util.Arrays;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.adapters.HourAdapter;
 import teamtreehouse.com.stormy.weather.HourData;
@@ -19,13 +19,13 @@ public class HourlyForecastActivity extends ActionBarActivity {
 
     private HourData[] mHourData;
 
-    @InjectView(R.id.reyclerView) RecyclerView mRecyclerView;
+    @BindView(R.id.reyclerView) RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hourly_forecast);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         Intent intent = getIntent();
         Parcelable[] parcelables = intent.getParcelableArrayExtra(MainActivity.HOURLY_FORECAST);
