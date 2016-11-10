@@ -22,14 +22,15 @@ public class Forecast {
     @SerializedName("hourly")
     private Hour mHourlyForecast;
 
-    private Day[] mDailyForecast;
+    @SerializedName("daily")
+    private Day mDailyForecast;
 
     public Current getCurrent() {
         return mCurrent;
     }
 
-    public String getFormattedTime() {
-        SimpleDateFormat formatter = new SimpleDateFormat("h:mm a");
+    public String getFormattedTime(String dateFormat) {
+        SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
         formatter.setTimeZone(TimeZone.getTimeZone(mTimezone));
         Date dateTime = new Date(mCurrent.getTime() * 1000);
         String timeString = formatter.format(dateTime);
@@ -37,24 +38,12 @@ public class Forecast {
         return timeString;
     }
 
-    public void setCurrent(Current current) {
-        mCurrent = current;
-    }
-
-    public WeatherData[] getHourlyForecast() {
+    public HourData[] getHourlyForecast() {
         return mHourlyForecast.getData();
     }
 
-    public void setHourlyForecast(Hour hourlyForecast) {
-        mHourlyForecast = hourlyForecast;
-    }
-
-    public Day[] getDailyForecast() {
-        return mDailyForecast;
-    }
-
-    public void setDailyForecast(Day[] dailyForecast) {
-        mDailyForecast = dailyForecast;
+    public DayData[] getDailyForecast() {
+        return mDailyForecast.getData();
     }
 
     public static int getIconId(String iconString) {
@@ -94,5 +83,10 @@ public class Forecast {
 
         return iconId;
 
+    }
+
+    public String getTimezone() {
+
+        return mTimezone;
     }
 }

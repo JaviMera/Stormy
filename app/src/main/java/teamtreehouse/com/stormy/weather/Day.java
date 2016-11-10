@@ -3,70 +3,36 @@ package teamtreehouse.com.stormy.weather;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by benjakuben on 2/5/15.
  */
 public class Day implements Parcelable {
-    private long mTime;
+
+    @SerializedName("summary")
     private String mSummary;
-    private double mTemperatureMax;
-    private String mIcon;
-    private String mTimezone;
 
-    public long getTime() {
-        return mTime;
+    @SerializedName("data")
+    private DayData[] mData;
+
+
+    protected Day(Parcel in) {
+        mSummary = in.readString();
+        mData = in.createTypedArray(DayData.CREATOR);
     }
 
-    public void setTime(long time) {
-        mTime = time;
-    }
+    public static final Creator<Day> CREATOR = new Creator<Day>() {
+        @Override
+        public Day createFromParcel(Parcel in) {
+            return new Day(in);
+        }
 
-    public String getSummary() {
-        return mSummary;
-    }
-
-    public void setSummary(String summary) {
-        mSummary = summary;
-    }
-
-    public int getTemperatureMax() {
-        return (int)Math.round(mTemperatureMax);
-    }
-
-    public void setTemperatureMax(double temperatureMax) {
-        mTemperatureMax = temperatureMax;
-    }
-
-    public String getIcon() {
-        return mIcon;
-    }
-
-    public void setIcon(String icon) {
-        mIcon = icon;
-    }
-
-    public String getTimezone() {
-        return mTimezone;
-    }
-
-    public void setTimezone(String timezone) {
-        mTimezone = timezone;
-    }
-
-    public int getIconId() {
-        return Forecast.getIconId(mIcon);
-    }
-
-    public String getDayOfTheWeek() {
-        SimpleDateFormat formatter = new SimpleDateFormat("EEEE");
-        formatter.setTimeZone(TimeZone.getTimeZone(mTimezone));
-        Date dateTime = new Date(mTime * 1000);
-        return formatter.format(dateTime);
-    }
+        @Override
+        public Day[] newArray(int size) {
+            return new Day[size];
+        }
+    };
 
     @Override
     public int describeContents() {
@@ -75,34 +41,14 @@ public class Day implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeLong(mTime);
         dest.writeString(mSummary);
-        dest.writeDouble(mTemperatureMax);
-        dest.writeString(mIcon);
-        dest.writeString(mTimezone);
+        dest.writeTypedArray(mData, flags);
     }
 
-    private Day(Parcel in) {
-        mTime = in.readLong();
-        mSummary = in.readString();
-        mTemperatureMax = in.readDouble();
-        mIcon = in.readString();
-        mTimezone = in.readString();
+    public DayData[] getData() {
+
+        return mData;
     }
-
-    public Day() { }
-
-    public static final Creator<Day> CREATOR = new Creator<Day>() {
-        @Override
-        public Day createFromParcel(Parcel source) {
-            return new Day(source);
-        }
-
-        @Override
-        public Day[] newArray(int size) {
-            return new Day[size];
-        }
-    };
 }
 
 

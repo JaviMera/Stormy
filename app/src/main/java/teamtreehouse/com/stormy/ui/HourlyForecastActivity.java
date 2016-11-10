@@ -13,12 +13,11 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.adapters.HourAdapter;
-import teamtreehouse.com.stormy.weather.Hour;
-import teamtreehouse.com.stormy.weather.WeatherData;
+import teamtreehouse.com.stormy.weather.HourData;
 
 public class HourlyForecastActivity extends ActionBarActivity {
 
-    private WeatherData[] mWeatherData;
+    private HourData[] mHourData;
 
     @InjectView(R.id.reyclerView) RecyclerView mRecyclerView;
 
@@ -30,9 +29,9 @@ public class HourlyForecastActivity extends ActionBarActivity {
 
         Intent intent = getIntent();
         Parcelable[] parcelables = intent.getParcelableArrayExtra(MainActivity.HOURLY_FORECAST);
-        mWeatherData = Arrays.copyOf(parcelables, parcelables.length, WeatherData[].class);
+        mHourData = Arrays.copyOf(parcelables, parcelables.length, HourData[].class);
 
-        HourAdapter adapter = new HourAdapter(this, mWeatherData);
+        HourAdapter adapter = new HourAdapter(this, mHourData);
         mRecyclerView.setAdapter(adapter);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);

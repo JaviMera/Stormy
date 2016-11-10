@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * Created by Javi on 11/10/2016.
  */
-public class WeatherData implements Parcelable{
+public class HourData implements Parcelable{
 
     @SerializedName("time")
     private long mTime;
@@ -25,22 +25,22 @@ public class WeatherData implements Parcelable{
     @SerializedName("icon")
     private String mIcon;
 
-    protected WeatherData(Parcel in) {
+    protected HourData(Parcel in) {
         mTime = in.readLong();
         mSummary = in.readString();
         mTemperature = in.readDouble();
         mIcon = in.readString();
     }
 
-    public static final Creator<WeatherData> CREATOR = new Creator<WeatherData>() {
+    public static final Creator<HourData> CREATOR = new Creator<HourData>() {
         @Override
-        public WeatherData createFromParcel(Parcel in) {
-            return new WeatherData(in);
+        public HourData createFromParcel(Parcel in) {
+            return new HourData(in);
         }
 
         @Override
-        public WeatherData[] newArray(int size) {
-            return new WeatherData[size];
+        public HourData[] newArray(int size) {
+            return new HourData[size];
         }
     };
 

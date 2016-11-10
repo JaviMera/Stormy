@@ -43,6 +43,7 @@ public class MainActivity extends ActionBarActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
     public static final String DAILY_FORECAST = "DAILY_FORECAST";
     public static final String HOURLY_FORECAST = "HOURLY_FORECAST";
+    public static final String TIMEZONE = "timezone";
 
     private Forecast mForecast;
 
@@ -158,7 +159,7 @@ public class MainActivity extends ActionBarActivity {
         Current current = mForecast.getCurrent();
 
         mTemperatureLabel.setText(current.getTemperature() + "");
-        mTimeLabel.setText("At " + mForecast.getFormattedTime() + " it will be");
+        mTimeLabel.setText("At " + mForecast.getFormattedTime("h:mm a") + " it will be");
         mHumidityValue.setText(current.getHumidity() + "");
         mPrecipValue.setText(current.getPrecipChance() + "%");
         mSummaryLabel.setText(current.getSummary());
@@ -173,30 +174,6 @@ public class MainActivity extends ActionBarActivity {
         Forecast forecast = gson.fromJson(jsonData, Forecast.class);
 
         return forecast;
-    }
-
-    private Day[] getDailyForecast(String jsonData) throws JSONException {
-        JSONObject forecast = new JSONObject(jsonData);
-        String timezone = forecast.getString("timezone");
-        JSONObject daily = forecast.getJSONObject("daily");
-        JSONArray data = daily.getJSONArray("data");
-
-        Day[] days = new Day[data.length()];
-
-        for (int i = 0; i < data.length(); i++) {
-            JSONObject jsonDay = data.getJSONObject(i);
-            Day day = new Day();
-
-            day.setSummary(jsonDay.getString("summary"));
-            day.setIcon(jsonDay.getString("icon"));
-            day.setTemperatureMax(jsonDay.getDouble("temperatureMax"));
-            day.setTime(jsonDay.getLong("time"));
-            day.setTimezone(timezone);
-
-            days[i] = day;
-        }
-
-        return days;
     }
 
     private boolean isNetworkAvailable() {
@@ -220,6 +197,7 @@ public class MainActivity extends ActionBarActivity {
     public void startDailyActivity(View view) {
         Intent intent = new Intent(this, DailyForecastActivity.class);
         intent.putExtra(DAILY_FORECAST, mForecast.getDailyForecast());
+        intent.putExtra(TIMEZONE, mForecast.getTimezone());
         startActivity(intent);
     }
 

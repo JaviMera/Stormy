@@ -10,20 +10,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import teamtreehouse.com.stormy.R;
-import teamtreehouse.com.stormy.weather.Hour;
-import teamtreehouse.com.stormy.weather.WeatherData;
+import teamtreehouse.com.stormy.weather.HourData;
 
 /**
  * Created by benjakuben on 2/10/15.
  */
 public class HourAdapter extends RecyclerView.Adapter<HourAdapter.HourViewHolder> {
 
-    private WeatherData[] mWeatherData;
+    private HourData[] mHourData;
     private Context mContext;
 
-    public HourAdapter(Context context, WeatherData[] weatherData) {
+    public HourAdapter(Context context, HourData[] hourData) {
         mContext = context;
-        mWeatherData = weatherData;
+        mHourData = hourData;
     }
 
     @Override
@@ -36,12 +35,12 @@ public class HourAdapter extends RecyclerView.Adapter<HourAdapter.HourViewHolder
 
     @Override
     public void onBindViewHolder(HourViewHolder holder, int position) {
-        holder.bindHour(mWeatherData[position]);
+        holder.bindHour(mHourData[position]);
     }
 
     @Override
     public int getItemCount() {
-        return mWeatherData.length;
+        return mHourData.length;
     }
 
     public class HourViewHolder extends RecyclerView.ViewHolder
@@ -63,11 +62,11 @@ public class HourAdapter extends RecyclerView.Adapter<HourAdapter.HourViewHolder
             itemView.setOnClickListener(this);
         }
 
-        public void bindHour(WeatherData weatherData) {
-            mTimeLabel.setText(weatherData.getHour());
-            mSummaryLabel.setText(weatherData.getSummary());
-            mTemperatureLabel.setText(weatherData.getTemperature() + "");
-            mIconImageView.setImageResource(weatherData.getIconId());
+        public void bindHour(HourData hourData) {
+            mTimeLabel.setText(hourData.getHour());
+            mSummaryLabel.setText(hourData.getSummary());
+            mTemperatureLabel.setText(hourData.getTemperature() + "");
+            mIconImageView.setImageResource(hourData.getIconId());
         }
 
         @Override

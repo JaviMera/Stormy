@@ -5,9 +5,6 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 /**
  * Created by benjakuben on 2/5/15.
  */
@@ -17,11 +14,11 @@ public class Hour implements Parcelable {
     private String mSummary;
 
     @SerializedName("data")
-    private WeatherData[] mData;
+    private HourData[] mData;
 
     protected Hour(Parcel in) {
         mSummary = in.readString();
-        mData = in.createTypedArray(WeatherData.CREATOR);
+        mData = in.createTypedArray(HourData.CREATOR);
     }
 
     public static final Creator<Hour> CREATOR = new Creator<Hour>() {
@@ -47,7 +44,7 @@ public class Hour implements Parcelable {
         dest.writeTypedArray(mData, flags);
     }
 
-    public WeatherData[] getData() {
+    public HourData[] getData() {
 
         return mData;
     }

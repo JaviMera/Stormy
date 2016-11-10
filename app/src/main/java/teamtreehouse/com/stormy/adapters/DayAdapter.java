@@ -9,29 +9,32 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import teamtreehouse.com.stormy.R;
-import teamtreehouse.com.stormy.weather.Day;
+import teamtreehouse.com.stormy.weather.DayData;
+import teamtreehouse.com.stormy.weather.HourData;
 
 /**
  * Created by benjakuben on 2/6/15.
  */
 public class DayAdapter extends BaseAdapter {
 
+    private final String mTimezone;
     private Context mContext;
-    private Day[] mDays;
+    private DayData[] mItems;
 
-    public DayAdapter(Context context, Day[] days) {
+    public DayAdapter(Context context, DayData[] items, String timezone) {
         mContext = context;
-        mDays = days;
+        mItems = items;
+        mTimezone = timezone;
     }
 
     @Override
     public int getCount() {
-        return mDays.length;
+        return mItems.length;
     }
 
     @Override
     public Object getItem(int position) {
-        return mDays[position];
+        return mItems[position];
     }
 
     @Override
@@ -57,16 +60,16 @@ public class DayAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        Day day = mDays[position];
+        DayData dayData = mItems[position];
 
-        holder.iconImageView.setImageResource(day.getIconId());
-        holder.temperatureLabel.setText(day.getTemperatureMax() + "");
+        holder.iconImageView.setImageResource(dayData.getIconId());
+        holder.temperatureLabel.setText(dayData.getTemperatureMax() + "");
 
         if (position == 0) {
             holder.dayLabel.setText("Today");
         }
         else {
-            holder.dayLabel.setText(day.getDayOfTheWeek());
+            holder.dayLabel.setText(dayData.getDayOfTheWeek(mTimezone));
         }
 
         return convertView;
