@@ -13,11 +13,11 @@ import teamtreehouse.com.stormy.R;
  */
 public class Forecast {
 
-    @SerializedName("currently")
-    private Current mCurrent;
-
     @SerializedName("timezone")
     private String mTimezone;
+
+    @SerializedName("currently")
+    private Current mCurrent;
 
     @SerializedName("hourly")
     private Hour mHourlyForecast;
@@ -27,15 +27,6 @@ public class Forecast {
 
     public Current getCurrent() {
         return mCurrent;
-    }
-
-    public String getFormattedTime(String dateFormat) {
-        SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
-        formatter.setTimeZone(TimeZone.getTimeZone(mTimezone));
-        Date dateTime = new Date(mCurrent.getTime() * 1000);
-        String timeString = formatter.format(dateTime);
-
-        return timeString;
     }
 
     public HourData[] getHourlyForecast() {

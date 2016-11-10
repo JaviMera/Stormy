@@ -43,7 +43,7 @@ public class MainActivity extends ActionBarActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
     public static final String DAILY_FORECAST = "DAILY_FORECAST";
     public static final String HOURLY_FORECAST = "HOURLY_FORECAST";
-    public static final String TIMEZONE = "timezone";
+    public static final String TIMEZONE = "TIMEZONE_FORECAST";
 
     private Forecast mForecast;
 
@@ -159,7 +159,7 @@ public class MainActivity extends ActionBarActivity {
         Current current = mForecast.getCurrent();
 
         mTemperatureLabel.setText(current.getTemperature() + "");
-        mTimeLabel.setText("At " + mForecast.getFormattedTime("h:mm a") + " it will be");
+        mTimeLabel.setText("At " + current.getFormattedTime(mForecast.getTimezone()) + " it will be");
         mHumidityValue.setText(current.getHumidity() + "");
         mPrecipValue.setText(current.getPrecipChance() + "%");
         mSummaryLabel.setText(current.getSummary());

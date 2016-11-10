@@ -29,50 +29,16 @@ public class Current {
     @SerializedName("summary")
     private String mSummary;
 
-    private String mTimeZone;
-
-    public String getTimeZone() {
-        return mTimeZone;
-    }
-
-    public void setTimeZone(String timeZone) {
-        mTimeZone = timeZone;
-    }
-
-    public String getIcon() {
-        return mIcon;
-    }
-
-    public void setIcon(String icon) {
-        mIcon = icon;
-    }
-
     public int getIconId() {
         return Forecast.getIconId(mIcon);
-    }
-
-    public long getTime() {
-        return mTime;
-    }
-
-    public void setTime(long time) {
-        mTime = time;
     }
 
     public int getTemperature() {
         return (int)Math.round(mTemperature);
     }
 
-    public void setTemperature(double temperature) {
-        mTemperature = temperature;
-    }
-
     public double getHumidity() {
         return mHumidity;
-    }
-
-    public void setHumidity(double humidity) {
-        mHumidity = humidity;
     }
 
     public int getPrecipChance() {
@@ -80,15 +46,16 @@ public class Current {
         return (int)Math.round(precipPercentage);
     }
 
-    public void setPrecipChance(double precipChance) {
-        mPrecipChance = precipChance;
-    }
-
     public String getSummary() {
         return mSummary;
     }
 
-    public void setSummary(String summary) {
-        mSummary = summary;
+    public String getFormattedTime(String timezone) {
+        SimpleDateFormat formatter = new SimpleDateFormat("h:mm a");
+        formatter.setTimeZone(TimeZone.getTimeZone(timezone));
+        Date dateTime = new Date(mTime * 1000);
+        String timeString = formatter.format(dateTime);
+
+        return timeString;
     }
 }
