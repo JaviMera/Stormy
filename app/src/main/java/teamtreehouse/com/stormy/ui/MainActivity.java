@@ -14,6 +14,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
@@ -77,7 +79,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void getForecast(double latitude, double longitude) {
-        String apiKey = "ADD YOUR OWN API KEY"; // TODO: Replace this with your own API key from forecast.io
+        String apiKey = "36c50081595d2616e1939f48407ff830"; // TODO: Replace this with your own API key from forecast.io
         String forecastUrl = "https://api.forecast.io/forecast/" + apiKey +
                 "/" + latitude + "," + longitude;
 
@@ -156,7 +158,7 @@ public class MainActivity extends ActionBarActivity {
         Current current = mForecast.getCurrent();
 
         mTemperatureLabel.setText(current.getTemperature() + "");
-        mTimeLabel.setText("At " + current.getFormattedTime() + " it will be");
+        mTimeLabel.setText("At " + mForecast.getFormattedTime() + " it will be");
         mHumidityValue.setText(current.getHumidity() + "");
         mPrecipValue.setText(current.getPrecipChance() + "%");
         mSummaryLabel.setText(current.getSummary());
@@ -166,11 +168,9 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private Forecast parseForecastDetails(String jsonData) throws JSONException {
-        Forecast forecast = new Forecast();
 
-        forecast.setCurrent(getCurrentDetails(jsonData));
-        forecast.setHourlyForecast(getHourlyForecast(jsonData));
-        forecast.setDailyForecast(getDailyForecast(jsonData));
+        Gson gson = new GsonBuilder().create();
+        Forecast forecast = gson.fromJson(jsonData, Forecast.class);
 
         return forecast;
     }
@@ -198,53 +198,6 @@ public class MainActivity extends ActionBarActivity {
 
         return days;
     }
-
-    private Hour[] getHourlyForecast(String jsonData) throws JSONException {
-        JSONObject forecast = new JSONObject(jsonData);
-        String timezone = forecast.getString("timezone");
-        JSONObject hourly = forecast.getJSONObject("hourly");
-        JSONArray data = hourly.getJSONArray("data");
-
-        Hour[] hours = new Hour[data.length()];
-
-        for (int i = 0; i < data.length(); i++) {
-            JSONObject jsonHour = data.getJSONObject(i);
-            Hour hour = new Hour();
-
-            hour.setSummary(jsonHour.getString("summary"));
-            hour.setIcon(jsonHour.getString("icon"));
-            hour.setTemperature(jsonHour.getDouble("temperature"));
-            hour.setTime(jsonHour.getLong("time"));
-            hour.setTimezone(timezone);
-
-            hours[i] = hour;
-        }
-
-        return hours;
-    }
-
-
-    private Current getCurrentDetails(String jsonData) throws JSONException {
-        JSONObject forecast = new JSONObject(jsonData);
-        String timezone = forecast.getString("timezone");
-        Log.i(TAG, "From JSON: " + timezone);
-
-        JSONObject currently = forecast.getJSONObject("currently");
-
-        Current current = new Current();
-        current.setHumidity(currently.getDouble("humidity"));
-        current.setTime(currently.getLong("time"));
-        current.setIcon(currently.getString("icon"));
-        current.setPrecipChance(currently.getDouble("precipProbability"));
-        current.setSummary(currently.getString("summary"));
-        current.setTemperature(currently.getDouble("temperature"));
-        current.setTimeZone(timezone);
-
-        Log.d(TAG, current.getFormattedTime());
-
-        return current;
-    }
-
 
     private boolean isNetworkAvailable() {
         ConnectivityManager manager = (ConnectivityManager)

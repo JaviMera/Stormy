@@ -1,28 +1,51 @@
 package teamtreehouse.com.stormy.weather;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 import teamtreehouse.com.stormy.R;
 
 /**
  * Created by benjakuben on 2/5/15.
  */
 public class Forecast {
+
+    @SerializedName("currently")
     private Current mCurrent;
-    private Hour[] mHourlyForecast;
+
+    @SerializedName("timezone")
+    private String mTimezone;
+
+    @SerializedName("hourly")
+    private Hour mHourlyForecast;
+
     private Day[] mDailyForecast;
 
     public Current getCurrent() {
         return mCurrent;
     }
 
+    public String getFormattedTime() {
+        SimpleDateFormat formatter = new SimpleDateFormat("h:mm a");
+        formatter.setTimeZone(TimeZone.getTimeZone(mTimezone));
+        Date dateTime = new Date(mCurrent.getTime() * 1000);
+        String timeString = formatter.format(dateTime);
+
+        return timeString;
+    }
+
     public void setCurrent(Current current) {
         mCurrent = current;
     }
 
-    public Hour[] getHourlyForecast() {
-        return mHourlyForecast;
+    public WeatherData[] getHourlyForecast() {
+        return mHourlyForecast.getData();
     }
 
-    public void setHourlyForecast(Hour[] hourlyForecast) {
+    public void setHourlyForecast(Hour hourlyForecast) {
         mHourlyForecast = hourlyForecast;
     }
 

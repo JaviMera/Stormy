@@ -1,5 +1,7 @@
 package teamtreehouse.com.stormy.weather;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
@@ -8,12 +10,25 @@ import java.util.TimeZone;
  * Created by benjakuben on 12/8/14.
  */
 public class Current {
+
+    @SerializedName("icon")
     private String mIcon;
+
+    @SerializedName("time")
     private long mTime;
+
+    @SerializedName("temperature")
     private double mTemperature;
+
+    @SerializedName("humidity")
     private double mHumidity;
+
+    @SerializedName("precipPropability")
     private double mPrecipChance;
+
+    @SerializedName("summary")
     private String mSummary;
+
     private String mTimeZone;
 
     public String getTimeZone() {
@@ -38,15 +53,6 @@ public class Current {
 
     public long getTime() {
         return mTime;
-    }
-
-    public String getFormattedTime() {
-        SimpleDateFormat formatter = new SimpleDateFormat("h:mm a");
-        formatter.setTimeZone(TimeZone.getTimeZone(getTimeZone()));
-        Date dateTime = new Date(getTime() * 1000);
-        String timeString = formatter.format(dateTime);
-
-        return timeString;
     }
 
     public void setTime(long time) {

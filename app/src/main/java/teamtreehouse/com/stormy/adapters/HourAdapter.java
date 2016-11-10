@@ -11,18 +11,19 @@ import android.widget.Toast;
 
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.weather.Hour;
+import teamtreehouse.com.stormy.weather.WeatherData;
 
 /**
  * Created by benjakuben on 2/10/15.
  */
 public class HourAdapter extends RecyclerView.Adapter<HourAdapter.HourViewHolder> {
 
-    private Hour[] mHours;
+    private WeatherData[] mWeatherData;
     private Context mContext;
 
-    public HourAdapter(Context context, Hour[] hours) {
+    public HourAdapter(Context context, WeatherData[] weatherData) {
         mContext = context;
-        mHours = hours;
+        mWeatherData = weatherData;
     }
 
     @Override
@@ -35,12 +36,12 @@ public class HourAdapter extends RecyclerView.Adapter<HourAdapter.HourViewHolder
 
     @Override
     public void onBindViewHolder(HourViewHolder holder, int position) {
-        holder.bindHour(mHours[position]);
+        holder.bindHour(mWeatherData[position]);
     }
 
     @Override
     public int getItemCount() {
-        return mHours.length;
+        return mWeatherData.length;
     }
 
     public class HourViewHolder extends RecyclerView.ViewHolder
@@ -62,11 +63,11 @@ public class HourAdapter extends RecyclerView.Adapter<HourAdapter.HourViewHolder
             itemView.setOnClickListener(this);
         }
 
-        public void bindHour(Hour hour) {
-            mTimeLabel.setText(hour.getHour());
-            mSummaryLabel.setText(hour.getSummary());
-            mTemperatureLabel.setText(hour.getTemperature() + "");
-            mIconImageView.setImageResource(hour.getIconId());
+        public void bindHour(WeatherData weatherData) {
+            mTimeLabel.setText(weatherData.getHour());
+            mSummaryLabel.setText(weatherData.getSummary());
+            mTemperatureLabel.setText(weatherData.getTemperature() + "");
+            mIconImageView.setImageResource(weatherData.getIconId());
         }
 
         @Override
