@@ -6,18 +6,20 @@ import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.ButterKnife;
 
 import javier.com.stormy.asynctasks.ForecastAsyncTask;
-import javier.com.stormy.ui.MainActivityView;
 import javier.com.stormy.url.ForecastUrl;
 
 import teamtreehouse.com.stormy.R;
@@ -93,17 +95,19 @@ public class MainActivity extends AppCompatActivity implements
 
         Current current = forecast.getCurrent();
 
-        mTemperatureLabel.setText(current.getTemperature() + "");
-        mTimeLabel.setText("At " + current.getFormattedTime(forecast.getTimezone()) + " it will be");
-        mHumidityValue.setText(current.getHumidity() + "");
-        mPrecipValue.setText(current.getPrecipChance() + "%");
-        mSummaryLabel.setText(current.getSummary());
+        mPresenter.setTemperatureTextView(current.getTemperature());
 
-        Drawable drawable = getResources().getDrawable(current.getIconId());
-        mIconImageView.setImageDrawable(drawable);
+        String time = current.getFormattedTime(forecast.getTimezone());
+        mPresenter.setTimeTextView(time);
+
+        mPresenter.setHumidityTextView(current.getHumidity());
+        mPresenter.setPrecipitationTextView(current.getPrecipChance());
+        mPresenter.setSummaryTextView(current.getSummary());
+        mPresenter.setIconImageView(current.getIconId());
     }
 
     private boolean isNetworkAvailable() {
+
         ConnectivityManager manager = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = manager.getActiveNetworkInfo();
@@ -168,6 +172,52 @@ public class MainActivity extends AppCompatActivity implements
     public void setVisibility(View view, boolean visibile) {
 
         view.setVisibility(visibile ? View.VISIBLE : View.INVISIBLE);
+    }
+
+    @Override
+    public void setTemperatureTextView(double temperature) {
+
+        String value = getFormattedValue("%f", temperature);
+        mTemperatureLabel.setText(value);
+    }
+
+    @Override
+    public void setTimeTextView(String time) {
+
+        String timeFormat = getFormattedValue("At %s it will be", time);
+        mTimeLabel.setText(timeFormat);
+    }
+
+    @Override
+    public void setHumidity(double humidity) {
+
+        String humidtyFormat = getFormattedValue("%.2f", humidity);
+        mHumidityValue.setText(humidtyFormat);
+    }
+
+    @Override
+    public void setPrecipitationTextView(int precip) {
+
+        String precipFormat = getFormattedValue("%d %%", precip);
+        mPrecipValue.setText(precipFormat);
+    }
+
+    @Override
+    public void setSummaryTextView(String summary) {
+
+        mSummaryLabel.setText(summary);
+    }
+
+    @Override
+    public void setIconImageView(int iconId) {
+
+        Drawable drawable = ContextCompat.getDrawable(this, iconId);
+        mIconImageView.setImageDrawable(drawable);
+    }
+
+    private String getFormattedValue(String format, Object... args) {
+
+        return String.format(Locale.ENGLISH, format, args);
     }
 }
 

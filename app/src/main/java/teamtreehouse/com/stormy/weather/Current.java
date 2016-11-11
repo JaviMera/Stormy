@@ -52,7 +52,7 @@ public class Current {
 
     public String getFormattedTime(String timezone) {
         SimpleDateFormat formatter = new SimpleDateFormat("h:mm a");
-        formatter.setTimeZone(TimeZone.getTimeZone(timezone));
+        //formatter.setTimeZone(TimeZone.getTimeZone(timezone));
         Date dateTime = new Date(mTime * 1000);
         String timeString = formatter.format(dateTime);
 
