@@ -19,6 +19,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.ButterKnife;
 
+import javier.com.stormy.InternetInfo;
 import javier.com.stormy.asynctasks.ForecastAsyncTask;
 import javier.com.stormy.url.ForecastUrl;
 
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements
     private Forecast mForecast;
     private double mLatitude;
     private double mLongitude;
+    private InternetInfo mInternetInfo;
 
     @BindView(R.id.timeLabel) TextView mTimeLabel;
     @BindView(R.id.temperatureLabel) TextView mTemperatureLabel;
@@ -58,22 +60,24 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        mInternetInfo = new InternetInfo(manager);
         mPresenter = new MainActivityPresenter(this);
+
         mPresenter.setVisibility(mProgressBar, false);
 
         mLatitude = 37.8267;
         mLongitude = -122.423;
 
-        if (isNetworkAvailable()) {
+        if (mInternetInfo.isNetworkAvailable()) {
 
             toggleRefresh();
-            ForecastUrl url = new ForecastUrl.Builder()
-                .withLatitude(mLatitude)
-                .withLongitude(mLongitude)
-                .create();
+            sendRequest(mLatitude, mLongitude);
+        }
+        else {
 
-            new ForecastAsyncTask(this)
-                .execute(url);
+            alertUserAboutError();
         }
     }
 
@@ -106,19 +110,6 @@ public class MainActivity extends AppCompatActivity implements
         mPresenter.setIconImageView(current.getIconId());
     }
 
-    private boolean isNetworkAvailable() {
-
-        ConnectivityManager manager = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = manager.getActiveNetworkInfo();
-        boolean isAvailable = false;
-        if (networkInfo != null && networkInfo.isConnected()) {
-            isAvailable = true;
-        }
-
-        return isAvailable;
-    }
-
     private void alertUserAboutError() {
         AlertDialogFragment dialog = new AlertDialogFragment();
         dialog.show(getFragmentManager(), "error_dialog");
@@ -142,15 +133,26 @@ public class MainActivity extends AppCompatActivity implements
     @OnClick(R.id.refreshImageView)
     public void onRefreshImageClick(View view){
 
-        toggleRefresh();
+        if(mInternetInfo.isNetworkAvailable()) {
+
+            toggleRefresh();
+            sendRequest(mLatitude, mLongitude);
+        }
+        else {
+
+            alertUserAboutError();
+        }
+    }
+
+    private void sendRequest(double latitude, double longitude) {
 
         ForecastUrl url = new ForecastUrl.Builder()
-            .withLatitude(mLatitude)
-            .withLongitude(mLongitude)
-            .create();
+                .withLatitude(latitude)
+                .withLongitude(longitude)
+                .create();
 
         new ForecastAsyncTask(this)
-            .execute(url);
+                .execute(url);
     }
 
     @Override
@@ -162,9 +164,10 @@ public class MainActivity extends AppCompatActivity implements
         }
         else {
 
+            toggleRefresh();
+
             mForecast = forecast;
             updateDisplay(mForecast);
-            toggleRefresh();
         }
     }
 
