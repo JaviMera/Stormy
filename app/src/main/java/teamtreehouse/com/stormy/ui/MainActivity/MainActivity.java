@@ -1,4 +1,4 @@
-package teamtreehouse.com.stormy.ui;
+package teamtreehouse.com.stormy.ui.MainActivity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,19 +17,27 @@ import butterknife.OnClick;
 import butterknife.ButterKnife;
 
 import javier.com.stormy.asynctasks.ForecastAsyncTask;
+import javier.com.stormy.ui.MainActivityView;
 import javier.com.stormy.url.ForecastUrl;
 
 import teamtreehouse.com.stormy.R;
+import teamtreehouse.com.stormy.ui.AlertDialogFragment;
+import teamtreehouse.com.stormy.ui.DailyForecastActivity;
+import teamtreehouse.com.stormy.ui.HourlyForecastActivity;
 import teamtreehouse.com.stormy.weather.Current;
 import teamtreehouse.com.stormy.weather.Forecast;
 
 public class MainActivity extends AppCompatActivity implements
+        MainActivityView,
         ForecastAsyncTask.ForecastListener {
 
     public static final String DAILY_FORECAST = "DAILY_FORECAST";
     public static final String HOURLY_FORECAST = "HOURLY_FORECAST";
     public static final String TIMEZONE = "TIMEZONE_FORECAST";
 
+    private MainActivityPresenter mPresenter;
+
+    private Forecast mForecast;
     private double mLatitude;
     private double mLongitude;
 
@@ -42,15 +50,14 @@ public class MainActivity extends AppCompatActivity implements
     @BindView(R.id.refreshImageView) ImageView mRefreshImageView;
     @BindView(R.id.progressBar) ProgressBar mProgressBar;
 
-    private Forecast mForecast;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        mProgressBar.setVisibility(View.INVISIBLE);
+        mPresenter = new MainActivityPresenter(this);
+        mPresenter.setVisibility(mProgressBar, false);
 
         mLatitude = 37.8267;
         mLongitude = -122.423;
@@ -69,13 +76,16 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void toggleRefresh() {
+
         if (mProgressBar.getVisibility() == View.INVISIBLE) {
-            mProgressBar.setVisibility(View.VISIBLE);
-            mRefreshImageView.setVisibility(View.INVISIBLE);
+
+            mPresenter.setVisibility(mProgressBar, true);
+            mPresenter.setVisibility(mRefreshImageView, false);
         }
         else {
-            mProgressBar.setVisibility(View.INVISIBLE);
-            mRefreshImageView.setVisibility(View.VISIBLE);
+
+            mPresenter.setVisibility(mProgressBar, false);
+            mPresenter.setVisibility(mRefreshImageView, true);
         }
     }
 
@@ -152,6 +162,12 @@ public class MainActivity extends AppCompatActivity implements
             updateDisplay(mForecast);
             toggleRefresh();
         }
+    }
+
+    @Override
+    public void setVisibility(View view, boolean visibile) {
+
+        view.setVisibility(visibile ? View.VISIBLE : View.INVISIBLE);
     }
 }
 

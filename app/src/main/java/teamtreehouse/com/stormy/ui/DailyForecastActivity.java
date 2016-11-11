@@ -16,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.adapters.DayAdapter;
+import teamtreehouse.com.stormy.ui.MainActivity.MainActivity;
 import teamtreehouse.com.stormy.weather.DayData;
 
 public class DailyForecastActivity extends Activity {
