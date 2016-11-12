@@ -31,12 +31,13 @@ public class ForecastCurrentFragment extends Fragment implements
     private Current mCurrent;
     private String mTimezone;
 
-    @BindView(R.id.timeLabel) TextView mTimeLabel;
-    @BindView(R.id.temperatureLabel) TextView mTemperatureLabel;
-    @BindView(R.id.humidityValue) TextView mHumidityValue;
-    @BindView(R.id.precipValue) TextView mPrecipValue;
-    @BindView(R.id.iconImageView) ImageView mIconImageView;
-    @BindView(R.id.summaryLabel) TextView mSummaryLabel;
+    @BindView(R.id.locationTextView) TextView mLocationTextView;
+    @BindView(R.id.locationIconImageView) ImageView mIconImageView;
+    @BindView(R.id.timeTextView) TextView mTimeTextView;
+    @BindView(R.id.temperatureTextView) TextView mTemperatureTextView;
+    @BindView(R.id.humidityTextView) TextView mHumidityTextView;
+    @BindView(R.id.precipitationTextView) TextView mPrecipitationTextView;
+    @BindView(R.id.summaryTextView) TextView mSummaryTextView;
 
 
     public static ForecastCurrentFragment newInstance(Current forecastCurrent, String timezone) {
@@ -83,35 +84,35 @@ public class ForecastCurrentFragment extends Fragment implements
     @Override
     public void setTemperatureTextView(double temperature) {
 
-        String value = getFormattedValue("%f", temperature);
-        mTemperatureLabel.setText(value);
+        String value = getFormattedValue("%.1f", temperature);
+        mTemperatureTextView.setText(value);
     }
 
     @Override
     public void setTimeTextView(String time) {
 
         String timeFormat = getFormattedValue("At %s it will be", time);
-        mTimeLabel.setText(timeFormat);
+        mTimeTextView.setText(timeFormat);
     }
 
     @Override
     public void setHumidity(double humidity) {
 
         String humidtyFormat = getFormattedValue("%.2f", humidity);
-        mHumidityValue.setText(humidtyFormat);
+        mHumidityTextView.setText(humidtyFormat);
     }
 
     @Override
     public void setPrecipitationTextView(int precip) {
 
         String precipFormat = getFormattedValue("%d %%", precip);
-        mPrecipValue.setText(precipFormat);
+        mPrecipitationTextView.setText(precipFormat);
     }
 
     @Override
     public void setSummaryTextView(String summary) {
 
-        mSummaryLabel.setText(summary);
+        mSummaryTextView.setText(summary);
     }
 
     @Override
@@ -121,6 +122,13 @@ public class ForecastCurrentFragment extends Fragment implements
         mIconImageView.setImageDrawable(drawable);
     }
 
+    @Override
+    public void setLocationTextView(String timezone) {
+
+        String locationFormat = getFormattedValue("%s", timezone);
+        mLocationTextView.setText(locationFormat);
+    }
+
     private String getFormattedValue(String format, Object... args) {
 
         return String.format(Locale.ENGLISH, format, args);
@@ -128,11 +136,11 @@ public class ForecastCurrentFragment extends Fragment implements
 
     private void updateDisplay(Current current, String timezone) {
 
-        mPresenter.setTemperatureTextView(current.getTemperature());
-
         String time = current.getFormattedTime(timezone);
-        mPresenter.setTimeTextView(time);
 
+        mPresenter.setLocationTextView(timezone);
+        mPresenter.setTimeTextView(time);
+        mPresenter.setTemperatureTextView(current.getTemperature());
         mPresenter.setHumidityTextView(current.getHumidity());
         mPresenter.setPrecipitationTextView(current.getPrecipChance());
         mPresenter.setSummaryTextView(current.getSummary());

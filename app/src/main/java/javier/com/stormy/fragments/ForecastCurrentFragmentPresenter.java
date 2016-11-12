@@ -46,4 +46,9 @@ public class ForecastCurrentFragmentPresenter {
 
         mView.setIconImageView(iconId);
     }
+
+    public void setLocationTextView(String timezone) {
+
+        mView.setLocationTextView(timezone);
+    }
 }

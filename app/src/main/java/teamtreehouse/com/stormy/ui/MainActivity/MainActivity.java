@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements
             ForecastCurrentFragment fragment = ForecastCurrentFragment.newInstance(forecast.getCurrent(), forecast.getTimezone());
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.add(R.id.fragmentContainer, fragment);
+            fragmentTransaction.replace(R.id.fragmentContainer, fragment);
             fragmentTransaction.commit();
         }
     }

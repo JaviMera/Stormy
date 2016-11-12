@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:id="@+id/timeLabel"
+        android:id="@+id/timeTextView"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -23,15 +23,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/iconImageView"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/timeLabel"
-        android:layout_toEndOf="@+id/timeLabel"
+        android:layout_toRightOf="@+id/timeTextView"
+        android:layout_toEndOf="@+id/timeTextView"
         android:src="@drawable/partly_cloudy"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="100"
-        android:id="@+id/temperatureLabel"
+        android:id="@+id/temperatureTextView"
         android:layout_alignParentTop="false"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
@@ -42,12 +42,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/summaryLabel"
+        android:id="@+id/summaryTextView"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/iconImageView"
         android:layout_toEndOf="@+id/iconImageView"
         android:textColor="#ffffffff"
-        android:layout_toLeftOf="@+id/temperatureLabel"
+        android:layout_toLeftOf="@+id/temperatureTextView"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         tools:text="Partly cloudy"/>

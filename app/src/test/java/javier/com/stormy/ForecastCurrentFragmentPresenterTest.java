@@ -30,6 +30,19 @@ public class ForecastCurrentFragmentPresenterTest {
     }
 
     @Test
+    public void setLocationTextView() throws Exception {
+
+        // Arrange
+        String timezone = "Johnson, check Allepo";
+
+        // Act
+        mPresenter.setLocationTextView(timezone);
+
+        // Assert
+        Mockito.verify(mView).setLocationTextView(timezone);
+    }
+
+    @Test
     public void setTemperatureTextView() throws Exception {
 
         // Arrange

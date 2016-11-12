@@ -54,9 +54,9 @@ public class HourAdapter extends RecyclerView.Adapter<HourAdapter.HourViewHolder
         public HourViewHolder(View itemView) {
             super(itemView);
 
-            mTimeLabel = (TextView) itemView.findViewById(R.id.timeLabel);
-            mSummaryLabel = (TextView) itemView.findViewById(R.id.summaryLabel);
-            mTemperatureLabel = (TextView) itemView.findViewById(R.id.temperatureLabel);
+            mTimeLabel = (TextView) itemView.findViewById(R.id.timeTextView);
+            mSummaryLabel = (TextView) itemView.findViewById(R.id.summaryTextView);
+            mTemperatureLabel = (TextView) itemView.findViewById(R.id.temperatureTextView);
             mIconImageView = (ImageView) itemView.findViewById(R.id.iconImageView);
 
             itemView.setOnClickListener(this);

@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.weather.DayData;
-import teamtreehouse.com.stormy.weather.HourData;
 
 /**
  * Created by benjakuben on 2/6/15.
@@ -51,7 +50,7 @@ public class DayAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.daily_list_item, null);
             holder = new ViewHolder();
             holder.iconImageView = (ImageView) convertView.findViewById(R.id.iconImageView);
-            holder.temperatureLabel = (TextView) convertView.findViewById(R.id.temperatureLabel);
+            holder.temperatureLabel = (TextView) convertView.findViewById(R.id.temperatureTextView);
             holder.dayLabel = (TextView) convertView.findViewById(R.id.dayNameLabel);
 
             convertView.setTag(holder);

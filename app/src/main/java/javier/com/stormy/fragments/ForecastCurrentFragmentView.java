@@ -13,4 +13,5 @@ public interface ForecastCurrentFragmentView {
     void setPrecipitationTextView(int precip);
     void setSummaryTextView(String summary);
     void setIconImageView(int iconId);
+    void setLocationTextView(String timezone);
 }
