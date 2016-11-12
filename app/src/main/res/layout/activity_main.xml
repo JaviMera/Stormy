@@ -24,17 +24,27 @@
                 android:layout_gravity="end">
 
                 <ImageView
+                    android:id="@+id/refreshImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/refreshImageView"
-                    android:src="@drawable/refresh"
+                    android:src="@drawable/ic_menu_refresh"
                     />
 
                 <ProgressBar
                     android:id="@+id/progressBar"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    />
             </FrameLayout>
+
+            <ImageView
+                android:id="@+id/locationSearchImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:src="@drawable/ic_search"
+                android:scaleType="fitCenter"
+                android:layout_gravity="end"/>
 
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
@@ -42,8 +52,5 @@
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
-
+        android:layout_height="match_parent" />
 </LinearLayout>
-
