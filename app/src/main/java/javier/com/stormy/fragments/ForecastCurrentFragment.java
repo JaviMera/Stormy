@@ -1,0 +1,141 @@
+package javier.com.stormy.fragments;
+
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.util.Locale;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import teamtreehouse.com.stormy.R;
+import teamtreehouse.com.stormy.weather.Current;
+
+public class ForecastCurrentFragment extends Fragment implements
+        ForecastCurrentFragmentView {
+
+    public static final String FORECAST_CURRENT = "FORECAST_CURRENT";
+    public static final String FORECAST_TIMEZONE = "FORECAST_TIMEZONE";
+
+    private FragmentActivity mFragmentActivity;
+    private ForecastCurrentFragmentPresenter mPresenter;
+    private Current mCurrent;
+    private String mTimezone;
+
+    @BindView(R.id.timeLabel) TextView mTimeLabel;
+    @BindView(R.id.temperatureLabel) TextView mTemperatureLabel;
+    @BindView(R.id.humidityValue) TextView mHumidityValue;
+    @BindView(R.id.precipValue) TextView mPrecipValue;
+    @BindView(R.id.iconImageView) ImageView mIconImageView;
+    @BindView(R.id.summaryLabel) TextView mSummaryLabel;
+
+
+    public static ForecastCurrentFragment newInstance(Current forecastCurrent, String timezone) {
+
+        ForecastCurrentFragment fragment = new ForecastCurrentFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(FORECAST_CURRENT, forecastCurrent);
+        bundle.putString(FORECAST_TIMEZONE, timezone);
+        fragment.setArguments(bundle);
+
+        return fragment;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        mFragmentActivity = (FragmentActivity) context;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+
+        mCurrent = getArguments().getParcelable(FORECAST_CURRENT);
+        mTimezone = getArguments().getString(FORECAST_TIMEZONE);
+        mPresenter = new ForecastCurrentFragmentPresenter(this);
+
+        super.onCreate(savedInstanceState);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_forecast_current, container, false);
+
+        ButterKnife.bind(this, view);
+
+        updateDisplay(mCurrent, mTimezone);
+        return view;
+    }
+
+    @Override
+    public void setTemperatureTextView(double temperature) {
+
+        String value = getFormattedValue("%f", temperature);
+        mTemperatureLabel.setText(value);
+    }
+
+    @Override
+    public void setTimeTextView(String time) {
+
+        String timeFormat = getFormattedValue("At %s it will be", time);
+        mTimeLabel.setText(timeFormat);
+    }
+
+    @Override
+    public void setHumidity(double humidity) {
+
+        String humidtyFormat = getFormattedValue("%.2f", humidity);
+        mHumidityValue.setText(humidtyFormat);
+    }
+
+    @Override
+    public void setPrecipitationTextView(int precip) {
+
+        String precipFormat = getFormattedValue("%d %%", precip);
+        mPrecipValue.setText(precipFormat);
+    }
+
+    @Override
+    public void setSummaryTextView(String summary) {
+
+        mSummaryLabel.setText(summary);
+    }
+
+    @Override
+    public void setIconImageView(int iconId) {
+
+        Drawable drawable = ContextCompat.getDrawable(mFragmentActivity, iconId);
+        mIconImageView.setImageDrawable(drawable);
+    }
+
+    private String getFormattedValue(String format, Object... args) {
+
+        return String.format(Locale.ENGLISH, format, args);
+    }
+
+    private void updateDisplay(Current current, String timezone) {
+
+        mPresenter.setTemperatureTextView(current.getTemperature());
+
+        String time = current.getFormattedTime(timezone);
+        mPresenter.setTimeTextView(time);
+
+        mPresenter.setHumidityTextView(current.getHumidity());
+        mPresenter.setPrecipitationTextView(current.getPrecipChance());
+        mPresenter.setSummaryTextView(current.getSummary());
+        mPresenter.setIconImageView(current.getIconId());
+    }
+}

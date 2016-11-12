@@ -1,4 +1,4 @@
-package javier.com.stormy;
+package javier.com.stormy.network;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
