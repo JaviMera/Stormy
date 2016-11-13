@@ -25,8 +25,13 @@ public class MainActivityPresenter {
         mView.setToolbarTitle(title);
     }
 
-    public void setToolbarTextColor(int colorResource) {
+    public void setToolbarTextColor(int color) {
 
-        mView.setToolbarTextColor(colorResource);
+        mView.setToolbarTextColor(color);
+    }
+
+    public void setProgressbarColor(int color) {
+
+        mView.setProgressbarColor(color);
     }
 }

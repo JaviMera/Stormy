@@ -61,12 +61,25 @@ public class MainActivityPresenterTest {
     public void setToolbarTextColor() throws Exception {
 
         // Arrange
-        int colorResource = 123;
+        int color = 123;
 
         // Act
-        mPresenter.setToolbarTextColor(colorResource);
+        mPresenter.setToolbarTextColor(color);
 
         // Assert
-        Mockito.verify(mView).setToolbarTextColor(colorResource);
+        Mockito.verify(mView).setToolbarTextColor(color);
+    }
+
+    @Test
+    public void setProgressbarColor() throws Exception {
+
+        // Arrange
+        int color = 312;
+
+        // Act
+        mPresenter.setProgressbarColor(color);
+
+        // Assert
+        Mockito.verify(mView).setProgressbarColor(color);
     }
 }

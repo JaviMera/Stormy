@@ -11,4 +11,5 @@ public interface MainActivityView {
     void setVisibility(View view, boolean visibile);
     void setToolbarTitle(String title);
     void setToolbarTextColor(int colorResource);
+    void setProgressbarColor(int color);
 }

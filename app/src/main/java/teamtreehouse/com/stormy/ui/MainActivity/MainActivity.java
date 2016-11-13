@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.ConnectivityManager;
@@ -79,7 +81,10 @@ public class MainActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setSupportActionBar(mToolBar);
+
         ButterKnife.bind(this);
+
 
         mGoogleApiClient = new GoogleApiClient
                 .Builder(this)
@@ -89,10 +94,10 @@ public class MainActivity extends AppCompatActivity implements
                 .build();
 
         mPresenter = new MainActivityPresenter(this);
-        mPresenter.setVisibility(mProgressBar, false);
 
-        setSupportActionBar(mToolBar);
-        mPresenter.setToolbarTextColor(R.color.white_color);
+        mPresenter.setVisibility(mProgressBar, false);
+        mPresenter.setProgressbarColor(Color.WHITE);
+        mPresenter.setToolbarTextColor(Color.WHITE);
 
         ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -116,8 +121,6 @@ public class MainActivity extends AppCompatActivity implements
         result.setResultCallback(new ResultCallback<PlaceLikelihoodBuffer>() {
             @Override
             public void onResult(@NonNull PlaceLikelihoodBuffer placeLikelihoods) {
-
-                toggleRefresh();
 
                 // Get the first place from the buffer.
                 Place place = placeLikelihoods.get(0).getPlace();
@@ -173,6 +176,8 @@ public class MainActivity extends AppCompatActivity implements
                 mPresenter.setToolbarTitle(cityName);
 
                 LatLng coordinates = place.getLatLng();
+
+                toggleRefresh();
                 sendWeatherRequest(coordinates.latitude, coordinates.longitude);
             }
         }
@@ -269,10 +274,16 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void setToolbarTextColor(int colorResource) {
+    public void setToolbarTextColor(int color) {
 
-        int color = ContextCompat.getColor(this, colorResource);
         mToolBar.setTitleTextColor(color);
+    }
+
+    @Override
+    public void setProgressbarColor(int color) {
+
+        mProgressBar.getIndeterminateDrawable()
+            .setColorFilter(color, PorterDuff.Mode.MULTIPLY);
     }
 
     @Override
