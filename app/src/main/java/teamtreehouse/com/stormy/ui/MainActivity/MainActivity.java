@@ -118,15 +118,26 @@ public class MainActivity extends AppCompatActivity implements
             public void onResult(@NonNull PlaceLikelihoodBuffer placeLikelihoods) {
 
                 toggleRefresh();
-                LatLng coordinates =placeLikelihoods.get(0).getPlace().getLatLng();
-                //sendWeatherRequest(coordinates.latitude, coordinates.longitude);
+
+                // Get the first place from the buffer.
+                Place place = placeLikelihoods.get(0).getPlace();
+
+                // Store the coordinates in private fields, in order to access them later when refreshing
+                mLatitude = place.getLatLng()
+                    .latitude;
+
+                mLongitude = place.getLatLng()
+                    .longitude;
 
                 Geocoder mGeocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
                 try {
 
-                    List<Address> addresses = mGeocoder.getFromLocation(coordinates.latitude, coordinates.longitude, 1);
-                    mPresenter.setToolbarTitle(addresses.get(0).getLocality());
-                    sendWeatherRequest(coordinates.latitude, coordinates.longitude);
+                    List<Address> addresses = mGeocoder.getFromLocation(mLatitude, mLongitude, 1);
+
+                    // Get the first address result from the list
+                    Address address = addresses.get(0);
+                    mPresenter.setToolbarTitle(address.getLocality() + ", " + address.getAdminArea());
+                    sendWeatherRequest(mLatitude, mLongitude);
 
                 }
                 catch (IOException e) {
