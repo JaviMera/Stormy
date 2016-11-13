@@ -49,6 +49,7 @@ import javier.com.stormy.asynctasks.ForecastAsyncTask;
 import javier.com.stormy.url.ForecastClient;
 
 import teamtreehouse.com.stormy.R;
+import teamtreehouse.com.stormy.model.WeatherPlace;
 import teamtreehouse.com.stormy.ui.AlertDialogFragment;
 import teamtreehouse.com.stormy.weather.Forecast;
 
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener {
 
     private Forecast mForecast;
-    private Coordinates mCoordinates;
+    private WeatherPlace mCurrentPlace;
     private InternetInfo mInternetInfo;
     private MainActivityPresenter mPresenter;
     private GoogleApiClient mGoogleApiClient;
@@ -84,7 +85,8 @@ public class MainActivity extends AppCompatActivity implements
 
         ButterKnife.bind(this);
 
-        mCoordinates = new Coordinates();
+        mCurrentPlace = new WeatherPlace();
+
         mGoogleApiClient = new GoogleApiClient
                 .Builder(this)
                 .addApi(Places.GEO_DATA_API)
@@ -123,20 +125,24 @@ public class MainActivity extends AppCompatActivity implements
 
                 // Get the first place from the buffer.
                 LatLng latLong = placeLikelihoods.get(0).getPlace().getLatLng();
-
-                // Store the coordinates in private fields, in order to access them later when refreshing
-                mCoordinates.setLatitude(latLong.latitude);
-                mCoordinates.setLongitude(latLong.longitude);
+                mCurrentPlace.setCoordinates(latLong);
 
                 Geocoder mGeocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
                 try {
 
-                    List<Address> addresses = mGeocoder.getFromLocation(mCoordinates.getLatitude(), mCoordinates.getLongitude(), 1);
+                    List<Address> addresses = mGeocoder.getFromLocation(
+                        mCurrentPlace.getLatitude(),
+                        mCurrentPlace.getLongitude(),
+                        1
+                    );
 
                     // Get the first address result from the list
                     Address address = addresses.get(0);
                     mPresenter.setToolbarTitle(address.getLocality() + ", " + address.getAdminArea());
-                    sendWeatherRequest(mCoordinates.getLatitude(), mCoordinates.getLongitude());
+
+                    sendWeatherRequest(
+                        mCurrentPlace.getLatitude(),
+                        mCurrentPlace.getLongitude());
 
                 }
                 catch (IOException e) {
@@ -172,12 +178,13 @@ public class MainActivity extends AppCompatActivity implements
                 mPresenter.setToolbarTitle(cityName);
 
                 LatLng newCoordinates = place.getLatLng();
-
-                mCoordinates.setLatitude(newCoordinates.latitude);
-                mCoordinates.setLongitude(newCoordinates.longitude);
+                mCurrentPlace.setCoordinates(newCoordinates);
 
                 toggleRefresh();
-                sendWeatherRequest(mCoordinates.getLatitude(), mCoordinates.getLongitude());
+                sendWeatherRequest(
+                    mCurrentPlace.getLatitude(),
+                    mCurrentPlace.getLongitude()
+                );
             }
         }
     }
@@ -202,7 +209,10 @@ public class MainActivity extends AppCompatActivity implements
         if(mInternetInfo.isNetworkAvailable()) {
 
             toggleRefresh();
-            sendWeatherRequest(mCoordinates.getLatitude(), mCoordinates.getLongitude());
+            sendWeatherRequest(
+                mCurrentPlace.getLatitude(),
+                mCurrentPlace.getLongitude())
+            ;
         }
         else {
 

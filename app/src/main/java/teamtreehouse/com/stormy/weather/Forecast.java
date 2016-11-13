@@ -2,10 +2,6 @@ package teamtreehouse.com.stormy.weather;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
-
 import teamtreehouse.com.stormy.R;
 
 /**
