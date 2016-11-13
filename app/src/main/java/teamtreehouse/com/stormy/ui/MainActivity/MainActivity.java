@@ -43,7 +43,6 @@ import butterknife.OnClick;
 import butterknife.ButterKnife;
 
 import javier.com.stormy.fragments.ForecastCurrentFragment;
-import javier.com.stormy.network.Coordinates;
 import javier.com.stormy.network.InternetInfo;
 import javier.com.stormy.asynctasks.ForecastAsyncTask;
 import javier.com.stormy.url.ForecastClient;
@@ -137,8 +136,8 @@ public class MainActivity extends AppCompatActivity implements
                     );
 
                     // Get the first address result from the list
-                    Address address = addresses.get(0);
-                    mPresenter.setToolbarTitle(address.getLocality() + ", " + address.getAdminArea());
+                    mCurrentPlace.setLocality(addresses.get(0));
+                    mPresenter.setToolbarTitle(mCurrentPlace.getFullName());
 
                     sendWeatherRequest(
                         mCurrentPlace.getLatitude(),
