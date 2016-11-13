@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="time_text_color">#80ffffff</color>
+    <color name="white_color">@android:color/white</color>
+    <color name="humidity_title_text_color">#80ffffff</color>
 </resources>

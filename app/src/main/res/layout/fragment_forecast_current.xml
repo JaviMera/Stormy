@@ -14,35 +14,19 @@
 
         <ImageView
             android:id="@+id/locationIconImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:scaleType="fitCenter"
-            android:layout_gravity="center"
-            android:layout_toLeftOf="@+id/locationTextView"
+            style="@style/LocationIconImageView"
             tools:src="@drawable/cloudy_night"/>
 
         <TextView
             android:id="@+id/locationTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_centerInParent="true"
-            tools:text="Alcatraz Island, CA"
-            android:padding="15dp"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"/>
+            style="@style/LocationTextView"
+            tools:text="Alcatraz Island, CA"/>
 
     </RelativeLayout>
 
     <TextView
         android:id="@+id/timeTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/time_text_color"
-        android:textSize="18sp"
-        android:gravity="center"
-        android:padding="15dp"
+        style="@style/TimeTextView"
         tools:text="At 8:00 PM it will be" />
 
     <RelativeLayout
@@ -51,24 +35,11 @@
 
         <TextView
             android:id="@+id/temperatureTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerInParent="true"
-            tools:text="63.2"
-            android:textColor="@android:color/white"
-            android:textSize="100sp"/>
+            style="@style/TemperatureTextView"
+            tools:text="63.2"/>
 
         <ImageView
-            android:id="@+id/degreeImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_toRightOf="@+id/temperatureTextView"
-            android:src="@drawable/degree"
-            android:scaleType="fitStart"
-            android:adjustViewBounds="true"
-            android:maxHeight="30dp"/>
+            style="@style/TemperatureIconImageView"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -82,20 +53,12 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="HUMIDITY"
-                android:textColor="#80ffffff"
-                android:gravity="center_horizontal"/>
+                style="@style/HumidityTitleTextView"/>
 
             <TextView
                 android:id="@+id/humidityTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="0.75"
-                android:textColor="@android:color/white"
-                android:textSize="24sp"
-                android:gravity="center_horizontal"/>
+                style="@style/HumidityValueTextView"
+                tools:text="0.75"/>
         </LinearLayout>
 
         <LinearLayout
@@ -105,31 +68,18 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="RAIN/SNOW?"
-                android:textColor="#80ffffff"
-                android:gravity="center_horizontal"/>
+                style="@style/PrecipitationTitleTextView"/>
 
             <TextView
                 android:id="@+id/precipitationTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="0 %"
-                android:textColor="@android:color/white"
-                android:textSize="24sp"
-                android:gravity="center_horizontal"/>
+                style="@style/PrecipitationValueTextView"
+                tools:text="0 %"/>
         </LinearLayout>
     </LinearLayout>
 
     <TextView
         android:id="@+id/summaryTextView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        tools:text="Getting current weather..."
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        android:gravity="center" />
+        style="@style/SummaryTextView"
+        tools:text="Getting current weather..."/>
 
 </LinearLayout>

@@ -3,7 +3,96 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="android:colorPrimary">@android:color/holo_blue_dark</item>
     </style>
 
+    <style name="LocationIconImageView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_toLeftOf">@+id/locationTextView</item>
+    </style>
+
+    <style name="LocationTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/location_text_pad</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:textColor">@color/white_color</item>
+        <item name="android:textSize">@dimen/location_text_size</item>
+    </style>
+
+    <style name="TimeTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/time_text_color</item>
+        <item name="android:textSize">@dimen/time_text_size</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/time_text_pad</item>
+    </style>
+
+    <style name="TemperatureTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:textColor">@color/white_color</item>
+        <item name="android:textSize">@dimen/temperature_text_size</item>
+    </style>
+
+    <style name="TemperatureIconImageView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_toRightOf">@+id/temperatureTextView</item>
+        <item name="android:src">@drawable/degree</item>
+        <item name="android:scaleType">fitStart</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:maxHeight">@dimen/temperature_icon_height</item>
+    </style>
+
+    <style name="HumidityView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="HumidityTitleTextView" parent="HumidityView">
+        <item name="android:text">@string/humidity_text</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/humidity_title_text_color</item>
+    </style>
+
+    <style name="HumidityValueTextView" parent="HumidityView">
+        <item name="android:textColor">@color/white_color</item>
+        <item name="android:textSize">@dimen/humidity_value_text_size</item>
+    </style>
+
+    <style name="PrecipitationView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="PrecipitationTitleTextView" parent="PrecipitationView">
+        <item name="android:text">@string/precipitation_text</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/white_color</item>
+    </style>
+
+    <style name="PrecipitationValueTextView" parent="PrecipitationView">
+        <item name="android:textColor">@color/white_color</item>
+        <item name="android:textSize">@dimen/humidity_value_text_size</item>
+    </style>
+
+    <style name="SummaryTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/zero</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:textColor">@color/white_color</item>
+        <item name="android:textSize">@dimen/summary_text_size</item>
+        <item name="android:gravity">center</item>
+    </style>
 </resources>
