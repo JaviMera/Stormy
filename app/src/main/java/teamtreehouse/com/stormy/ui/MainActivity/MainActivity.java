@@ -43,6 +43,7 @@ import butterknife.OnClick;
 import butterknife.ButterKnife;
 
 import javier.com.stormy.fragments.ForecastCurrentFragment;
+import javier.com.stormy.network.Coordinates;
 import javier.com.stormy.network.InternetInfo;
 import javier.com.stormy.asynctasks.ForecastAsyncTask;
 import javier.com.stormy.url.ForecastClient;
@@ -57,10 +58,10 @@ public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener {
 
     private Forecast mForecast;
-    private double mLatitude;
-    private double mLongitude;
+    private Coordinates mCoordinates;
     private InternetInfo mInternetInfo;
     private MainActivityPresenter mPresenter;
+    private GoogleApiClient mGoogleApiClient;
 
     @BindView(R.id.progressBar)
     ProgressBar mProgressBar;
@@ -68,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements
     ImageView mRefreshImageView;
     @BindView(R.id.toolBar)
     Toolbar mToolBar;
-    private GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements
 
         ButterKnife.bind(this);
 
-
+        mCoordinates = new Coordinates();
         mGoogleApiClient = new GoogleApiClient
                 .Builder(this)
                 .addApi(Places.GEO_DATA_API)
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             ActivityCompat.requestPermissions(this, new String[]{
-                    Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                    Manifest.permission.ACCESS_FINE_LOCATION}, MainActivityExtras.USER_PERMISSIONS_CODE);
 
             return;
         }
@@ -122,24 +122,21 @@ public class MainActivity extends AppCompatActivity implements
             public void onResult(@NonNull PlaceLikelihoodBuffer placeLikelihoods) {
 
                 // Get the first place from the buffer.
-                Place place = placeLikelihoods.get(0).getPlace();
+                LatLng latLong = placeLikelihoods.get(0).getPlace().getLatLng();
 
                 // Store the coordinates in private fields, in order to access them later when refreshing
-                mLatitude = place.getLatLng()
-                    .latitude;
-
-                mLongitude = place.getLatLng()
-                    .longitude;
+                mCoordinates.setLatitude(latLong.latitude);
+                mCoordinates.setLongitude(latLong.longitude);
 
                 Geocoder mGeocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
                 try {
 
-                    List<Address> addresses = mGeocoder.getFromLocation(mLatitude, mLongitude, 1);
+                    List<Address> addresses = mGeocoder.getFromLocation(mCoordinates.getLatitude(), mCoordinates.getLongitude(), 1);
 
                     // Get the first address result from the list
                     Address address = addresses.get(0);
                     mPresenter.setToolbarTitle(address.getLocality() + ", " + address.getAdminArea());
-                    sendWeatherRequest(mLatitude, mLongitude);
+                    sendWeatherRequest(mCoordinates.getLatitude(), mCoordinates.getLongitude());
 
                 }
                 catch (IOException e) {
@@ -174,10 +171,13 @@ public class MainActivity extends AppCompatActivity implements
                 String cityName = place.getName().toString();
                 mPresenter.setToolbarTitle(cityName);
 
-                LatLng coordinates = place.getLatLng();
+                LatLng newCoordinates = place.getLatLng();
+
+                mCoordinates.setLatitude(newCoordinates.latitude);
+                mCoordinates.setLongitude(newCoordinates.longitude);
 
                 toggleRefresh();
-                sendWeatherRequest(coordinates.latitude, coordinates.longitude);
+                sendWeatherRequest(mCoordinates.getLatitude(), mCoordinates.getLongitude());
             }
         }
     }
@@ -202,42 +202,12 @@ public class MainActivity extends AppCompatActivity implements
         if(mInternetInfo.isNetworkAvailable()) {
 
             toggleRefresh();
-            sendWeatherRequest(mLatitude, mLongitude);
+            sendWeatherRequest(mCoordinates.getLatitude(), mCoordinates.getLongitude());
         }
         else {
 
             alertUserAboutError();
         }
-    }
-
-    private void toggleRefresh() {
-
-        if (mProgressBar.getVisibility() == View.INVISIBLE) {
-
-            mPresenter.setVisibility(mProgressBar, true);
-            mPresenter.setVisibility(mRefreshImageView, false);
-        }
-        else {
-
-            mPresenter.setVisibility(mProgressBar, false);
-            mPresenter.setVisibility(mRefreshImageView, true);
-        }
-    }
-
-    private void alertUserAboutError() {
-        AlertDialogFragment dialog = new AlertDialogFragment();
-        dialog.show(getFragmentManager(), "error_dialog");
-    }
-
-    private void sendWeatherRequest(double latitude, double longitude) {
-
-        ForecastClient url = new ForecastClient.Builder()
-                .withLatitude(latitude)
-                .withLongitude(longitude)
-                .create();
-
-        new ForecastAsyncTask(this)
-                .execute(url);
     }
 
     @Override
@@ -290,6 +260,37 @@ public class MainActivity extends AppCompatActivity implements
 
         Toast.makeText(this, connectionResult.getErrorMessage(), Toast.LENGTH_SHORT).show();
     }
+
+    private void toggleRefresh() {
+
+        if (mProgressBar.getVisibility() == View.INVISIBLE) {
+
+            mPresenter.setVisibility(mProgressBar, true);
+            mPresenter.setVisibility(mRefreshImageView, false);
+        }
+        else {
+
+            mPresenter.setVisibility(mProgressBar, false);
+            mPresenter.setVisibility(mRefreshImageView, true);
+        }
+    }
+
+    private void alertUserAboutError() {
+        AlertDialogFragment dialog = new AlertDialogFragment();
+        dialog.show(getFragmentManager(), "error_dialog");
+    }
+
+    private void sendWeatherRequest(double latitude, double longitude) {
+
+        ForecastClient url = new ForecastClient.Builder()
+                .withLatitude(latitude)
+                .withLongitude(longitude)
+                .create();
+
+        new ForecastAsyncTask(this)
+                .execute(url);
+    }
+
 }
 
 
