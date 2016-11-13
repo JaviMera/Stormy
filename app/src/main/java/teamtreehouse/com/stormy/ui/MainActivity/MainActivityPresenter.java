@@ -19,4 +19,14 @@ public class MainActivityPresenter {
 
         mView.setVisibility(view, visible);
     }
+
+    public void setToolbarTitle(String title) {
+
+        mView.setToolbarTitle(title);
+    }
+
+    public void setToolbarTextColor(int colorResource) {
+
+        mView.setToolbarTextColor(colorResource);
+    }
 }

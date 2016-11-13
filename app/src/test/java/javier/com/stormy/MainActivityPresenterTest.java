@@ -43,4 +43,30 @@ public class MainActivityPresenterTest {
         // Assertw
         Mockito.verify(mView).setVisibility(view, visibile);
     }
+
+    @Test
+    public void setToolBarTitle() throws Exception {
+
+        // Arrange
+        String title = "rofl";
+
+        // Act
+        mPresenter.setToolbarTitle(title);
+
+        // Assert
+        Mockito.verify(mView).setToolbarTitle(title);
+    }
+
+    @Test
+    public void setToolbarTextColor() throws Exception {
+
+        // Arrange
+        int colorResource = 123;
+
+        // Act
+        mPresenter.setToolbarTextColor(colorResource);
+
+        // Assert
+        Mockito.verify(mView).setToolbarTextColor(colorResource);
+    }
 }

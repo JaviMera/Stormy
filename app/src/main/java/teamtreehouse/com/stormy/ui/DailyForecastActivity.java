@@ -16,7 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.adapters.DayAdapter;
-import teamtreehouse.com.stormy.ui.MainActivity.MainActivity;
+import teamtreehouse.com.stormy.ui.MainActivity.MainActivityExtras;
 import teamtreehouse.com.stormy.weather.DayData;
 
 public class DailyForecastActivity extends Activity {
@@ -33,8 +33,8 @@ public class DailyForecastActivity extends Activity {
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        Parcelable[] parcelables = intent.getParcelableArrayExtra(MainActivity.DAILY_FORECAST);
-        final String timezone = intent.getStringExtra(MainActivity.TIMEZONE);
+        Parcelable[] parcelables = intent.getParcelableArrayExtra(MainActivityExtras.DAILY_FORECAST);
+        final String timezone = intent.getStringExtra(MainActivityExtras.TIMEZONE);
         mDays = Arrays.copyOf(parcelables, parcelables.length, DayData[].class);
 
         DayAdapter adapter = new DayAdapter(this, mDays, timezone);

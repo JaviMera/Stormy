@@ -13,7 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.adapters.HourAdapter;
-import teamtreehouse.com.stormy.ui.MainActivity.MainActivity;
+import teamtreehouse.com.stormy.ui.MainActivity.MainActivityExtras;
 import teamtreehouse.com.stormy.weather.HourData;
 
 public class HourlyForecastActivity extends AppCompatActivity {
@@ -29,7 +29,7 @@ public class HourlyForecastActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        Parcelable[] parcelables = intent.getParcelableArrayExtra(MainActivity.HOURLY_FORECAST);
+        Parcelable[] parcelables = intent.getParcelableArrayExtra(MainActivityExtras.HOURLY_FORECAST);
         mHourData = Arrays.copyOf(parcelables, parcelables.length, HourData[].class);
 
         HourAdapter adapter = new HourAdapter(this, mHourData);
