@@ -6,17 +6,17 @@ import java.util.Locale;
  * Created by Javi on 11/10/2016.
  */
 
-public class ForecastUrl {
+public class ForecastClient {
 
     private String mUrl;
     private String mKey;
     private String mLatitude;
     private String mLongitude;
 
-    private ForecastUrl(Builder builder) {
+    private ForecastClient(Builder builder) {
 
         mKey = builder.mKey;
-        mUrl = builder.mUrl;
+        mUrl = builder.mEndPoint;
         mLatitude = builder.mLatitude;
         mLongitude = builder.mLongitude;
     }
@@ -29,18 +29,18 @@ public class ForecastUrl {
 
     public static class Builder {
 
-        private final String mKeyValue = "36c50081595d2616e1939f48407ff830";
-        private final String mUrlValue = "https://api.darksky.net/forecast/";
+        private final String API_KEY = "36c50081595d2616e1939f48407ff830";
+        private final String END_POINT = "https://api.darksky.net/forecast/";
 
         private String mKey;
-        private String mUrl;
+        private String mEndPoint;
         private String mLatitude;
         private String mLongitude;
 
         public Builder() {
 
-            mKey = mKeyValue;
-            mUrl = mUrlValue;
+            mEndPoint = END_POINT;
+            mKey = API_KEY;
         }
 
         public Builder withLatitude(double value) {
@@ -55,9 +55,9 @@ public class ForecastUrl {
             return this;
         }
 
-        public ForecastUrl create() {
+        public ForecastClient create() {
 
-            return new ForecastUrl(this);
+            return new ForecastClient(this);
         }
     }
 }

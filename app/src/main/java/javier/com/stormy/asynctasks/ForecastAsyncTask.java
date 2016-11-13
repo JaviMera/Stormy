@@ -11,14 +11,14 @@ import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 
-import javier.com.stormy.url.ForecastUrl;
+import javier.com.stormy.url.ForecastClient;
 import teamtreehouse.com.stormy.weather.Forecast;
 
 /**
  * Created by Javi on 11/10/2016.
  */
 
-public class ForecastAsyncTask extends AsyncTask<ForecastUrl, Void, Forecast> {
+public class ForecastAsyncTask extends AsyncTask<ForecastClient, Void, Forecast> {
 
     public interface ForecastListener {
 
@@ -33,7 +33,7 @@ public class ForecastAsyncTask extends AsyncTask<ForecastUrl, Void, Forecast> {
     }
 
     @Override
-    protected Forecast doInBackground(ForecastUrl... params) {
+    protected Forecast doInBackground(ForecastClient... params) {
 
         String url = params[0].toString();
         OkHttpClient client = new OkHttpClient();

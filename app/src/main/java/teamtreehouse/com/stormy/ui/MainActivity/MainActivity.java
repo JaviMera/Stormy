@@ -15,7 +15,6 @@ import android.support.multidex.MultiDex;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -46,7 +45,7 @@ import butterknife.ButterKnife;
 import javier.com.stormy.fragments.ForecastCurrentFragment;
 import javier.com.stormy.network.InternetInfo;
 import javier.com.stormy.asynctasks.ForecastAsyncTask;
-import javier.com.stormy.url.ForecastUrl;
+import javier.com.stormy.url.ForecastClient;
 
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.ui.AlertDialogFragment;
@@ -232,7 +231,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private void sendWeatherRequest(double latitude, double longitude) {
 
-        ForecastUrl url = new ForecastUrl.Builder()
+        ForecastClient url = new ForecastClient.Builder()
                 .withLatitude(latitude)
                 .withLongitude(longitude)
                 .create();

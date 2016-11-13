@@ -3,14 +3,14 @@ package javier.com.stormy;
 import junit.framework.Assert;
 import org.junit.Test;
 
-import javier.com.stormy.url.ForecastUrl;
+import javier.com.stormy.url.ForecastClient;
 
 /**
  * Created by Javi on 11/10/2016.
  */
-public class ForecastUrlTest {
+public class ForecastClientTest {
 
-    private ForecastUrl mUrl;
+    private ForecastClient mUrl;
 
     @Test
     public void testToString() throws Exception {
@@ -20,7 +20,7 @@ public class ForecastUrlTest {
         double longitude = -122.4233;
         String expectedUrl = "https://api.darksky.net/forecast/36c50081595d2616e1939f48407ff830/37.8267,-122.4233";
 
-        mUrl = new ForecastUrl.Builder()
+        mUrl = new ForecastClient.Builder()
                 .withLatitude(latitude)
                 .withLongitude(longitude)
                 .create();
