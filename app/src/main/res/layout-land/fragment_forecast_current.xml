@@ -59,13 +59,11 @@
 
             <ImageView
                 android:id="@+id/locationIconImageView"
-                android:layout_gravity="center"
                 style="@style/LocationIconImageView"
                 tools:src="@drawable/clear_day"/>
 
             <TextView
                 android:id="@+id/summaryTextView"
-                android:layout_gravity="center"
                 style="@style/SummaryTextView"
                 tools:text="This is a summary"/>
         </LinearLayout>
@@ -81,8 +79,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_gravity="center">
+                android:orientation="vertical">
 
             <TextView
                 style="@style/HumidityTitleTextView"/>
