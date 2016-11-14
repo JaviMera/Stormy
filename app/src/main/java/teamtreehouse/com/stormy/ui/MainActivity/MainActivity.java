@@ -19,11 +19,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.awareness.state.Weather;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -60,15 +62,11 @@ public class MainActivity extends AppCompatActivity implements
         ForecastAsyncTask.ForecastListener,
         GoogleApiClient.OnConnectionFailedListener {
 
-    private static final String SHARE_PREFERENCES_FILE = MainActivity.class.getSimpleName() + ".preferences";
-
     private Forecast mForecast;
     private WeatherPlace mCurrentPlace;
     private InternetInfo mInternetInfo;
     private MainActivityPresenter mPresenter;
     private GoogleApiClient mGoogleApiClient;
-    private SharedPreferences mSharedPreferences;
-    private SharedPreferences.Editor mEditor;
 
     @BindView(R.id.progressBar)
     ProgressBar mProgressBar;
@@ -99,16 +97,11 @@ public class MainActivity extends AppCompatActivity implements
         ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         mInternetInfo = new InternetInfo(manager);
 
-        mSharedPreferences = getSharedPreferences(SHARE_PREFERENCES_FILE, MODE_PRIVATE);
-        mEditor = mSharedPreferences.edit();
+        if(savedInstanceState != null) {
 
-        if(mSharedPreferences.contains("FORECAST_JSON")) {
+            mForecast = savedInstanceState.getParcelable(Forecast.FORECAST_JSON);
+            mCurrentPlace = savedInstanceState.getParcelable(WeatherPlace.WEATHER_PLACE_JSON);
 
-            String forecastJson = mSharedPreferences.getString("FORECAST_JSON", "");
-            String weatherPlaceJson = mSharedPreferences.getString("WEATHER_PLACE_JSON", "");
-
-            mForecast = new Gson().fromJson(forecastJson, Forecast.class);
-            mCurrentPlace = new Gson().fromJson(weatherPlaceJson, WeatherPlace.class);
             mPresenter.setToolbarTitle(mCurrentPlace.getCityFullName());
 
             ForecastCurrentFragment fragment = ForecastCurrentFragment.newInstance(mForecast.getCurrent(), mForecast.getTimezone());
@@ -138,20 +131,11 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
 
-        String forecastJson = new Gson().toJson(mForecast);
-        String weatherPlaceJson = new Gson().toJson(mCurrentPlace);
-
-        mEditor.putString("WEATHER_PLACE_JSON", weatherPlaceJson);
-        mEditor.putString("FORECAST_JSON", forecastJson);
-        mEditor.commit();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+        outState.putParcelable(Forecast.FORECAST_JSON, mForecast);
+        outState.putParcelable(WeatherPlace.WEATHER_PLACE_JSON, mCurrentPlace);
     }
 
     private void requestUserLocation(GoogleApiClient client) {
@@ -192,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements
 
         switch (requestCode) {
 
-            case 1:
+            case MainActivityExtras.USER_PERMISSIONS_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                     requestUserLocation(mGoogleApiClient);

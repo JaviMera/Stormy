@@ -1,5 +1,8 @@
 package teamtreehouse.com.stormy.weather;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import teamtreehouse.com.stormy.R;
@@ -7,7 +10,9 @@ import teamtreehouse.com.stormy.R;
 /**
  * Created by benjakuben on 2/5/15.
  */
-public class Forecast {
+public class Forecast implements Parcelable{
+
+    public static final String FORECAST_JSON = "FORECAST_JSON";
 
     @SerializedName("timezone")
     private String mTimezone;
@@ -20,6 +25,25 @@ public class Forecast {
 
     @SerializedName("daily")
     private Day mDailyForecast;
+
+    protected Forecast(Parcel in) {
+        mTimezone = in.readString();
+        mCurrent = in.readParcelable(Current.class.getClassLoader());
+        mHourlyForecast = in.readParcelable(Hour.class.getClassLoader());
+        mDailyForecast = in.readParcelable(Day.class.getClassLoader());
+    }
+
+    public static final Creator<Forecast> CREATOR = new Creator<Forecast>() {
+        @Override
+        public Forecast createFromParcel(Parcel in) {
+            return new Forecast(in);
+        }
+
+        @Override
+        public Forecast[] newArray(int size) {
+            return new Forecast[size];
+        }
+    };
 
     public Current getCurrent() {
         return mCurrent;
@@ -75,5 +99,18 @@ public class Forecast {
     public String getTimezone() {
 
         return mTimezone;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(mTimezone);
+        parcel.writeParcelable(mCurrent, i);
+        parcel.writeParcelable(mHourlyForecast, i);
+        parcel.writeParcelable(mDailyForecast, i);
     }
 }
