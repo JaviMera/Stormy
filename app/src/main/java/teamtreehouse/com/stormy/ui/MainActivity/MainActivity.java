@@ -151,19 +151,28 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onResult(@NonNull PlaceLikelihoodBuffer placeLikelihoods) {
 
-                // Get the first place from the buffer.
-                LatLng latLong = placeLikelihoods.get(0).getPlace().getLatLng();
-                mCurrentPlace.setCoordinates(latLong);
+                if(placeLikelihoods.getStatus().isSuccess()) {
 
-                // Get address from Geocoder class with the new lat long values
-                Address address = getAddress(mCurrentPlace.getLatitude(), mCurrentPlace.getLongitude());
+                    // Get the first place from the buffer.
+                    LatLng latLong = placeLikelihoods.get(0).getPlace().getLatLng();
+                    mCurrentPlace.setCoordinates(latLong);
 
-                mCurrentPlace.setLocality(address);
-                mPresenter.setToolbarTitle(mCurrentPlace.getCityFullName());
+                    // Get address from Geocoder class with the new lat long values
+                    Address address = getAddress(mCurrentPlace.getLatitude(), mCurrentPlace.getLongitude());
 
-                sendWeatherRequest(
-                        mCurrentPlace.getLatitude(),
-                        mCurrentPlace.getLongitude());
+                    mCurrentPlace.setLocality(address);
+                    mPresenter.setToolbarTitle(mCurrentPlace.getCityFullName());
+
+                    sendWeatherRequest(
+                            mCurrentPlace.getLatitude(),
+                            mCurrentPlace.getLongitude());
+                }
+                else {
+
+                    toggleRefresh();
+                    alertUserAboutError();
+                    mPresenter.setToolbarTitle("Search for a city...");
+                }
             }
         });
     }
