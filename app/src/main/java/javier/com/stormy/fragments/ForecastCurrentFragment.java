@@ -31,7 +31,6 @@ public class ForecastCurrentFragment extends Fragment implements
     private Current mCurrent;
     private String mTimezone;
 
-    @BindView(R.id.locationTextView) TextView mLocationTextView;
     @BindView(R.id.locationIconImageView) ImageView mIconImageView;
     @BindView(R.id.timeTextView) TextView mTimeTextView;
     @BindView(R.id.temperatureTextView) TextView mTemperatureTextView;
@@ -125,8 +124,8 @@ public class ForecastCurrentFragment extends Fragment implements
     @Override
     public void setLocationTextView(String timezone) {
 
-        String locationFormat = getFormattedValue("%s", timezone);
-        mLocationTextView.setText(locationFormat);
+//        String locationFormat = getFormattedValue("%s", timezone);
+//        mLocationTextView.setText(locationFormat);
     }
 
     private String getFormattedValue(String format, Object... args) {

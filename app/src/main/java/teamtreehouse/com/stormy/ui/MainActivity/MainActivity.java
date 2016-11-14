@@ -1,9 +1,10 @@
 package teamtreehouse.com.stormy.ui.MainActivity;
 
+import android.support.annotation.NonNull;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -11,7 +12,6 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.multidex.MultiDex;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -19,13 +19,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.gms.awareness.state.Weather;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -37,7 +35,7 @@ import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.gson.Gson;
+import com.google.android.gms.search.SearchAuth;
 
 import java.io.IOException;
 import java.util.List;
@@ -97,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements
         ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         mInternetInfo = new InternetInfo(manager);
 
-        if(savedInstanceState != null) {
+        if (savedInstanceState != null) {
 
             mForecast = savedInstanceState.getParcelable(Forecast.FORECAST_JSON);
             mCurrentPlace = savedInstanceState.getParcelable(WeatherPlace.WEATHER_PLACE_JSON);
@@ -106,8 +104,7 @@ public class MainActivity extends AppCompatActivity implements
 
             ForecastCurrentFragment fragment = ForecastCurrentFragment.newInstance(mForecast.getCurrent(), mForecast.getTimezone());
             addFragment(R.id.fragmentContainer, fragment);
-        }
-        else {
+        } else {
 
             mCurrentPlace = new WeatherPlace();
             mGoogleApiClient = new GoogleApiClient

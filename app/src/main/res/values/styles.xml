@@ -7,10 +7,8 @@
 
     <style name="LocationIconImageView">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:scaleType">fitCenter</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:layout_toLeftOf">@+id/locationTextView</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:scaleType">fitEnd</item>
     </style>
 
     <style name="LocationTextView">
@@ -36,8 +34,6 @@
     <style name="TemperatureTextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_alignParentTop">true</item>
-        <item name="android:layout_centerInParent">true</item>
         <item name="android:textColor">@color/white_color</item>
         <item name="android:textSize">@dimen/temperature_text_size</item>
     </style>
@@ -79,7 +75,7 @@
     <style name="PrecipitationTitleTextView" parent="PrecipitationView">
         <item name="android:text">@string/precipitation_text</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@color/white_color</item>
+        <item name="android:textColor">@color/precipitation_title_text_color</item>
     </style>
 
     <style name="PrecipitationValueTextView" parent="PrecipitationView">
@@ -88,9 +84,8 @@
     </style>
 
     <style name="SummaryTextView">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/zero</item>
-        <item name="android:layout_weight">2</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/white_color</item>
         <item name="android:textSize">@dimen/summary_text_size</item>
         <item name="android:gravity">center</item>

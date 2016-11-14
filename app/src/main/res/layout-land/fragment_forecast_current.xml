@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/timeTextView"
+            android:layout_above="@+id/temperatureLayout"
+            style="@style/TimeTextView"
+            tools:text="AT 8:00 PM it will be"/>
+
+        <LinearLayout
+            android:id="@+id/temperatureLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="top|center">
+
+            <TextView
+            android:id="@+id/temperatureTextView"
+            style="@style/TemperatureTextView"
+            tools:text="63.0"/>
+
+            <ImageView
+            android:layout_marginTop="20dp"
+            style="@style/TemperatureIconImageView"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="F"
+                android:textColor="@color/white_color"
+                android:textSize="70sp"
+                android:layout_marginLeft="5dp"
+                android:paddingTop="5dp"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_above="@+id/humPrecipLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="30dp">
+
+        <ImageView
+            android:id="@+id/locationIconImageView"
+            android:layout_gravity="center"
+            style="@style/LocationIconImageView"
+            tools:src="@drawable/clear_day"/>
+
+        <TextView
+            android:id="@+id/summaryTextView"
+            android:layout_gravity="center"
+            style="@style/SummaryTextView"
+            tools:text="This is a summary"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/humPrecipLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingBottom="20dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+            <TextView
+                style="@style/HumidityTitleTextView"/>
+
+            <TextView
+                style="@style/HumidityValueTextView"
+                tools:text="0.54"/>
+
+            </LinearLayout>
+
+                <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+            <TextView
+                style="@style/PrecipitationTitleTextView"/>
+
+            <TextView
+                style="@style/PrecipitationValueTextView"
+                tools:text="0 %"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>
