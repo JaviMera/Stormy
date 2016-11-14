@@ -12,6 +12,6 @@
     <string name="no_daily_forecast_data">There is no data to display.</string>
     <string name="title_activity_hourly_forecast">HourlyForecastActivity</string>
     <string name="humidity_text">Humidity</string>
-    <string name="precipitation_text">rain/snow?</string>
+    <string name="precipitation_text">Precipitation</string>
 
 </resources>

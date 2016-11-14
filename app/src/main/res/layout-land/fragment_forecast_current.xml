@@ -57,17 +57,17 @@
             android:gravity="center"
             android:padding="30dp">
 
-        <ImageView
-            android:id="@+id/locationIconImageView"
-            android:layout_gravity="center"
-            style="@style/LocationIconImageView"
-            tools:src="@drawable/clear_day"/>
+            <ImageView
+                android:id="@+id/locationIconImageView"
+                android:layout_gravity="center"
+                style="@style/LocationIconImageView"
+                tools:src="@drawable/clear_day"/>
 
-        <TextView
-            android:id="@+id/summaryTextView"
-            android:layout_gravity="center"
-            style="@style/SummaryTextView"
-            tools:text="This is a summary"/>
+            <TextView
+                android:id="@+id/summaryTextView"
+                android:layout_gravity="center"
+                style="@style/SummaryTextView"
+                tools:text="This is a summary"/>
         </LinearLayout>
 
         <LinearLayout
@@ -94,7 +94,7 @@
 
             </LinearLayout>
 
-                <LinearLayout
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
