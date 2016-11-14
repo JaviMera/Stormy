@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements
 
             mPresenter.setToolbarTitle(mCurrentPlace.getCityFullName());
 
+            toggleRefresh();
             requestForecast(mCurrentPlace.getLatitude(), mCurrentPlace.getLongitude());
 
         } else {
