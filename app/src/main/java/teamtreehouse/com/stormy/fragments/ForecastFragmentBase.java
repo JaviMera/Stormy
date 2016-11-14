@@ -9,7 +9,7 @@ import android.support.v4.app.Fragment;
  */
 public abstract class ForecastFragmentBase extends Fragment{
 
-    protected abstract String getTitle();
+    public abstract String getTitle();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

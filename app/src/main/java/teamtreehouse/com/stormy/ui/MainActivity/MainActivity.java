@@ -52,7 +52,7 @@ import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.dialogs.InternetErrorDialog;
 import teamtreehouse.com.stormy.dialogs.LocationErrorDialog;
 import teamtreehouse.com.stormy.dialogs.LocationNullDialog;
-import teamtreehouse.com.stormy.fragments.FragmentViewPager;
+import teamtreehouse.com.stormy.fragments.FragmentViewPager.FragmentViewPager;
 import teamtreehouse.com.stormy.model.WeatherPlace;
 import teamtreehouse.com.stormy.weather.Forecast;
 

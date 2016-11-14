@@ -7,8 +7,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import teamtreehouse.com.stormy.fragments.ForecastCurrentFragmentView;
-import teamtreehouse.com.stormy.fragments.ForecastCurrentFragmentPresenter;
+import teamtreehouse.com.stormy.fragments.FragmentCurrent.FragmentCurrentView;
+import teamtreehouse.com.stormy.fragments.FragmentCurrent.FragmentCurrentPresenter;
 
 /**
  * Created by Javi on 11/11/2016.
@@ -16,15 +16,15 @@ import teamtreehouse.com.stormy.fragments.ForecastCurrentFragmentPresenter;
 @RunWith(MockitoJUnitRunner.class)
 public class FragmentCurrentPresenterTest {
 
-    private ForecastCurrentFragmentPresenter mPresenter;
+    private FragmentCurrentPresenter mPresenter;
 
     @Mock
-    public ForecastCurrentFragmentView mView;
+    public FragmentCurrentView mView;
 
     @Before
     public void setUp() throws Exception {
 
-        mPresenter = new ForecastCurrentFragmentPresenter(mView);
+        mPresenter = new FragmentCurrentPresenter(mView);
     }
 
     @Test

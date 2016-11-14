@@ -1,10 +1,9 @@
-package teamtreehouse.com.stormy.fragments;
+package teamtreehouse.com.stormy.fragments.FragmentCurrent;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -18,16 +17,17 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import teamtreehouse.com.stormy.R;
+import teamtreehouse.com.stormy.fragments.ForecastFragmentBase;
 import teamtreehouse.com.stormy.weather.Current;
 
-public class FragmentCurrent extends ForecastFragmentBase implements
-        ForecastCurrentFragmentView {
+public class FragmentCurrentCurrent extends ForecastFragmentBase implements
+        FragmentCurrentView {
 
     public static final String FORECAST_CURRENT = "FORECAST_CURRENT";
     public static final String FORECAST_TIMEZONE = "FORECAST_TIMEZONE";
 
     private FragmentActivity mFragmentActivity;
-    private ForecastCurrentFragmentPresenter mPresenter;
+    private FragmentCurrentPresenter mPresenter;
     private Current mCurrent;
     private String mTimezone;
 
@@ -39,9 +39,9 @@ public class FragmentCurrent extends ForecastFragmentBase implements
     @BindView(R.id.summaryTextView) TextView mSummaryTextView;
 
 
-    public static FragmentCurrent newInstance(Current forecastCurrent, String timezone) {
+    public static FragmentCurrentCurrent newInstance(Current forecastCurrent, String timezone) {
 
-        FragmentCurrent fragment = new FragmentCurrent();
+        FragmentCurrentCurrent fragment = new FragmentCurrentCurrent();
 
         Bundle bundle = new Bundle();
         bundle.putParcelable(FORECAST_CURRENT, forecastCurrent);
@@ -63,7 +63,7 @@ public class FragmentCurrent extends ForecastFragmentBase implements
 
         mCurrent = getArguments().getParcelable(FORECAST_CURRENT);
         mTimezone = getArguments().getString(FORECAST_TIMEZONE);
-        mPresenter = new ForecastCurrentFragmentPresenter(this);
+        mPresenter = new FragmentCurrentPresenter(this);
 
         super.onCreate(savedInstanceState);
     }
@@ -147,7 +147,7 @@ public class FragmentCurrent extends ForecastFragmentBase implements
     }
 
     @Override
-    protected String getTitle() {
+    public String getTitle() {
 
         return "Currently";
     }

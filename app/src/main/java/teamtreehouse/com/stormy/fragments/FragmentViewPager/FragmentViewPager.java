@@ -1,4 +1,4 @@
-package teamtreehouse.com.stormy.fragments;
+package teamtreehouse.com.stormy.fragments.FragmentViewPager;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -15,6 +15,10 @@ import android.view.ViewGroup;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import teamtreehouse.com.stormy.R;
+import teamtreehouse.com.stormy.fragments.ForecastFragmentBase;
+import teamtreehouse.com.stormy.fragments.FragmentCurrent.FragmentCurrentCurrent;
+import teamtreehouse.com.stormy.fragments.FragmentDaily;
+import teamtreehouse.com.stormy.fragments.FragmentHourly;
 import teamtreehouse.com.stormy.weather.Current;
 
 /**
@@ -35,8 +39,8 @@ public class FragmentViewPager extends Fragment {
         FragmentViewPager fragment = new FragmentViewPager();
 
         Bundle bundle = new Bundle();
-        bundle.putParcelable(FragmentCurrent.FORECAST_CURRENT, currentWeather);
-        bundle.putString(FragmentCurrent.FORECAST_TIMEZONE, timezone);
+        bundle.putParcelable(FragmentCurrentCurrent.FORECAST_CURRENT, currentWeather);
+        bundle.putString(FragmentCurrentCurrent.FORECAST_TIMEZONE, timezone);
         fragment.setArguments(bundle);
 
         return fragment;
@@ -55,8 +59,8 @@ public class FragmentViewPager extends Fragment {
 
         setRetainInstance(true);
 
-        mCurrentWeather = getArguments().getParcelable(FragmentCurrent.FORECAST_CURRENT);
-        mTimezone = getArguments().getString(FragmentCurrent.FORECAST_TIMEZONE);
+        mCurrentWeather = getArguments().getParcelable(FragmentCurrentCurrent.FORECAST_CURRENT);
+        mTimezone = getArguments().getString(FragmentCurrentCurrent.FORECAST_TIMEZONE);
     }
 
     @Nullable
@@ -70,7 +74,7 @@ public class FragmentViewPager extends Fragment {
         mViewPager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
 
             ForecastFragmentBase[] mFragments = new ForecastFragmentBase[]{
-                FragmentCurrent.newInstance(mCurrentWeather, mTimezone),
+                FragmentCurrentCurrent.newInstance(mCurrentWeather, mTimezone),
                 FragmentHourly.newInstance(),
                 FragmentDaily.newInstance()
             };

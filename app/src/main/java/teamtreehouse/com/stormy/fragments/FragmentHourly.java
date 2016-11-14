@@ -7,7 +7,7 @@ public class FragmentHourly extends ForecastFragmentBase{
 
 
     @Override
-    protected String getTitle() {
+    public String getTitle() {
 
         return "Hourly";
     }

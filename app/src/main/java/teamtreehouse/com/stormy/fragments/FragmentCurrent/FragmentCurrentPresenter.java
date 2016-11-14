@@ -1,14 +1,14 @@
-package teamtreehouse.com.stormy.fragments;
+package teamtreehouse.com.stormy.fragments.FragmentCurrent;
 
 /**
  * Created by Javi on 11/11/2016.
  */
 
-public class ForecastCurrentFragmentPresenter {
+public class FragmentCurrentPresenter {
 
-    private ForecastCurrentFragmentView mView;
+    private FragmentCurrentView mView;
 
-    public ForecastCurrentFragmentPresenter(ForecastCurrentFragmentView view) {
+    public FragmentCurrentPresenter(FragmentCurrentView view) {
 
         mView = view;
     }

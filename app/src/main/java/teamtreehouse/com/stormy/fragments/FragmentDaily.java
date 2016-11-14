@@ -6,7 +6,7 @@ package teamtreehouse.com.stormy.fragments;
 public class FragmentDaily extends ForecastFragmentBase{
 
     @Override
-    protected String getTitle() {
+    public String getTitle() {
 
         return "Daily";
     }
