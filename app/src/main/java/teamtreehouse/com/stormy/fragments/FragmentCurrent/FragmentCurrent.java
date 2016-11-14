@@ -17,10 +17,10 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import teamtreehouse.com.stormy.R;
-import teamtreehouse.com.stormy.fragments.ForecastFragmentBase;
+import teamtreehouse.com.stormy.fragments.FragmentBase;
 import teamtreehouse.com.stormy.weather.Current;
 
-public class FragmentCurrentCurrent extends ForecastFragmentBase implements
+public class FragmentCurrent extends FragmentBase implements
         FragmentCurrentView {
 
     public static final String FORECAST_CURRENT = "FORECAST_CURRENT";
@@ -39,9 +39,9 @@ public class FragmentCurrentCurrent extends ForecastFragmentBase implements
     @BindView(R.id.summaryTextView) TextView mSummaryTextView;
 
 
-    public static FragmentCurrentCurrent newInstance(Current forecastCurrent, String timezone) {
+    public static FragmentCurrent newInstance(Current forecastCurrent, String timezone) {
 
-        FragmentCurrentCurrent fragment = new FragmentCurrentCurrent();
+        FragmentCurrent fragment = new FragmentCurrent();
 
         Bundle bundle = new Bundle();
         bundle.putParcelable(FORECAST_CURRENT, forecastCurrent);
