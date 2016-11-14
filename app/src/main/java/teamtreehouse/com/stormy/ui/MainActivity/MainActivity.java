@@ -3,6 +3,7 @@ package teamtreehouse.com.stormy.ui.MainActivity;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.multidex.MultiDex;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +35,7 @@ import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.List;
@@ -57,11 +60,15 @@ public class MainActivity extends AppCompatActivity implements
         ForecastAsyncTask.ForecastListener,
         GoogleApiClient.OnConnectionFailedListener {
 
+    private static final String SHARE_PREFERENCES_FILE = MainActivity.class.getSimpleName() + ".preferences";
+
     private Forecast mForecast;
     private WeatherPlace mCurrentPlace;
     private InternetInfo mInternetInfo;
     private MainActivityPresenter mPresenter;
     private GoogleApiClient mGoogleApiClient;
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
 
     @BindView(R.id.progressBar)
     ProgressBar mProgressBar;
@@ -81,17 +88,7 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setSupportActionBar(mToolBar);
-
         ButterKnife.bind(this);
-
-        mCurrentPlace = new WeatherPlace();
-
-        mGoogleApiClient = new GoogleApiClient
-                .Builder(this)
-                .addApi(Places.GEO_DATA_API)
-                .addApi(Places.PLACE_DETECTION_API)
-                .enableAutoManage(this, this)
-                .build();
 
         mPresenter = new MainActivityPresenter(this);
 
@@ -100,10 +97,61 @@ public class MainActivity extends AppCompatActivity implements
         mPresenter.setToolbarTextColor(Color.WHITE);
 
         ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
         mInternetInfo = new InternetInfo(manager);
 
-        requestUserLocation(mGoogleApiClient);
+        mSharedPreferences = getSharedPreferences(SHARE_PREFERENCES_FILE, MODE_PRIVATE);
+        mEditor = mSharedPreferences.edit();
+
+        if(mSharedPreferences.contains("FORECAST_JSON")) {
+
+            String forecastJson = mSharedPreferences.getString("FORECAST_JSON", "");
+            String weatherPlaceJson = mSharedPreferences.getString("WEATHER_PLACE_JSON", "");
+
+            mForecast = new Gson().fromJson(forecastJson, Forecast.class);
+            mCurrentPlace = new Gson().fromJson(weatherPlaceJson, WeatherPlace.class);
+            mPresenter.setToolbarTitle(mCurrentPlace.getCityFullName());
+
+            ForecastCurrentFragment fragment = ForecastCurrentFragment.newInstance(mForecast.getCurrent(), mForecast.getTimezone());
+            addFragment(R.id.fragmentContainer, fragment);
+        }
+        else {
+
+            mCurrentPlace = new WeatherPlace();
+            mGoogleApiClient = new GoogleApiClient
+                    .Builder(this)
+                    .addApi(Places.GEO_DATA_API)
+                    .addApi(Places.PLACE_DETECTION_API)
+                    .enableAutoManage(this, this)
+                    .build();
+
+            requestUserLocation(mGoogleApiClient);
+        }
+
+    }
+
+    private void addFragment(int layoutId, Fragment fragment) {
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(layoutId, fragment);
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        String forecastJson = new Gson().toJson(mForecast);
+        String weatherPlaceJson = new Gson().toJson(mCurrentPlace);
+
+        mEditor.putString("WEATHER_PLACE_JSON", weatherPlaceJson);
+        mEditor.putString("FORECAST_JSON", forecastJson);
+        mEditor.commit();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     private void requestUserLocation(GoogleApiClient client) {
@@ -126,27 +174,15 @@ public class MainActivity extends AppCompatActivity implements
                 LatLng latLong = placeLikelihoods.get(0).getPlace().getLatLng();
                 mCurrentPlace.setCoordinates(latLong);
 
-                Geocoder mGeocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
-                try {
+                // Get address from Geocoder class with the new lat long values
+                Address address = getAddress(mCurrentPlace.getLatitude(), mCurrentPlace.getLongitude());
 
-                    List<Address> addresses = mGeocoder.getFromLocation(
-                        mCurrentPlace.getLatitude(),
-                        mCurrentPlace.getLongitude(),
-                        1
-                    );
+                mCurrentPlace.setLocality(address);
+                mPresenter.setToolbarTitle(mCurrentPlace.getCityFullName());
 
-                    // Get the first address result from the list
-                    mCurrentPlace.setLocality(addresses.get(0));
-                    mPresenter.setToolbarTitle(mCurrentPlace.getFullName());
-
-                    sendWeatherRequest(
+                sendWeatherRequest(
                         mCurrentPlace.getLatitude(),
                         mCurrentPlace.getLongitude());
-
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         });
     }
@@ -178,6 +214,9 @@ public class MainActivity extends AppCompatActivity implements
 
                 LatLng newCoordinates = place.getLatLng();
                 mCurrentPlace.setCoordinates(newCoordinates);
+
+                Address address = getAddress(mCurrentPlace.getLatitude(), mCurrentPlace.getLongitude());
+                mCurrentPlace.setLocality(address);
 
                 toggleRefresh();
                 sendWeatherRequest(
@@ -300,6 +339,22 @@ public class MainActivity extends AppCompatActivity implements
                 .execute(url);
     }
 
+    private Address getAddress(double latitude, double longitude) {
+
+        Geocoder mGeocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+        try {
+
+            List<Address> addresses = mGeocoder.getFromLocation(latitude, longitude, 1);
+
+            // return the first address from the list
+            return addresses.get(0);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }
 
 

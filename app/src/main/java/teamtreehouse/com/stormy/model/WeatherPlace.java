@@ -38,7 +38,7 @@ public class WeatherPlace {
         mAddress.setAdminArea(address.getAdminArea());
     }
 
-    public String getFullName() {
+    public String getCityFullName() {
 
         return mAddress.getLocality() + ", " + mAddress.getAdminArea();
     }
