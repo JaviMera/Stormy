@@ -17,10 +17,10 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import teamtreehouse.com.stormy.R;
-import teamtreehouse.com.stormy.fragments.FragmentBase;
+import teamtreehouse.com.stormy.fragments.ForecastFragmentBase;
 import teamtreehouse.com.stormy.weather.Current;
 
-public class FragmentCurrent extends FragmentBase implements
+public class FragmentCurrent extends ForecastFragmentBase implements
         FragmentCurrentView {
 
     public static final String FORECAST_CURRENT = "FORECAST_CURRENT";

@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import teamtreehouse.com.stormy.R;
-import teamtreehouse.com.stormy.fragments.FragmentBase;
+import teamtreehouse.com.stormy.fragments.ForecastFragmentBase;
 import teamtreehouse.com.stormy.fragments.FragmentCurrent.FragmentCurrent;
 import teamtreehouse.com.stormy.fragments.FragmentDaily;
 import teamtreehouse.com.stormy.fragments.FragmentHourly;
@@ -72,8 +72,8 @@ public class FragmentPager extends Fragment implements FragmentPagerView{
         ButterKnife.bind(this, view);
         mPresenter = new FragmentPagerPresenter(this);
 
-        mPresenter.setPagerAdapter(FragmentCurrent.newInstance(
-            mCurrentWeather, mTimezone),
+        mPresenter.setPagerAdapter(
+            FragmentCurrent.newInstance(mCurrentWeather, mTimezone),
             FragmentHourly.newInstance(),
             FragmentDaily.newInstance());
 
@@ -83,7 +83,7 @@ public class FragmentPager extends Fragment implements FragmentPagerView{
     }
 
     @Override
-    public void setPagerAdapter(FragmentBase... fragments) {
+    public void setPagerAdapter(ForecastFragmentBase... fragments) {
 
         FragmentPagerAdapter adapter = new FragmentPagerAdapter(
             getChildFragmentManager(),

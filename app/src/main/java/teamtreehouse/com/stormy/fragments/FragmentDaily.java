@@ -3,7 +3,7 @@ package teamtreehouse.com.stormy.fragments;
 /**
  * Created by Javi on 11/14/2016.
  */
-public class FragmentDaily extends FragmentBase {
+public class FragmentDaily extends ForecastFragmentBase {
 
     @Override
     public String getTitle() {

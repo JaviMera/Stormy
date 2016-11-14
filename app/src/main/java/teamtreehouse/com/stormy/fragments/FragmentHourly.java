@@ -3,7 +3,7 @@ package teamtreehouse.com.stormy.fragments;
 /**
  * Created by Javi on 11/14/2016.
  */
-public class FragmentHourly extends FragmentBase {
+public class FragmentHourly extends ForecastFragmentBase {
 
 
     @Override
