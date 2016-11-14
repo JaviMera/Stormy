@@ -1,8 +1,4 @@
-package javier.com.stormy.fragments;
-
-import android.view.View;
-
-import javier.com.stormy.fragments.ForecastCurrentFragmentView;
+package teamtreehouse.com.stormy.fragments;
 
 /**
  * Created by Javi on 11/11/2016.

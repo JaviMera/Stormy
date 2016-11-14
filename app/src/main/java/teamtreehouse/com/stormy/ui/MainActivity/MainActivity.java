@@ -44,7 +44,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.ButterKnife;
 
-import javier.com.stormy.fragments.ForecastCurrentFragment;
 import javier.com.stormy.network.InternetInfo;
 import javier.com.stormy.asynctasks.ForecastAsyncTask;
 import javier.com.stormy.url.ForecastClient;
@@ -53,6 +52,7 @@ import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.dialogs.InternetErrorDialog;
 import teamtreehouse.com.stormy.dialogs.LocationErrorDialog;
 import teamtreehouse.com.stormy.dialogs.LocationNullDialog;
+import teamtreehouse.com.stormy.fragments.FragmentViewPager;
 import teamtreehouse.com.stormy.model.WeatherPlace;
 import teamtreehouse.com.stormy.weather.Forecast;
 
@@ -103,8 +103,8 @@ public class MainActivity extends AppCompatActivity implements
 
             mPresenter.setToolbarTitle(mCurrentPlace.getCityFullName());
 
-            ForecastCurrentFragment fragment = ForecastCurrentFragment.newInstance(mForecast.getCurrent(), mForecast.getTimezone());
-            addFragment(R.id.fragmentContainer, fragment);
+            requestForecast(mCurrentPlace.getLatitude(), mCurrentPlace.getLongitude());
+
         } else {
 
             mCurrentPlace = new WeatherPlace();
@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements
                     mCurrentPlace.setLocality(address);
                     mPresenter.setToolbarTitle(mCurrentPlace.getCityFullName());
 
-                    sendWeatherRequest(
+                    requestForecast(
                             mCurrentPlace.getLatitude(),
                             mCurrentPlace.getLongitude());
                 }
@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements
                 mCurrentPlace.setLocality(address);
 
                 toggleRefresh();
-                sendWeatherRequest(
+                requestForecast(
                     mCurrentPlace.getLatitude(),
                     mCurrentPlace.getLongitude()
                 );
@@ -243,7 +243,7 @@ public class MainActivity extends AppCompatActivity implements
             if(mCurrentPlace.hasCoordinates()) {
 
                 toggleRefresh();
-                sendWeatherRequest(
+                requestForecast(
                     mCurrentPlace.getLatitude(),
                     mCurrentPlace.getLongitude())
                 ;
@@ -274,7 +274,7 @@ public class MainActivity extends AppCompatActivity implements
             toggleRefresh();
             mForecast = forecast;
 
-            ForecastCurrentFragment fragment = ForecastCurrentFragment.newInstance(forecast.getCurrent(), forecast.getTimezone());
+            FragmentViewPager fragment = FragmentViewPager.newInstance(mForecast.getCurrent(), mForecast.getTimezone());
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -327,7 +327,7 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    private void sendWeatherRequest(double latitude, double longitude) {
+    private void requestForecast(double latitude, double longitude) {
 
         ForecastClient url = new ForecastClient.Builder()
                 .withLatitude(latitude)

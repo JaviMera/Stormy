@@ -1,4 +1,4 @@
-package javier.com.stormy.fragments;
+package teamtreehouse.com.stormy.fragments;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.weather.Current;
 
-public class ForecastCurrentFragment extends Fragment implements
+public class FragmentCurrent extends ForecastFragmentBase implements
         ForecastCurrentFragmentView {
 
     public static final String FORECAST_CURRENT = "FORECAST_CURRENT";
@@ -39,9 +39,9 @@ public class ForecastCurrentFragment extends Fragment implements
     @BindView(R.id.summaryTextView) TextView mSummaryTextView;
 
 
-    public static ForecastCurrentFragment newInstance(Current forecastCurrent, String timezone) {
+    public static FragmentCurrent newInstance(Current forecastCurrent, String timezone) {
 
-        ForecastCurrentFragment fragment = new ForecastCurrentFragment();
+        FragmentCurrent fragment = new FragmentCurrent();
 
         Bundle bundle = new Bundle();
         bundle.putParcelable(FORECAST_CURRENT, forecastCurrent);
@@ -144,5 +144,11 @@ public class ForecastCurrentFragment extends Fragment implements
         mPresenter.setPrecipitationTextView(current.getPrecipChance());
         mPresenter.setSummaryTextView(current.getSummary());
         mPresenter.setIconImageView(current.getIconId());
+    }
+
+    @Override
+    protected String getTitle() {
+
+        return "Currently";
     }
 }

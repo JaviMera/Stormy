@@ -1,4 +1,4 @@
-package javier.com.stormy.fragments;
+package teamtreehouse.com.stormy.fragments;
 
 import android.view.View;
 
