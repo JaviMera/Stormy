@@ -76,4 +76,9 @@ public class WeatherPlace implements Parcelable {
         parcel.writeParcelable(mCoordinates, i);
         parcel.writeParcelable(mAddress, i);
     }
+
+    public boolean hasCoordinates() {
+
+        return mCoordinates != null;
+    }
 }

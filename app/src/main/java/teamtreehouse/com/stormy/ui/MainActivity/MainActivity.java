@@ -35,7 +35,6 @@ import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.search.SearchAuth;
 
 import java.io.IOException;
 import java.util.List;
@@ -51,8 +50,10 @@ import javier.com.stormy.asynctasks.ForecastAsyncTask;
 import javier.com.stormy.url.ForecastClient;
 
 import teamtreehouse.com.stormy.R;
+import teamtreehouse.com.stormy.dialogs.InternetErrorDialog;
+import teamtreehouse.com.stormy.dialogs.LocationErrorDialog;
+import teamtreehouse.com.stormy.dialogs.LocationNullDialog;
 import teamtreehouse.com.stormy.model.WeatherPlace;
-import teamtreehouse.com.stormy.ui.AlertDialogFragment;
 import teamtreehouse.com.stormy.weather.Forecast;
 
 public class MainActivity extends AppCompatActivity implements
@@ -170,7 +171,10 @@ public class MainActivity extends AppCompatActivity implements
                 else {
 
                     toggleRefresh();
-                    alertUserAboutError();
+
+                    new LocationErrorDialog()
+                        .show(getSupportFragmentManager(), "location_error_dialog");
+
                     mPresenter.setToolbarTitle("Search for a city...");
                 }
             }
@@ -236,15 +240,24 @@ public class MainActivity extends AppCompatActivity implements
 
         if(mInternetInfo.isNetworkAvailable()) {
 
-            toggleRefresh();
-            sendWeatherRequest(
-                mCurrentPlace.getLatitude(),
-                mCurrentPlace.getLongitude())
-            ;
+            if(mCurrentPlace.hasCoordinates()) {
+
+                toggleRefresh();
+                sendWeatherRequest(
+                    mCurrentPlace.getLatitude(),
+                    mCurrentPlace.getLongitude())
+                ;
+            }
+            else {
+
+                new LocationNullDialog()
+                    .show(getSupportFragmentManager(), "location_null_error");
+            }
         }
         else {
 
-            alertUserAboutError();
+            new InternetErrorDialog()
+                .show(getSupportFragmentManager(), "internet_error_dialog");
         }
     }
 
@@ -253,7 +266,8 @@ public class MainActivity extends AppCompatActivity implements
 
         if(forecast == null) {
 
-            alertUserAboutError();
+            new InternetErrorDialog()
+                .show(getSupportFragmentManager(), "internet_error_dialog");
         }
         else {
 
@@ -311,11 +325,6 @@ public class MainActivity extends AppCompatActivity implements
             mPresenter.setVisibility(mProgressBar, false);
             mPresenter.setVisibility(mRefreshImageView, true);
         }
-    }
-
-    private void alertUserAboutError() {
-        AlertDialogFragment dialog = new AlertDialogFragment();
-        dialog.show(getFragmentManager(), "error_dialog");
     }
 
     private void sendWeatherRequest(double latitude, double longitude) {
