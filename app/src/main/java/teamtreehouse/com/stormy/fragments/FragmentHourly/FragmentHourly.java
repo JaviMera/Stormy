@@ -63,20 +63,33 @@ public class FragmentHourly extends ForecastFragmentBase {
         HourAdapter adapter = new HourAdapter(getActivity(), mHourData);
         mRecyclerView.setAdapter(adapter);
 
-        RecyclerView.LayoutManager layoutManager;
-        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-
-           layoutManager = new LinearLayoutManager(getActivity());
-        }
-        else {
-
-            layoutManager = new GridLayoutManager(getActivity(), 1, LinearLayoutManager.HORIZONTAL, false);
-        }
+        int orientation = getOrientation();
+        RecyclerView.LayoutManager layoutManager = createLayoutManager(orientation);
 
         mRecyclerView.setLayoutManager(layoutManager);
-
         mRecyclerView.setHasFixedSize(true);
 
         return view;
+    }
+
+    private int getOrientation() {
+
+        return getResources()
+            .getConfiguration()
+            .orientation;
+    }
+
+    private RecyclerView.LayoutManager createLayoutManager(int orientation) {
+
+        switch(orientation) {
+
+            case Configuration.ORIENTATION_PORTRAIT:
+                return new LinearLayoutManager(getActivity());
+
+            case Configuration.ORIENTATION_LANDSCAPE:
+                return new GridLayoutManager(getActivity(), 1, LinearLayoutManager.HORIZONTAL, false);
+        }
+
+        return null;
     }
 }
