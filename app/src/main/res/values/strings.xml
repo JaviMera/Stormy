@@ -13,5 +13,6 @@
     <string name="title_activity_hourly_forecast">HourlyForecastActivity</string>
     <string name="humidity_text">Humidity</string>
     <string name="precipitation_text">Precipitation</string>
+    <string name="weeks_forecast_text">Week\'s Forecast</string>
 
 </resources>
