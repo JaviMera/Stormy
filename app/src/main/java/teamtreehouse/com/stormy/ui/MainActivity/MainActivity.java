@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements
         ForecastAsyncTask.ForecastListener,
         GoogleApiClient.OnConnectionFailedListener {
 
+    public static final String FORECAST = "forecast";
+
     private Forecast mForecast;
     private WeatherPlace mCurrentPlace;
     private InternetInfo mInternetInfo;
@@ -275,7 +277,7 @@ public class MainActivity extends AppCompatActivity implements
             toggleRefresh();
             mForecast = forecast;
 
-            FragmentPager fragment = FragmentPager.newInstance(mForecast.getCurrent(), mForecast.getTimezone());
+            FragmentPager fragment = FragmentPager.newInstance(mForecast);
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.fragmentContainer, fragment);
