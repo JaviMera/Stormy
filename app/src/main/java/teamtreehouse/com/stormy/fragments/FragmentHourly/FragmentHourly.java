@@ -25,6 +25,7 @@ public class FragmentHourly extends ForecastFragmentBase {
     public static final String FORECAST_DATA = "hourl_data";
 
     @BindView(R.id.hourlyRecyclerView) RecyclerView mRecyclerView;
+
     private HourData[] mHourData;
 
     public static FragmentHourly newInstance(HourData[] data) {

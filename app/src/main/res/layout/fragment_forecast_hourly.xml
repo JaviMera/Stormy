@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="15dp"
-    tools:context="teamtreehouse.com.stormy.ui.HourlyForecastActivity"
-    android:background="@drawable/bg_gradient">
+    android:background="@drawable/bg_gradient"
+    tools:context="teamtreehouse.com.stormy.ui.HourlyForecastActivity">
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/hourlyRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/hourlyRecyclerView"/>
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>
