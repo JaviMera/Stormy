@@ -7,14 +7,15 @@ import android.view.ViewGroup;
 
 abstract class AdapterBase<T, H extends ViewHolderBase<T>> extends RecyclerView.Adapter<H> {
 
+    private final Class<H> mType;
     protected abstract int getLayoutId();
-    private H mViewHolderType;
 
     private T[] mData;
 
-    AdapterBase(T[] data) {
+    AdapterBase(T[] data, Class<H> viewHolderType) {
 
         mData = data;
+        mType = viewHolderType;
     }
 
     @Override
@@ -34,7 +35,11 @@ abstract class AdapterBase<T, H extends ViewHolderBase<T>> extends RecyclerView.
 
         View view = LayoutInflater.from(parent.getContext()).inflate(getLayoutId(), parent, false);
 
-        // Here I'd like to return a ViewHolderBase implementation based on the type of H
+        if(mType.getClass().equals(HourViewHolder.class)) {
+
+            return (H)new HourViewHolder(view);
+        }
+
         return null;
     }
 }

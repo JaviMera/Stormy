@@ -12,7 +12,7 @@ public class HourAdapter extends AdapterBase<HourData, HourViewHolder> {
 
     public HourAdapter(Context context, HourData[] hourData) {
 
-        super(hourData);
+        super(hourData, HourViewHolder.class);
     }
 
     @Override
