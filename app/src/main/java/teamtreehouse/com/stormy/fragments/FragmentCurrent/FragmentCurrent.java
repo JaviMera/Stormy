@@ -19,12 +19,12 @@ import butterknife.ButterKnife;
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.fragments.ForecastFragmentBase;
 import teamtreehouse.com.stormy.weather.Current;
+import teamtreehouse.com.stormy.weather.Forecast;
 
 public class FragmentCurrent extends ForecastFragmentBase implements
         FragmentCurrentView {
 
     public static final String FORECAST_CURRENT = "FORECAST_CURRENT";
-    public static final String FORECAST_TIMEZONE = "FORECAST_TIMEZONE";
 
     private FragmentActivity mFragmentActivity;
     private FragmentCurrentPresenter mPresenter;
@@ -45,7 +45,7 @@ public class FragmentCurrent extends ForecastFragmentBase implements
 
         Bundle bundle = new Bundle();
         bundle.putParcelable(FORECAST_CURRENT, forecastCurrent);
-        bundle.putString(FORECAST_TIMEZONE, timezone);
+        bundle.putString(Forecast.FORECAST_TIMEZONE, timezone);
         fragment.setArguments(bundle);
 
         return fragment;
@@ -62,7 +62,7 @@ public class FragmentCurrent extends ForecastFragmentBase implements
     public void onCreate(@Nullable Bundle savedInstanceState) {
 
         mCurrent = getArguments().getParcelable(FORECAST_CURRENT);
-        mTimezone = getArguments().getString(FORECAST_TIMEZONE);
+        mTimezone = getArguments().getString(Forecast.FORECAST_TIMEZONE);
         mPresenter = new FragmentCurrentPresenter(this);
 
         super.onCreate(savedInstanceState);

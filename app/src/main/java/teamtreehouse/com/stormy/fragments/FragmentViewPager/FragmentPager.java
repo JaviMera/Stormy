@@ -76,7 +76,7 @@ public class FragmentPager extends Fragment implements FragmentPagerView{
         mPresenter.setPagerAdapter(
             FragmentCurrent.newInstance(mForecast.getCurrent(), mForecast.getTimezone()),
             FragmentHourly.newInstance(mForecast.getHourlyForecast()),
-            FragmentDaily.newInstance());
+            FragmentDaily.newInstance(mForecast.getDailyForecast(), mForecast.getTimezone()));
 
         mPresenter.setTabLayout(mViewPager);
 

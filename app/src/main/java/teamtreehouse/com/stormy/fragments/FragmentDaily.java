@@ -1,29 +1,65 @@
 package teamtreehouse.com.stormy.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import teamtreehouse.com.stormy.R;
+import teamtreehouse.com.stormy.adapters.FragmentDailyAdapter;
+import teamtreehouse.com.stormy.weather.DayData;
+import teamtreehouse.com.stormy.weather.Forecast;
 
 /**
  * Created by Javi on 11/14/2016.
  */
 public class FragmentDaily extends ForecastFragmentBase {
 
-    public static FragmentDaily newInstance() {
+    private FragmentActivity mFragmentActivity;
+    private DayData[] mData;
+    private String mTimezone;
+
+    public static final String FORECAST = "daily_forecast";
+
+    @BindView(R.id.dailyRecyclerView) RecyclerView mRecyclerView;
+
+    public static FragmentDaily newInstance(DayData[] data, String timezone) {
 
         FragmentDaily fragment = new FragmentDaily();
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArray(FORECAST, data);
+        bundle.putString(Forecast.FORECAST_TIMEZONE, timezone);
+        fragment.setArguments(bundle);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        mFragmentActivity = getActivity();
     }
 
     @Override
     public String getTitle() {
 
         return "Daily";
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mData = (DayData[]) getArguments().getParcelableArray(FragmentDaily.FORECAST);
+        mTimezone = getArguments().getString(Forecast.FORECAST_TIMEZONE);
     }
 
     @Nullable
@@ -34,6 +70,17 @@ public class FragmentDaily extends ForecastFragmentBase {
 
         ButterKnife.bind(this, view);
 
+        FragmentDailyAdapter adapter = new FragmentDailyAdapter(
+            mFragmentActivity,
+            mData,
+            mTimezone);
+
+        mRecyclerView.setAdapter(adapter);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mFragmentActivity);
+        mRecyclerView.setLayoutManager(layoutManager);
+
+        mRecyclerView.setHasFixedSize(true);
         return view;
     }
 }

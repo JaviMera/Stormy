@@ -13,6 +13,7 @@ import teamtreehouse.com.stormy.R;
 public class Forecast implements Parcelable{
 
     public static final String FORECAST_JSON = "FORECAST_JSON";
+    public static final String FORECAST_TIMEZONE = "FORECAST_TIMEZONE";
 
     @SerializedName("timezone")
     private String mTimezone;
