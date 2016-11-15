@@ -43,7 +43,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/temperatureTextView"
+        android:id="@+id/temperatureMaxTextView"
         android:layout_alignTop="@+id/circleImageView"
         android:layout_alignBottom="@+id/circleImageView"
         android:layout_alignLeft="@+id/circleImageView"

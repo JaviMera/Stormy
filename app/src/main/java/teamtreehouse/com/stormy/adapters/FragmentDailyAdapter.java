@@ -8,8 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.weather.DayData;
 
@@ -50,25 +48,25 @@ public class FragmentDailyAdapter extends RecyclerView.Adapter{
 
     private class DailyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView mSummaryTextView;
         ImageView mIconImageView;
-        TextView mTemperatureTextView;
+        TextView mTemperatureMaxTextView;
+        TextView mTemperatureMinTextView;
         TextView mDayTextView;
 
         public DailyViewHolder(View itemView) {
             super(itemView);
 
-            mSummaryTextView = (TextView) itemView.findViewById(R.id.summaryTextView);
             mIconImageView = (ImageView) itemView.findViewById(R.id.iconImageView);
-            mTemperatureTextView = (TextView) itemView.findViewById(R.id.temperatureTextView);
+            mTemperatureMaxTextView = (TextView) itemView.findViewById(R.id.temperatureMaxTextView);
+            mTemperatureMinTextView = (TextView) itemView.findViewById(R.id.temperatureMinTextView);
             mDayTextView = (TextView) itemView.findViewById(R.id.dayNameLabel);
         }
 
         public void bind(DayData dayData) {
 
-            mSummaryTextView.setText(dayData.getSummary());
             mIconImageView.setImageResource(dayData.getIconId());
-            mTemperatureTextView.setText(String.valueOf(dayData.getTemperatureMax()));
+            mTemperatureMaxTextView.setText(String.valueOf(dayData.getTemperatureMax()));
+            mTemperatureMinTextView.setText(String.valueOf(dayData.getTemperatureMin()));
             mDayTextView.setText(dayData.getDayOfTheWeek(mTimezone));
         }
     }

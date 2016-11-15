@@ -14,5 +14,6 @@
     <string name="humidity_text">Humidity</string>
     <string name="precipitation_text">Precipitation</string>
     <string name="weeks_forecast_text">Week\'s Forecast</string>
+    <string name="today_forecast_text">Today\'s Forecast</string>
 
 </resources>

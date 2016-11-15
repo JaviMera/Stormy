@@ -33,7 +33,7 @@ public class FragmentCurrent extends ForecastFragmentBase implements
 
     @BindView(R.id.locationIconImageView) ImageView mIconImageView;
     @BindView(R.id.timeTextView) TextView mTimeTextView;
-    @BindView(R.id.temperatureTextView) TextView mTemperatureTextView;
+    @BindView(R.id.temperatureMaxTextView) TextView mTemperatureTextView;
     @BindView(R.id.humidityTextView) TextView mHumidityTextView;
     @BindView(R.id.precipitationTextView) TextView mPrecipitationTextView;
     @BindView(R.id.summaryTextView) TextView mSummaryTextView;

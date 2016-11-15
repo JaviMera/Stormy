@@ -35,7 +35,7 @@
         android:gravity="top|center">
 
         <TextView
-            android:id="@+id/temperatureTextView"
+            android:id="@+id/temperatureMaxTextView"
             style="@style/TemperatureTextView"
             tools:text="63.0"/>
 

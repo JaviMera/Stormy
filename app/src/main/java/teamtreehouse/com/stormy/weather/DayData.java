@@ -24,6 +24,9 @@ public class DayData implements Parcelable {
     @SerializedName("temperatureMax")
     private double mTemperatureMax;
 
+    @SerializedName("temperatureMin")
+    private double mTemperatureMin;
+
     @SerializedName("icon")
     private String mIcon;
 
@@ -31,6 +34,7 @@ public class DayData implements Parcelable {
         mTime = in.readLong();
         mSummary = in.readString();
         mTemperatureMax = in.readDouble();
+        mTemperatureMin = in.readDouble();
         mIcon = in.readString();
     }
 
@@ -82,6 +86,10 @@ public class DayData implements Parcelable {
         return Forecast.getIconId(mIcon);
     }
 
+    public double getTemperatureMin() {
+        return mTemperatureMin;
+    }
+
     public String getDayOfTheWeek(String timezone) {
 
         SimpleDateFormat formatter = new SimpleDateFormat("EEEE");
@@ -102,6 +110,7 @@ public class DayData implements Parcelable {
         dest.writeLong(mTime);
         dest.writeString(mSummary);
         dest.writeDouble(mTemperatureMax);
+        dest.writeDouble(mTemperatureMin);
         dest.writeString(mIcon);
     }
 }

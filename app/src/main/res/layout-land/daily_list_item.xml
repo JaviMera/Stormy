@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="200dp"
-    android:layout_height="match_parent"
+android:layout_height="200dp"
     android:orientation="vertical"
     android:padding="15dp"
     android:layout_marginLeft="10dp"
@@ -24,10 +24,10 @@
         android:layout_height="0dp"
         android:layout_weight="2"
         android:orientation="vertical"
-        android:paddingTop="10dp">
+        android:gravity="center">
 
         <TextView
-            android:id="@+id/temperatureTextView"
+            android:id="@+id/temperatureMaxTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -45,14 +45,14 @@
             tools:src="@drawable/partly_cloudy"/>
 
         <TextView
-            android:id="@+id/summaryTextView"
-            android:layout_width="match_parent"
+            android:id="@+id/temperatureMinTextView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="#ffffffff"
-            android:textSize="15sp"
+            android:layout_gravity="center"
             android:padding="10dp"
-            tools:text="Overcast throughout the day."/>
+            tools:text="100"
+            android:textColor="@color/white_color"
+            android:textSize="15sp"/>
 
     </LinearLayout>
 </LinearLayout>

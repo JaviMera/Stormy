@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp"
     android:background="@drawable/bg_gradient"
-    tools:context="teamtreehouse.com.stormy.ui.HourlyForecastActivity">
+    tools:context="teamtreehouse.com.stormy.ui.HourlyForecastActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/today_forecast_text"
+        android:textColor="@color/white_color"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:padding="10dp"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/hourlyRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-</RelativeLayout>
+</LinearLayout>
