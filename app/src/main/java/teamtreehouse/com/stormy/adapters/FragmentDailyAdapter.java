@@ -59,7 +59,7 @@ public class FragmentDailyAdapter extends RecyclerView.Adapter{
             mIconImageView = (ImageView) itemView.findViewById(R.id.iconImageView);
             mTemperatureMaxTextView = (TextView) itemView.findViewById(R.id.temperatureMaxTextView);
             mTemperatureMinTextView = (TextView) itemView.findViewById(R.id.temperatureMinTextView);
-            mDayTextView = (TextView) itemView.findViewById(R.id.dayNameLabel);
+            mDayTextView = (TextView) itemView.findViewById(R.id.dayTextView);
         }
 
         public void bind(DayData dayData) {

@@ -11,7 +11,7 @@ android:layout_height="200dp"
     android:background="@drawable/recycler_item_background">
 
     <TextView
-        android:id="@+id/dayNameLabel"
+        android:id="@+id/dayTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
