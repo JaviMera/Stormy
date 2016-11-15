@@ -20,13 +20,14 @@ import teamtreehouse.com.stormy.weather.HourData;
 /**
  * Created by Javi on 11/14/2016.
  */
-public class FragmentHourly extends ForecastFragmentBase {
+public class FragmentHourly extends ForecastFragmentBase implements FragmentHourlyView{
 
     public static final String FORECAST_DATA = "hourl_data";
 
     @BindView(R.id.hourlyRecyclerView) RecyclerView mRecyclerView;
 
     private HourData[] mHourData;
+    private FragmentHourlyPresenter mPresenter;
 
     public static FragmentHourly newInstance(HourData[] data) {
 
@@ -60,16 +61,36 @@ public class FragmentHourly extends ForecastFragmentBase {
 
         ButterKnife.bind(this, view);
 
-        HourAdapter adapter = new HourAdapter(getActivity(), mHourData);
-        mRecyclerView.setAdapter(adapter);
+        mPresenter = new FragmentHourlyPresenter(this);
+        mPresenter.setRecyclerAdapter(mHourData);
 
         int orientation = getOrientation();
-        RecyclerView.LayoutManager layoutManager = createLayoutManager(orientation);
+        mPresenter.setRecyclerLayout(orientation);
 
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setHasFixedSize(true);
+        mPresenter.setRecyclerFixedSize(true);
 
         return view;
+    }
+
+
+    @Override
+    public void setRecyclerAdapter(HourData[] data) {
+
+        HourAdapter adapter = new HourAdapter(getActivity(), data);
+        mRecyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void setRecyclerLayout(int orientation) {
+
+        RecyclerView.LayoutManager layoutManager = createLayoutManager(orientation);
+        mRecyclerView.setLayoutManager(layoutManager);
+    }
+
+    @Override
+    public void setRecyclerFixedSize(boolean isFixed) {
+
+        mRecyclerView.setHasFixedSize(isFixed);
     }
 
     private int getOrientation() {
