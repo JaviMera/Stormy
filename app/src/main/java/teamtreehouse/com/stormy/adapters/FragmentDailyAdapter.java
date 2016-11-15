@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.weather.DayData;
 
@@ -48,6 +50,7 @@ public class FragmentDailyAdapter extends RecyclerView.Adapter{
 
     private class DailyViewHolder extends RecyclerView.ViewHolder {
 
+        TextView mSummaryTextView;
         ImageView mIconImageView;
         TextView mTemperatureTextView;
         TextView mDayTextView;
@@ -55,6 +58,7 @@ public class FragmentDailyAdapter extends RecyclerView.Adapter{
         public DailyViewHolder(View itemView) {
             super(itemView);
 
+            mSummaryTextView = (TextView) itemView.findViewById(R.id.summaryTextView);
             mIconImageView = (ImageView) itemView.findViewById(R.id.iconImageView);
             mTemperatureTextView = (TextView) itemView.findViewById(R.id.temperatureTextView);
             mDayTextView = (TextView) itemView.findViewById(R.id.dayNameLabel);
@@ -62,6 +66,7 @@ public class FragmentDailyAdapter extends RecyclerView.Adapter{
 
         public void bind(DayData dayData) {
 
+            mSummaryTextView.setText(dayData.getSummary());
             mIconImageView.setImageResource(dayData.getIconId());
             mTemperatureTextView.setText(String.valueOf(dayData.getTemperatureMax()));
             mDayTextView.setText(dayData.getDayOfTheWeek(mTimezone));

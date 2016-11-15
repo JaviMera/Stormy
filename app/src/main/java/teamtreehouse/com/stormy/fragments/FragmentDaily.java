@@ -1,9 +1,11 @@
 package teamtreehouse.com.stormy.fragments;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -77,10 +79,32 @@ public class FragmentDaily extends ForecastFragmentBase {
 
         mRecyclerView.setAdapter(adapter);
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mFragmentActivity);
+        int orientation = getOrientation();
+        RecyclerView.LayoutManager layoutManager = createLayoutManager(orientation);
         mRecyclerView.setLayoutManager(layoutManager);
 
         mRecyclerView.setHasFixedSize(true);
         return view;
+    }
+
+    private int getOrientation() {
+
+        return getResources()
+                .getConfiguration()
+                .orientation;
+    }
+
+    private RecyclerView.LayoutManager createLayoutManager(int orientation) {
+
+        switch(orientation) {
+
+            case Configuration.ORIENTATION_PORTRAIT:
+                return new LinearLayoutManager(getActivity());
+
+            case Configuration.ORIENTATION_LANDSCAPE:
+                return new GridLayoutManager(getActivity(), 1, LinearLayoutManager.HORIZONTAL, false);
+        }
+
+        return null;
     }
 }
