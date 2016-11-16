@@ -1,54 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="10dp"
+    android:orientation="horizontal"
     tools:background="@drawable/bg_gradient">
 
     <TextView
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
         android:id="@+id/timeTextView"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textColor="#ffffffff"
-        android:textSize="24sp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        style="@style/PHourItemText"
         tools:text="12 PM"/>
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/iconImageView"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/timeTextView"
-        android:layout_toEndOf="@+id/timeTextView"
-        android:src="@drawable/partly_cloudy"/>
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        style="@style/PHourItemIcon"
+        tools:src="@drawable/partly_cloudy"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="100"
-        android:id="@+id/temperatureMaxTextView"
-        android:layout_alignParentTop="false"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:textColor="#ffffffff"
-        android:textSize="24sp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/summaryTextView"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/iconImageView"
-        android:layout_toEndOf="@+id/iconImageView"
-        android:textColor="#ffffffff"
-        android:layout_toLeftOf="@+id/temperatureMaxTextView"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        style="@style/PHourSummaryText"
         tools:text="Partly cloudy"/>
-</RelativeLayout>
+
+    <TextView
+        android:id="@+id/temperatureMaxTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        style="@style/PHourTemperature"
+        tools:text="100"/>
+</LinearLayout>

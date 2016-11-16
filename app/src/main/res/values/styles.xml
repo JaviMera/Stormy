@@ -130,7 +130,7 @@
         <item name="android:textSize">@dimen/p_day_text_size</item>
     </style>
 
-    <style name="LDayItemTemperatureView">
+    <style name="LDayItemTemperature">
         <item name="android:textSize">@dimen/l_day_temp_text_size</item>
         <item name="android:textColor">@color/white_color</item>
         <item name="android:layout_gravity">center</item>
@@ -140,5 +140,27 @@
     <style name="LDayItemIcon">
         <item name="android:layout_gravity">center</item>
         <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <!-- Hour recycler item views landscape -->
+
+    <style name="PHourItemText">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/white_color</item>
+        <item name="android:textSize">@dimen/p_hour_item_text_size</item>
+    </style>
+
+    <style name="PHourItemIcon">
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="PHourSummaryText">
+        <item name="android:gravity">left|center</item>
+        <item name="android:textColor">@color/white_color</item>
+    </style>
+
+    <style name="PHourTemperature">
+        <item name="android:textColor">@color/white_color</item>
+        <item name="android:textSize">@dimen/p_hour_temp_text_size</item>
     </style>
 </resources>
