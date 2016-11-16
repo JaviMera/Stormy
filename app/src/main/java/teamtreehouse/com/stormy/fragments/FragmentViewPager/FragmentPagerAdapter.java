@@ -3,7 +3,7 @@ package teamtreehouse.com.stormy.fragments.FragmentViewPager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
-import teamtreehouse.com.stormy.fragments.ForecastFragmentBase;
+import teamtreehouse.com.stormy.fragments.FragmentForecastBase;
 
 /**
  * Created by Javi on 11/14/2016.
@@ -11,9 +11,9 @@ import teamtreehouse.com.stormy.fragments.ForecastFragmentBase;
 
 public class FragmentPagerAdapter extends android.support.v4.app.FragmentPagerAdapter {
 
-    private ForecastFragmentBase[] mFragments;
+    private FragmentForecastBase[] mFragments;
 
-    public FragmentPagerAdapter(FragmentManager fm, ForecastFragmentBase... fragments) {
+    public FragmentPagerAdapter(FragmentManager fm, FragmentForecastBase... fragments) {
         super(fm);
 
         mFragments = fragments;

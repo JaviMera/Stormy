@@ -2,7 +2,7 @@ package teamtreehouse.com.stormy.fragments.FragmentViewPager;
 
 import android.support.v4.view.ViewPager;
 
-import teamtreehouse.com.stormy.fragments.ForecastFragmentBase;
+import teamtreehouse.com.stormy.fragments.FragmentForecastBase;
 
 /**
  * Created by Javi on 11/14/2016.
@@ -17,7 +17,7 @@ public class FragmentPagerPresenter {
         mView = view;
     }
 
-    public void setPagerAdapter(ForecastFragmentBase... fragments) {
+    public void setPagerAdapter(FragmentForecastBase... fragments) {
 
         mView.setPagerAdapter(fragments);
     }

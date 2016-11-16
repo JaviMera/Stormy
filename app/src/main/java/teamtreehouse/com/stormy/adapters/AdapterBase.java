@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-abstract class AdapterBase<T, H extends ViewHolderBase<T>> extends RecyclerView.Adapter<H> {
+public abstract class AdapterBase<T, H extends ViewHolderBase<T>> extends RecyclerView.Adapter<H> {
 
     private final Class<H> mType;
     private String mTimezone;
@@ -14,7 +14,7 @@ abstract class AdapterBase<T, H extends ViewHolderBase<T>> extends RecyclerView.
 
     private T[] mData;
 
-    AdapterBase(T[] data, Class<H> viewHolderType, String timezone) {
+    protected AdapterBase(T[] data, Class<H> viewHolderType, String timezone) {
 
         mData = data;
         mType = viewHolderType;

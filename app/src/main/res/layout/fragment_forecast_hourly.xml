@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient"
     android:padding="15dp"
-    tools:context="teamtreehouse.com.stormy.ui.HourlyForecastActivity"
     android:orientation="vertical">
 
     <TextView
@@ -19,7 +18,7 @@
         android:padding="10dp"/>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/hourlyRecyclerView"
+        android:id="@+id/forecastRecycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="5dp"/>
