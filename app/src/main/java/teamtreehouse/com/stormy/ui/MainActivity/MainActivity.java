@@ -125,14 +125,6 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
-    private void addFragment(int layoutId, Fragment fragment) {
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(layoutId, fragment);
-        fragmentTransaction.commit();
-    }
-
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
