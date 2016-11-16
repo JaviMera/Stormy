@@ -2,21 +2,17 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="200dp"
-    android:layout_height="200dp"
     android:orientation="vertical"
-    android:padding="10dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
-    android:background="@drawable/recycler_item_background">
+    android:background="@drawable/recycler_item_background"
+    style="@style/RecyclerItemRootView">
 
     <TextView
         android:id="@+id/dayTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="#ffffffff"
-        android:textSize="20sp"
+        style="@style/LDayItemDayText"
         tools:text="Wednesday"/>
 
     <LinearLayout
@@ -29,29 +25,22 @@
             android:id="@+id/temperatureMaxTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="10dp"
-            tools:text="100"
-            android:textColor="@color/white_color"
-            android:textSize="15sp"/>
+            style="@style/LDayItemTemperatureView"
+            tools:text="100"/>
 
         <ImageView
             android:id="@+id/iconImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:scaleType="fitCenter"
+            style="@style/LDayItemIcon"
             tools:src="@drawable/partly_cloudy"/>
 
         <TextView
             android:id="@+id/temperatureMinTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingTop="10dp"
-            tools:text="100"
-            android:textColor="@color/white_color"
-            android:textSize="15sp"/>
+            style="@style/LDayItemTemperatureView"
+            tools:text="100"/>
 
     </LinearLayout>
 </LinearLayout>

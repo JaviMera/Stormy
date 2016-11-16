@@ -91,26 +91,54 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <!-- Day recycler Item Views -->
+    <!-- Recycler Item Landscape -->
 
-    <style name="DayItemDayText">
+    <style name="RecyclerItemRootView">
+        <item name="android:layout_width">@dimen/recycler_item_size</item>
+        <item name="android:layout_height">@dimen/recycler_item_size</item>
+        <item name="android:padding">@dimen/recycler_item_pad</item>
+    </style>
+
+    <!-- Day recycler Item Views Portrait-->
+
+    <style name="PDayItemDayText">
         <item name="android:layout_gravity">center</item>
         <item name="android:gravity">left</item>
         <item name="android:textColor">@color/white_color</item>
-        <item name="android:textSize">@dimen/day_text_size</item>
+        <item name="android:textSize">@dimen/p_day_text_size</item>
     </style>
 
-    <style name="DayItemIcon">
+    <style name="PDayItemIcon">
         <item name="android:layout_gravity">center</item>
         <item name="android:scaleType">fitEnd</item>
     </style>
 
-    <style name="DayItemTemperatureView">
+    <style name="PDayItemTemperatureView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/day_temperature_text_size</item>
+        <item name="android:textSize">@dimen/p_day_temp_text_size</item>
         <item name="android:textColor">@color/white_color</item>
         <item name="android:gravity">center</item>
-        <item name="android:padding">@dimen/day_temperature_pad</item>
+        <item name="android:padding">@dimen/p_day_temp_pad</item>
+    </style>
+
+    <!-- Day recycler Item Views Landscape-->
+
+    <style name="LDayItemDayText">
+        <item name="android:textColor">@color/white_color</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/p_day_text_size</item>
+    </style>
+
+    <style name="LDayItemTemperatureView">
+        <item name="android:textSize">@dimen/l_day_temp_text_size</item>
+        <item name="android:textColor">@color/white_color</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:padding">@dimen/l_day_temp_pad</item>
+    </style>
+
+    <style name="LDayItemIcon">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:scaleType">fitCenter</item>
     </style>
 </resources>

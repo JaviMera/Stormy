@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        style="@style/DayItemDayText"
+        style="@style/PDayItemDayText"
         tools:text="Wednesday"/>
 
     <ImageView
@@ -21,7 +21,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        style="@style/DayItemIcon"
+        style="@style/PDayItemIcon"
         tools:src="@drawable/clear_day"/>
 
     <LinearLayout
@@ -34,12 +34,12 @@
 
         <TextView
             android:id="@+id/temperatureMaxTextView"
-            style="@style/DayItemTemperatureView"
+            style="@style/PDayItemTemperatureView"
             tools:text="100"/>
 
         <TextView
             android:id="@+id/temperatureMinTextView"
-            style="@style/DayItemTemperatureView"
+            style="@style/PDayItemTemperatureView"
             tools:text="100"/>
     </LinearLayout>
 </LinearLayout>
