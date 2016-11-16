@@ -16,11 +16,10 @@
     <dimen name="p_day_temp_pad">2dp</dimen>
     <dimen name="l_day_temp_pad">10dp</dimen>
     <dimen name="l_day_temp_text_size">15sp</dimen>
-    <dimen name="recycler_item_size">200dp</dimen>
-    <dimen name="recycler_item_pad">10dp</dimen>
     <dimen name="p_hour_item_text_size">24sp</dimen>
     <dimen name="p_hour_temp_text_size">24sp</dimen>
     <dimen name="l_time_text_size">20sp</dimen>
     <dimen name="l_hour_temp_pad">10dp</dimen>
     <dimen name="l_hour_temp_text_size">15sp</dimen>
+    <dimen name="recycler_item_margin">1dp</dimen>
 </resources>

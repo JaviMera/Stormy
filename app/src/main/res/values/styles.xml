@@ -91,12 +91,18 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <!-- Recycler Item Landscape -->
+    <!-- Recycler Item General -->
 
-    <style name="RecyclerItemRootView">
-        <item name="android:layout_width">@dimen/recycler_item_size</item>
-        <item name="android:layout_height">@dimen/recycler_item_size</item>
-        <item name="android:padding">@dimen/recycler_item_pad</item>
+    <style name="PRecyclerItemRoot">
+        <item name="android:background">@drawable/recycler_item_background</item>
+        <item name="android:layout_marginTop">@dimen/recycler_item_margin</item>
+        <item name="android:layout_marginBottom">@dimen/recycler_item_margin</item>
+    </style>
+
+    <style name="LRecyclerItemRoot">
+        <item name="android:background">@drawable/recycler_item_background</item>
+        <item name="android:layout_marginRight">@dimen/recycler_item_margin</item>
+        <item name="android:layout_marginLeft">@dimen/recycler_item_margin</item>
     </style>
 
     <!-- Day recycler Item Views Portrait-->
