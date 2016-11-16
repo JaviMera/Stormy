@@ -74,7 +74,8 @@ public class HourData implements Parcelable{
     }
 
     public double getTemperature() {
-        return mTemperature;
+
+        return (int)Math.round(mTemperature);
     }
 
     public void setTemperature(double temperature) {

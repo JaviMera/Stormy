@@ -41,6 +41,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/temperatureMaxTextView"
             android:gravity="center"
+            android:textSize="24sp"
             android:textColor="@color/white_color"
             tools:text="100"
             android:padding="2dp"/>
@@ -50,6 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textSize="24sp"
             android:textColor="@color/white_color"
             android:padding="2dp"
             tools:text="100"/>

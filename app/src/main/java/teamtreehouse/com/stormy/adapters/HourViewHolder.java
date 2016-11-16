@@ -4,6 +4,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.model.HourData;
 
@@ -29,7 +31,10 @@ public class HourViewHolder extends ViewHolderBase<HourData> {
         mTimeLabel.setText(timeText);
 
         mSummaryLabel.setText(data.getSummary());
-        mTemperatureLabel.setText(String.valueOf(data.getTemperature()));
+
+        String temperatureText = temperatureFormat(data.getTemperature());
+        mTemperatureLabel.setText(temperatureText);
+
         mIconImageView.setImageResource(data.getIconId());
     }
 
@@ -40,5 +45,10 @@ public class HourViewHolder extends ViewHolderBase<HourData> {
         mSummaryLabel = (TextView) itemView.findViewById(R.id.summaryTextView);
         mTemperatureLabel = (TextView) itemView.findViewById(R.id.temperatureMaxTextView);
         mIconImageView = (ImageView) itemView.findViewById(R.id.iconImageView);
+    }
+
+    private String temperatureFormat(double temperature) {
+
+        return String.format(Locale.ENGLISH, "%d", (int)temperature);
     }
 }
