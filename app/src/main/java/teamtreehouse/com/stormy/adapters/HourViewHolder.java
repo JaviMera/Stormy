@@ -23,9 +23,11 @@ public class HourViewHolder extends ViewHolderBase<HourData> {
     }
 
     @Override
-    public void bind(HourData data, String timezone) {
+    public void bind(HourData data, int position, String timezone) {
 
-        mTimeLabel.setText(data.getHour());
+        String timeText = position == 0 ? "Now" : data.getHour();
+        mTimeLabel.setText(timeText);
+
         mSummaryLabel.setText(data.getSummary());
         mTemperatureLabel.setText(String.valueOf(data.getTemperature()));
         mIconImageView.setImageResource(data.getIconId());

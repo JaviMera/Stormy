@@ -30,7 +30,7 @@ abstract class AdapterBase<T, H extends ViewHolderBase<T>> extends RecyclerView.
     @Override
     public void onBindViewHolder(H holder, int position) {
 
-        holder.bind(mData[position], mTimezone);
+        holder.bind(mData[position], position, mTimezone);
     }
 
     @Override

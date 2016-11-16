@@ -9,7 +9,7 @@ import android.view.View;
 
 public abstract class ViewHolderBase<T> extends RecyclerView.ViewHolder {
 
-    public abstract void bind(T data, String timezone);
+    public abstract void bind(T data, int position, String timezone);
     protected abstract void setViews();
 
     public ViewHolderBase(View itemView) {

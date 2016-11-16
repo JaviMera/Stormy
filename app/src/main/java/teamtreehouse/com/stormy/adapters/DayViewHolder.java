@@ -25,9 +25,11 @@ public class DayViewHolder extends ViewHolderBase<DayData> {
     }
 
     @Override
-    public void bind(DayData data, String timezone) {
+    public void bind(DayData data, int position, String timezone) {
 
-        mDayTextView.setText(data.getDayOfTheWeek(timezone));
+        String dayText = position == 0 ? "Today" : data.getDayOfTheWeek(timezone);
+        mDayTextView.setText(dayText);
+
         mIconImageView.setImageResource(data.getIconId());
 
         String maxTempFormatted = temperatureFormat(data.getTemperatureMax());
