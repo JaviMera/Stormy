@@ -11,4 +11,7 @@
     <dimen name="humidity_value_text_size">24sp</dimen>
     <dimen name="zero">0dp</dimen>
     <dimen name="summary_text_size">18sp</dimen>
+    <dimen name="day_text_size">20sp</dimen>
+    <dimen name="day_temperature_text_size">24sp</dimen>
+    <dimen name="day_temperature_pad">2dp</dimen>
 </resources>

@@ -9,14 +9,11 @@
     android:padding="10dp">
 
     <TextView
+        android:id="@+id/dayTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:layout_gravity="center"
-        android:gravity="left"
-        android:id="@+id/dayTextView"
-        android:textColor="@color/white_color"
-        android:textSize="20sp"
+        style="@style/DayItemDayText"
         tools:text="Wednesday"/>
 
     <ImageView
@@ -24,9 +21,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:layout_gravity="center"
-        android:scaleType="fitEnd"
-        android:src="@drawable/clear_day"/>
+        style="@style/DayItemIcon"
+        tools:src="@drawable/clear_day"/>
 
     <LinearLayout
         android:layout_width="0dp"
@@ -37,23 +33,13 @@
         android:layout_marginLeft="10dp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/temperatureMaxTextView"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:textColor="@color/white_color"
-            tools:text="100"
-            android:padding="2dp"/>
+            style="@style/DayItemTemperatureView"
+            tools:text="100"/>
 
         <TextView
             android:id="@+id/temperatureMinTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:textColor="@color/white_color"
-            android:padding="2dp"
+            style="@style/DayItemTemperatureView"
             tools:text="100"/>
     </LinearLayout>
 </LinearLayout>
