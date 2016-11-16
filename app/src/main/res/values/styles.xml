@@ -142,9 +142,9 @@
         <item name="android:scaleType">fitCenter</item>
     </style>
 
-    <!-- Hour recycler item views landscape -->
+    <!-- Hour recycler item views portrait -->
 
-    <style name="PHourItemText">
+    <style name="PHourItemTime">
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/white_color</item>
         <item name="android:textSize">@dimen/p_hour_item_text_size</item>
@@ -162,5 +162,25 @@
     <style name="PHourTemperature">
         <item name="android:textColor">@color/white_color</item>
         <item name="android:textSize">@dimen/p_hour_temp_text_size</item>
+    </style>
+
+    <!-- Hour recycler item views landscape -->
+
+    <style name="LHourItemSummary">
+        <item name="android:textSize">@dimen/l_time_text_size</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/white_color</item>
+    </style>
+
+    <style name="LHourTemperature">
+        <item name="android:textSize">@dimen/l_hour_temp_text_size</item>
+        <item name="android:textColor">@color/white_color</item>
+        <item name="android:padding">@dimen/l_hour_temp_pad</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="LHourItemIcon">
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:layout_gravity">center</item>
     </style>
 </resources>
