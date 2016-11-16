@@ -73,7 +73,7 @@ public class FragmentDaily extends ForecastFragmentBase {
 
         ButterKnife.bind(this, view);
 
-        FragmentDayAdapter adapter = new FragmentDayAdapter(mData, DayViewHolder.class);
+        FragmentDayAdapter adapter = new FragmentDayAdapter(mData, DayViewHolder.class, mTimezone);
         mRecyclerView.setAdapter(adapter);
 
         int orientation = getOrientation();

@@ -67,11 +67,13 @@ public class DayData implements Parcelable {
     }
 
     public int getTemperatureMax() {
+
         return (int)Math.round(mTemperatureMax);
     }
 
-    public void setTemperatureMax(double temperatureMax) {
-        mTemperatureMax = temperatureMax;
+    public double getTemperatureMin() {
+
+        return (int)Math.round(mTemperatureMin);
     }
 
     public String getIcon() {
@@ -86,9 +88,6 @@ public class DayData implements Parcelable {
         return Forecast.getIconId(mIcon);
     }
 
-    public double getTemperatureMin() {
-        return mTemperatureMin;
-    }
 
     public String getDayOfTheWeek(String timezone) {
 

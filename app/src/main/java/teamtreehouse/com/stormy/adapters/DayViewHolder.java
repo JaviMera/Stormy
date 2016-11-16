@@ -4,6 +4,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.model.DayData;
 
@@ -23,12 +25,16 @@ public class DayViewHolder extends ViewHolderBase<DayData> {
     }
 
     @Override
-    public void bind(DayData data) {
+    public void bind(DayData data, String timezone) {
 
+        mDayTextView.setText(data.getDayOfTheWeek(timezone));
         mIconImageView.setImageResource(data.getIconId());
-        mTemperatureMaxTextView.setText(String.valueOf(data.getTemperatureMax()));
-        mTemperatureMinTextView.setText(String.valueOf(data.getTemperatureMin()));
-        mDayTextView.setText("Some day");
+
+        String maxTempFormatted = temperatureFormat(data.getTemperatureMax());
+        mTemperatureMaxTextView.setText(maxTempFormatted);
+
+        String minTempFormatted = temperatureFormat(data.getTemperatureMin());
+        mTemperatureMinTextView.setText(minTempFormatted);
     }
 
     @Override
@@ -38,5 +44,10 @@ public class DayViewHolder extends ViewHolderBase<DayData> {
         mTemperatureMaxTextView = (TextView) itemView.findViewById(R.id.temperatureMaxTextView);
         mTemperatureMinTextView = (TextView) itemView.findViewById(R.id.temperatureMinTextView);
         mDayTextView = (TextView) itemView.findViewById(R.id.dayTextView);
+    }
+
+    private String temperatureFormat(double temperature) {
+
+        return String.format(Locale.ENGLISH, "%d", (int)temperature);
     }
 }

@@ -76,7 +76,7 @@ public class FragmentHourly extends ForecastFragmentBase implements FragmentHour
     @Override
     public void setRecyclerAdapter(HourData[] data) {
 
-        FragmentHourAdapter adapter = new FragmentHourAdapter(getActivity(), data);
+        FragmentHourAdapter adapter = new FragmentHourAdapter(getActivity(), data, "");
         mRecyclerView.setAdapter(adapter);
     }
 

@@ -9,8 +9,8 @@ import teamtreehouse.com.stormy.model.DayData;
 
 public class FragmentDayAdapter extends AdapterBase<DayData, DayViewHolder> {
 
-    public FragmentDayAdapter(DayData[] data, Class<DayViewHolder> viewHolderType) {
-        super(data, viewHolderType);
+    public FragmentDayAdapter(DayData[] data, Class<DayViewHolder> viewHolderType, String timezone) {
+        super(data, viewHolderType, timezone);
     }
 
     @Override

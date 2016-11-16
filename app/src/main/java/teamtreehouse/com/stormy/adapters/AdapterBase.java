@@ -8,14 +8,17 @@ import android.view.ViewGroup;
 abstract class AdapterBase<T, H extends ViewHolderBase<T>> extends RecyclerView.Adapter<H> {
 
     private final Class<H> mType;
+    private String mTimezone;
+
     protected abstract int getLayoutId();
 
     private T[] mData;
 
-    AdapterBase(T[] data, Class<H> viewHolderType) {
+    AdapterBase(T[] data, Class<H> viewHolderType, String timezone) {
 
         mData = data;
         mType = viewHolderType;
+        mTimezone = timezone;
     }
 
     @Override
@@ -27,7 +30,7 @@ abstract class AdapterBase<T, H extends ViewHolderBase<T>> extends RecyclerView.
     @Override
     public void onBindViewHolder(H holder, int position) {
 
-        holder.bind(mData[position]);
+        holder.bind(mData[position], mTimezone);
     }
 
     @Override

@@ -23,7 +23,7 @@ public class HourViewHolder extends ViewHolderBase<HourData> {
     }
 
     @Override
-    public void bind(HourData data) {
+    public void bind(HourData data, String timezone) {
 
         mTimeLabel.setText(data.getHour());
         mSummaryLabel.setText(data.getSummary());

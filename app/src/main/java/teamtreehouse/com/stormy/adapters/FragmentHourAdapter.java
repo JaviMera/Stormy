@@ -10,9 +10,9 @@ import teamtreehouse.com.stormy.model.HourData;
  */
 public class FragmentHourAdapter extends AdapterBase<HourData, HourViewHolder> {
 
-    public FragmentHourAdapter(Context context, HourData[] hourData) {
+    public FragmentHourAdapter(Context context, HourData[] hourData, String timezone) {
 
-        super(hourData, HourViewHolder.class);
+        super(hourData, HourViewHolder.class, timezone);
     }
 
     @Override
