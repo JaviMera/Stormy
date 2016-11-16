@@ -3,14 +3,14 @@ package teamtreehouse.com.stormy.adapters;
 import android.content.Context;
 
 import teamtreehouse.com.stormy.R;
-import teamtreehouse.com.stormy.weather.HourData;
+import teamtreehouse.com.stormy.model.HourData;
 
 /**
  * Created by benjakuben on 2/10/15.
  */
-public class HourAdapter extends AdapterBase<HourData, HourViewHolder> {
+public class FragmentHourAdapter extends AdapterBase<HourData, HourViewHolder> {
 
-    public HourAdapter(Context context, HourData[] hourData) {
+    public FragmentHourAdapter(Context context, HourData[] hourData) {
 
         super(hourData, HourViewHolder.class);
     }

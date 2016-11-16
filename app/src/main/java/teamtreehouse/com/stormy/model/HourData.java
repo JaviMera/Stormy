@@ -1,4 +1,4 @@
-package teamtreehouse.com.stormy.weather;
+package teamtreehouse.com.stormy.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -7,7 +7,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.TimeZone;
 
 /**
  * Created by Javi on 11/10/2016.

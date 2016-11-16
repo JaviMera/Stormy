@@ -15,9 +15,10 @@ import android.view.ViewGroup;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import teamtreehouse.com.stormy.R;
-import teamtreehouse.com.stormy.adapters.FragmentDailyAdapter;
-import teamtreehouse.com.stormy.weather.DayData;
-import teamtreehouse.com.stormy.weather.Forecast;
+import teamtreehouse.com.stormy.adapters.DayViewHolder;
+import teamtreehouse.com.stormy.adapters.FragmentDayAdapter;
+import teamtreehouse.com.stormy.model.DayData;
+import teamtreehouse.com.stormy.model.Forecast;
 
 /**
  * Created by Javi on 11/14/2016.
@@ -72,11 +73,7 @@ public class FragmentDaily extends ForecastFragmentBase {
 
         ButterKnife.bind(this, view);
 
-        FragmentDailyAdapter adapter = new FragmentDailyAdapter(
-            mFragmentActivity,
-            mData,
-            mTimezone);
-
+        FragmentDayAdapter adapter = new FragmentDayAdapter(mData, DayViewHolder.class);
         mRecyclerView.setAdapter(adapter);
 
         int orientation = getOrientation();

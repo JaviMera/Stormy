@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import teamtreehouse.com.stormy.R;
-import teamtreehouse.com.stormy.weather.HourData;
+import teamtreehouse.com.stormy.model.HourData;
 
 /**
  * Created by Javi on 11/15/2016.

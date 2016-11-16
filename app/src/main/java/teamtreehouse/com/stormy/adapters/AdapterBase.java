@@ -35,9 +35,13 @@ abstract class AdapterBase<T, H extends ViewHolderBase<T>> extends RecyclerView.
 
         View view = LayoutInflater.from(parent.getContext()).inflate(getLayoutId(), parent, false);
 
-        if(mType.getClass().equals(HourViewHolder.class)) {
+        if(mType.equals(HourViewHolder.class)) {
 
             return (H)new HourViewHolder(view);
+        }
+        else if(mType.equals(DayViewHolder.class)) {
+
+            return (H)new DayViewHolder(view);
         }
 
         return null;

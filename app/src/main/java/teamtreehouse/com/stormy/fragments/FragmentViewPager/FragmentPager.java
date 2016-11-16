@@ -18,10 +18,7 @@ import teamtreehouse.com.stormy.fragments.FragmentCurrent.FragmentCurrent;
 import teamtreehouse.com.stormy.fragments.FragmentDaily;
 import teamtreehouse.com.stormy.fragments.FragmentHourly.FragmentHourly;
 import teamtreehouse.com.stormy.ui.MainActivity.MainActivity;
-import teamtreehouse.com.stormy.ui.MainActivity.MainActivityExtras;
-import teamtreehouse.com.stormy.weather.Current;
-import teamtreehouse.com.stormy.weather.Forecast;
-import teamtreehouse.com.stormy.weather.HourData;
+import teamtreehouse.com.stormy.model.Forecast;
 
 /**
  * Created by Javi on 11/14/2016.
@@ -75,8 +72,8 @@ public class FragmentPager extends Fragment implements FragmentPagerView{
 
         mPresenter.setPagerAdapter(
             FragmentCurrent.newInstance(mForecast.getCurrent(), mForecast.getTimezone()),
-            FragmentHourly.newInstance(mForecast.getHourlyForecast()));
-//            FragmentDaily.newInstance(mForecast.getDailyForecast(), mForecast.getTimezone()));
+            FragmentHourly.newInstance(mForecast.getHourlyForecast()),
+            FragmentDaily.newInstance(mForecast.getDailyForecast(), mForecast.getTimezone()));
 
         mPresenter.setTabLayout(mViewPager);
 

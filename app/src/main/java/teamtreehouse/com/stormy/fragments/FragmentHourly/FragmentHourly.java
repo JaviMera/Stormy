@@ -13,9 +13,9 @@ import android.view.ViewGroup;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import teamtreehouse.com.stormy.R;
-import teamtreehouse.com.stormy.adapters.HourAdapter;
+import teamtreehouse.com.stormy.adapters.FragmentHourAdapter;
 import teamtreehouse.com.stormy.fragments.ForecastFragmentBase;
-import teamtreehouse.com.stormy.weather.HourData;
+import teamtreehouse.com.stormy.model.HourData;
 
 /**
  * Created by Javi on 11/14/2016.
@@ -76,7 +76,7 @@ public class FragmentHourly extends ForecastFragmentBase implements FragmentHour
     @Override
     public void setRecyclerAdapter(HourData[] data) {
 
-        HourAdapter adapter = new HourAdapter(getActivity(), data);
+        FragmentHourAdapter adapter = new FragmentHourAdapter(getActivity(), data);
         mRecyclerView.setAdapter(adapter);
     }
 

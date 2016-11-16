@@ -18,8 +18,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.fragments.ForecastFragmentBase;
-import teamtreehouse.com.stormy.weather.Current;
-import teamtreehouse.com.stormy.weather.Forecast;
+import teamtreehouse.com.stormy.model.Current;
+import teamtreehouse.com.stormy.model.Forecast;
 
 public class FragmentCurrent extends ForecastFragmentBase implements
         FragmentCurrentView {

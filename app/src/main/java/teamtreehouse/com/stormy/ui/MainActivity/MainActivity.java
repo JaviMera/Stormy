@@ -54,7 +54,7 @@ import teamtreehouse.com.stormy.dialogs.LocationErrorDialog;
 import teamtreehouse.com.stormy.dialogs.LocationNullDialog;
 import teamtreehouse.com.stormy.fragments.FragmentViewPager.FragmentPager;
 import teamtreehouse.com.stormy.model.WeatherPlace;
-import teamtreehouse.com.stormy.weather.Forecast;
+import teamtreehouse.com.stormy.model.Forecast;
 
 public class MainActivity extends AppCompatActivity implements
         MainActivityView,

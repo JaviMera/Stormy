@@ -9,7 +9,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import teamtreehouse.com.stormy.fragments.FragmentHourly.FragmentHourlyPresenter;
 import teamtreehouse.com.stormy.fragments.FragmentHourly.FragmentHourlyView;
-import teamtreehouse.com.stormy.weather.HourData;
+import teamtreehouse.com.stormy.model.HourData;
 
 /**
  * Created by Javier on 11/15/2016.

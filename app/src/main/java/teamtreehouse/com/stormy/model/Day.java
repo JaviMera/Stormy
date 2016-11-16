@@ -1,4 +1,4 @@
-package teamtreehouse.com.stormy.weather;
+package teamtreehouse.com.stormy.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -8,28 +8,29 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by benjakuben on 2/5/15.
  */
-public class Hour implements Parcelable {
+public class Day implements Parcelable {
 
     @SerializedName("summary")
     private String mSummary;
 
     @SerializedName("data")
-    private HourData[] mData;
+    private DayData[] mData;
 
-    protected Hour(Parcel in) {
+
+    protected Day(Parcel in) {
         mSummary = in.readString();
-        mData = in.createTypedArray(HourData.CREATOR);
+        mData = in.createTypedArray(DayData.CREATOR);
     }
 
-    public static final Creator<Hour> CREATOR = new Creator<Hour>() {
+    public static final Creator<Day> CREATOR = new Creator<Day>() {
         @Override
-        public Hour createFromParcel(Parcel in) {
-            return new Hour(in);
+        public Day createFromParcel(Parcel in) {
+            return new Day(in);
         }
 
         @Override
-        public Hour[] newArray(int size) {
-            return new Hour[size];
+        public Day[] newArray(int size) {
+            return new Day[size];
         }
     };
 
@@ -44,13 +45,11 @@ public class Hour implements Parcelable {
         dest.writeTypedArray(mData, flags);
     }
 
-    public HourData[] getData() {
+    public DayData[] getData() {
 
         return mData;
     }
 }
-
-
 
 
 

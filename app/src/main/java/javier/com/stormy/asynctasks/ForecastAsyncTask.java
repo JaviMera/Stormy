@@ -12,7 +12,7 @@ import com.squareup.okhttp.Response;
 import java.io.IOException;
 
 import javier.com.stormy.url.ForecastClient;
-import teamtreehouse.com.stormy.weather.Forecast;
+import teamtreehouse.com.stormy.model.Forecast;
 
 /**
  * Created by Javi on 11/10/2016.

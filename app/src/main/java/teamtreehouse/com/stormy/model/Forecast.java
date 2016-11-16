@@ -1,4 +1,4 @@
-package teamtreehouse.com.stormy.weather;
+package teamtreehouse.com.stormy.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
