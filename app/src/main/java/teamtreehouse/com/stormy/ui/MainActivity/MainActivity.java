@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener {
 
     public static final String FORECAST = "forecast";
+    public static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
+    public static final int USER_PERMISSIONS_CODE = 10;
 
     private Forecast mForecast;
     private WeatherPlace mCurrentPlace;
@@ -144,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             ActivityCompat.requestPermissions(this, new String[]{
-                    Manifest.permission.ACCESS_FINE_LOCATION}, MainActivityExtras.USER_PERMISSIONS_CODE);
+                    Manifest.permission.ACCESS_FINE_LOCATION}, USER_PERMISSIONS_CODE);
 
             return;
         }
@@ -189,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements
 
         switch (requestCode) {
 
-            case MainActivityExtras.USER_PERMISSIONS_CODE:
+            case USER_PERMISSIONS_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                     requestUserLocation(mGoogleApiClient);
@@ -201,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if(requestCode == MainActivityExtras.PLACE_AUTOCOMPLETE_REQUEST_CODE) {
+        if(requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE) {
 
             if(resultCode == RESULT_OK) {
 
@@ -230,7 +232,7 @@ public class MainActivity extends AppCompatActivity implements
         try {
 
             Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN).build(this);
-            startActivityForResult(intent, MainActivityExtras.PLACE_AUTOCOMPLETE_REQUEST_CODE);
+            startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
         }
 
         catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
