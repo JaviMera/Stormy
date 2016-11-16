@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="200dp"
-android:layout_height="200dp"
+    android:layout_height="200dp"
     android:orientation="vertical"
-    android:padding="15dp"
+    android:padding="10dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:background="@drawable/recycler_item_background">
@@ -23,8 +23,7 @@ android:layout_height="200dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/temperatureMaxTextView"
@@ -49,7 +48,7 @@ android:layout_height="200dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="10dp"
+            android:paddingTop="10dp"
             tools:text="100"
             android:textColor="@color/white_color"
             android:textSize="15sp"/>

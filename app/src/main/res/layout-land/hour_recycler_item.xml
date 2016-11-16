@@ -5,7 +5,7 @@
     android:layout_width="200dp"
     android:layout_height="200dp"
     android:orientation="vertical"
-    android:padding="15dp"
+    android:padding="10dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:background="@drawable/recycler_item_background">
@@ -23,8 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/temperatureMaxTextView"
