@@ -10,13 +10,14 @@ import android.view.View;
 
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.ui.MainActivity.MainActivity;
+import teamtreehouse.com.stormy.ui.MainActivity.ResultView;
 
 /**
  * Created by benjakuben on 12/3/14.
  */
 public abstract class AlertDialogBase extends DialogFragment implements DialogInterface.OnClickListener {
 
-    protected MainActivity mActivity;
+    protected ResultView mActivity;
     protected abstract String getTitle();
     protected abstract String getMessage();
 

@@ -1,7 +1,6 @@
 package teamtreehouse.com.stormy.dialogs;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.provider.Settings;
 
 /**
@@ -25,6 +24,6 @@ public class LocationErrorDialog extends AlertDialogBase {
     @Override
     public void onClick(DialogInterface dialogInterface, int i) {
 
-        mActivity.startIntent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        mActivity.startActivityForResult(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
     }
 }

@@ -62,6 +62,7 @@ import teamtreehouse.com.stormy.model.Forecast;
 
 public class MainActivity extends AppCompatActivity implements
         MainActivityView,
+        ResultView,
         ForecastAsyncTask.ForecastListener,
         GoogleApiClient.OnConnectionFailedListener {
 
@@ -129,12 +130,11 @@ public class MainActivity extends AppCompatActivity implements
             LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
             if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 
-                toggleRefresh();
                 new LocationErrorDialog()
                         .show(getSupportFragmentManager(), "location_error_dialog");
             }
-
-            requestUserLocation(mGoogleApiClient);
+            else
+                requestUserLocation(mGoogleApiClient);
         }
     }
 
@@ -361,7 +361,8 @@ public class MainActivity extends AppCompatActivity implements
         return null;
     }
 
-    public void startIntent(String serviceName) {
+    @Override
+    public void startActivityForResult(String serviceName) {
 
         startActivityForResult(new Intent(serviceName), USER_GPS_CODE);
     }
