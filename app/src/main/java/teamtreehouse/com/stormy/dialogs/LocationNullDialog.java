@@ -9,12 +9,12 @@ public class LocationNullDialog extends AlertDialogBase {
     @Override
     protected String getTitle() {
 
-        return "Location Error!";
+        return "Location not found!";
     }
 
     @Override
     protected String getMessage() {
 
-        return "Please select a location before refreshing";
+        return "Please search for a location.";
     }
 }

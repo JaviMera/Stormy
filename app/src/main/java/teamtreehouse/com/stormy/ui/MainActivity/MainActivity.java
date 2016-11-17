@@ -15,6 +15,7 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.multidex.MultiDex;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -52,6 +53,7 @@ import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.dialogs.InternetErrorDialog;
 import teamtreehouse.com.stormy.dialogs.LocationStateDialog;
 import teamtreehouse.com.stormy.dialogs.LocationNullDialog;
+import teamtreehouse.com.stormy.fragments.FragmentForecastTablet;
 import teamtreehouse.com.stormy.fragments.FragmentViewPager.FragmentPager;
 import teamtreehouse.com.stormy.model.WeatherPlace;
 import teamtreehouse.com.stormy.model.Forecast;
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements
     ImageView mRefreshImageView;
     @BindView(R.id.toolBar)
     Toolbar mToolBar;
+    private boolean isTablet;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -92,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
         setSupportActionBar(mToolBar);
         ButterKnife.bind(this);
+        isTablet = getResources().getBoolean(R.bool.isTablet);
 
         mPresenter = new MainActivityPresenter(this);
 
@@ -158,19 +162,26 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onResult(@NonNull PlaceLikelihoodBuffer placeLikelihoods) {
 
-                // Get the first place from the buffer.
-                LatLng latLong = placeLikelihoods.get(0).getPlace().getLatLng();
-                mCurrentPlace.setCoordinates(latLong);
+                if(placeLikelihoods.getStatus().isSuccess()) {
 
-                // Get address from Geocoder class with the new lat long values
-                Address address = getAddress(mCurrentPlace.getLatitude(), mCurrentPlace.getLongitude());
+                    // Get the first place from the buffer.
+                    LatLng latLong = placeLikelihoods.get(0).getPlace().getLatLng();
+                    mCurrentPlace.setCoordinates(latLong);
 
-                mCurrentPlace.setLocality(address);
-                mPresenter.setToolbarTitle(mCurrentPlace.getCityFullName());
+                    // Get address from Geocoder class with the new lat long values
+                    Address address = getAddress(mCurrentPlace.getLatitude(), mCurrentPlace.getLongitude());
 
-                requestForecast(
-                        mCurrentPlace.getLatitude(),
-                        mCurrentPlace.getLongitude());
+                    mCurrentPlace.setLocality(address);
+                    mPresenter.setToolbarTitle(mCurrentPlace.getCityFullName());
+
+                    requestForecast(
+                            mCurrentPlace.getLatitude(),
+                            mCurrentPlace.getLongitude());
+                }
+                else {
+
+                    new LocationNullDialog().show(getSupportFragmentManager(), "location_notfound_dialog");
+                }
             }
         });
     }
@@ -275,10 +286,19 @@ public class MainActivity extends AppCompatActivity implements
 
             toggleRefresh();
             mForecast = forecast;
-
-            FragmentPager fragment = FragmentPager.newInstance(mForecast);
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            Fragment fragment;
+
+            if(isTablet) {
+
+                fragment = FragmentForecastTablet.newInstance(mForecast);
+            }
+            else {
+
+                fragment = FragmentPager.newInstance(mForecast);
+            }
+
             fragmentTransaction.replace(R.id.fragmentContainer, fragment);
             fragmentTransaction.commit();
         }
