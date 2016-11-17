@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements
         mPresenter.setVisibility(mProgressBar, false);
         mPresenter.setProgressbarColor(Color.WHITE);
         mPresenter.setToolbarTextColor(Color.WHITE);
+        mPresenter.setToolbarTitle("Search for a city...");
 
         ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         mInternetInfo = new InternetInfo(manager);
@@ -128,7 +129,9 @@ public class MainActivity extends AppCompatActivity implements
             LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
             if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 
-                startActivityForResult(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), USER_GPS_CODE);
+                toggleRefresh();
+                new LocationErrorDialog()
+                        .show(getSupportFragmentManager(), "location_error_dialog");
             }
 
             requestUserLocation(mGoogleApiClient);
@@ -143,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements
         outState.putParcelable(WeatherPlace.WEATHER_PLACE_JSON, mCurrentPlace);
     }
 
-    private void requestUserLocation(GoogleApiClient client) {
+    public void requestUserLocation(GoogleApiClient client) {
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
@@ -159,31 +162,19 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onResult(@NonNull PlaceLikelihoodBuffer placeLikelihoods) {
 
-                if(placeLikelihoods.getStatus().isSuccess()) {
+                // Get the first place from the buffer.
+                LatLng latLong = placeLikelihoods.get(0).getPlace().getLatLng();
+                mCurrentPlace.setCoordinates(latLong);
 
-                    // Get the first place from the buffer.
-                    LatLng latLong = placeLikelihoods.get(0).getPlace().getLatLng();
-                    mCurrentPlace.setCoordinates(latLong);
+                // Get address from Geocoder class with the new lat long values
+                Address address = getAddress(mCurrentPlace.getLatitude(), mCurrentPlace.getLongitude());
 
-                    // Get address from Geocoder class with the new lat long values
-                    Address address = getAddress(mCurrentPlace.getLatitude(), mCurrentPlace.getLongitude());
+                mCurrentPlace.setLocality(address);
+                mPresenter.setToolbarTitle(mCurrentPlace.getCityFullName());
 
-                    mCurrentPlace.setLocality(address);
-                    mPresenter.setToolbarTitle(mCurrentPlace.getCityFullName());
-
-                    requestForecast(
-                            mCurrentPlace.getLatitude(),
-                            mCurrentPlace.getLongitude());
-                }
-                else {
-
-                    toggleRefresh();
-
-                    new LocationErrorDialog()
-                        .show(getSupportFragmentManager(), "location_error_dialog");
-
-                    mPresenter.setToolbarTitle("Search for a city...");
-                }
+                requestForecast(
+                        mCurrentPlace.getLatitude(),
+                        mCurrentPlace.getLongitude());
             }
         });
     }
@@ -231,7 +222,6 @@ public class MainActivity extends AppCompatActivity implements
 
             case USER_GPS_CODE:
 
-                toggleRefresh();
                 requestUserLocation(mGoogleApiClient);
                 break;
         }
@@ -369,6 +359,11 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         return null;
+    }
+
+    public void startIntent(String serviceName) {
+
+        startActivityForResult(new Intent(serviceName), USER_GPS_CODE);
     }
 }
 
