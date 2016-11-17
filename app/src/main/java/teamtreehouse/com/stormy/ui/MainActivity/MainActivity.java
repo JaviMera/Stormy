@@ -1,5 +1,9 @@
 package teamtreehouse.com.stormy.ui.MainActivity;
 
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 
 import android.Manifest;
@@ -64,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements
     public static final String FORECAST = "forecast";
     public static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
     public static final int USER_PERMISSIONS_CODE = 10;
+    private static final int USER_GPS_CODE = 100;
 
     private Forecast mForecast;
     private WeatherPlace mCurrentPlace;
@@ -100,6 +105,14 @@ public class MainActivity extends AppCompatActivity implements
         ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         mInternetInfo = new InternetInfo(manager);
 
+        mCurrentPlace = new WeatherPlace();
+        mGoogleApiClient = new GoogleApiClient
+                .Builder(this)
+                .addApi(Places.GEO_DATA_API)
+                .addApi(Places.PLACE_DETECTION_API)
+                .enableAutoManage(this, this)
+                .build();
+
         if (savedInstanceState != null) {
 
             mForecast = savedInstanceState.getParcelable(Forecast.FORECAST_JSON);
@@ -112,17 +125,14 @@ public class MainActivity extends AppCompatActivity implements
 
         } else {
 
-            mCurrentPlace = new WeatherPlace();
-            mGoogleApiClient = new GoogleApiClient
-                    .Builder(this)
-                    .addApi(Places.GEO_DATA_API)
-                    .addApi(Places.PLACE_DETECTION_API)
-                    .enableAutoManage(this, this)
-                    .build();
+            LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+            if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+
+                startActivityForResult(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), USER_GPS_CODE);
+            }
 
             requestUserLocation(mGoogleApiClient);
         }
-
     }
 
     @Override
@@ -195,26 +205,35 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if(requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE) {
+        switch(requestCode) {
 
-            if(resultCode == RESULT_OK) {
+            case PLACE_AUTOCOMPLETE_REQUEST_CODE:
 
-                Place place = PlaceAutocomplete.getPlace(this, data);
-                String cityName = place.getName().toString();
-                mPresenter.setToolbarTitle(cityName);
+                if (resultCode == RESULT_OK) {
 
-                LatLng newCoordinates = place.getLatLng();
-                mCurrentPlace.setCoordinates(newCoordinates);
+                    Place place = PlaceAutocomplete.getPlace(this, data);
+                    String cityName = place.getName().toString();
+                    mPresenter.setToolbarTitle(cityName);
 
-                Address address = getAddress(mCurrentPlace.getLatitude(), mCurrentPlace.getLongitude());
-                mCurrentPlace.setLocality(address);
+                    LatLng newCoordinates = place.getLatLng();
+                    mCurrentPlace.setCoordinates(newCoordinates);
+
+                    Address address = getAddress(mCurrentPlace.getLatitude(), mCurrentPlace.getLongitude());
+                    mCurrentPlace.setLocality(address);
+
+                    toggleRefresh();
+                    requestForecast(
+                            mCurrentPlace.getLatitude(),
+                            mCurrentPlace.getLongitude()
+                    );
+                }
+                break;
+
+            case USER_GPS_CODE:
 
                 toggleRefresh();
-                requestForecast(
-                    mCurrentPlace.getLatitude(),
-                    mCurrentPlace.getLongitude()
-                );
-            }
+                requestUserLocation(mGoogleApiClient);
+                break;
         }
     }
 
