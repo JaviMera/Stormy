@@ -15,6 +15,6 @@ public class LocationNullDialog extends AlertDialogBase {
     @Override
     protected String getMessage() {
 
-        return "Please select a location before refreshing the weather data :D";
+        return "Please select a location before refreshing";
     }
 }

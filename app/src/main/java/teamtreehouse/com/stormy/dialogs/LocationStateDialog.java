@@ -7,7 +7,7 @@ import android.provider.Settings;
  * Created by Javi on 11/14/2016.
  */
 
-public class LocationErrorDialog extends AlertDialogBase {
+public class LocationStateDialog extends AlertDialogBase {
 
     @Override
     protected String getTitle() {

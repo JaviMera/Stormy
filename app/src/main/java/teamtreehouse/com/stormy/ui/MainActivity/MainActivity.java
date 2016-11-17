@@ -1,9 +1,6 @@
 package teamtreehouse.com.stormy.ui.MainActivity;
 
-import android.location.Criteria;
-import android.location.Location;
 import android.location.LocationManager;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 
 import android.Manifest;
@@ -18,7 +15,6 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.multidex.MultiDex;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -54,7 +50,7 @@ import javier.com.stormy.url.ForecastClient;
 
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.dialogs.InternetErrorDialog;
-import teamtreehouse.com.stormy.dialogs.LocationErrorDialog;
+import teamtreehouse.com.stormy.dialogs.LocationStateDialog;
 import teamtreehouse.com.stormy.dialogs.LocationNullDialog;
 import teamtreehouse.com.stormy.fragments.FragmentViewPager.FragmentPager;
 import teamtreehouse.com.stormy.model.WeatherPlace;
@@ -130,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements
             LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
             if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 
-                new LocationErrorDialog()
+                new LocationStateDialog()
                         .show(getSupportFragmentManager(), "location_error_dialog");
             }
             else
