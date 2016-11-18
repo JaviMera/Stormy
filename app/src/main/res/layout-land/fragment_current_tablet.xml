@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/recycler_item_background">
+    android:background="@drawable/bg_gradient">
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:id="@+id/temperatureLayout"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_centerInParent="true">
 
         <TextView
             android:id="@+id/timeTextView"
@@ -21,7 +23,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:gravity="top|center">
 
             <TextView
                 android:id="@+id/temperatureMaxTextView"
@@ -43,6 +45,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/summaryLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -58,48 +61,44 @@
                 style="@style/SummaryTextView"
                 tools:text="This is a summary"/>
         </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/humidityLayout"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="15dp"
-            android:layout_marginTop="15dp">
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
 
-            <TextView
-            style="@style/HumidityTitleTextView"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp">
 
-            <TextView
-            android:id="@+id/humidityTextView"
-            style="@style/HumidityValueTextView"
-            tools:text="0.54"/>
+                <TextView
+                    style="@style/HumidityTitleTextView"/>
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/humidityTextView"
+                    android:padding="10dp"
+                    style="@style/HumidityValueTextView"
+                    tools:text="0.54"/>
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="15dp"
-            android:layout_marginTop="15dp">
+                <TextView
+                    style="@style/PrecipitationTitleTextView"/>
 
-            <TextView
-                style="@style/PrecipitationTitleTextView"/>
-
-            <TextView
-                android:id="@+id/precipitationTextView"
-                style="@style/PrecipitationValueTextView"
-                tools:text="0 %"/>
-
+                <TextView
+                    android:id="@+id/precipitationTextView"
+                    android:padding="10dp"
+                    style="@style/PrecipitationValueTextView"
+                    tools:text="0 %"/>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>
