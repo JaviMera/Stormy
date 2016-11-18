@@ -15,12 +15,9 @@ import teamtreehouse.com.stormy.model.Forecast;
 /**
  * Created by Javi on 11/14/2016.
  */
-public class FragmentDaily extends FragmentRecyclerBase {
+public class FragmentDaily extends FragmentRecyclerBase<DayData> {
 
-    private DayData[] mData;
     private String mTimezone;
-
-    public static final String FORECAST = "daily_forecast";
 
     @BindView(R.id.forecastRecycler) RecyclerView mRecyclerView;
 
@@ -29,7 +26,7 @@ public class FragmentDaily extends FragmentRecyclerBase {
         FragmentDaily fragment = new FragmentDaily();
 
         Bundle bundle = new Bundle();
-        bundle.putParcelableArray(FORECAST, data);
+        bundle.putParcelableArray(FORECAST_DATA, data);
         bundle.putString(Forecast.FORECAST_TIMEZONE, timezone);
         fragment.setArguments(bundle);
         return fragment;
@@ -38,7 +35,7 @@ public class FragmentDaily extends FragmentRecyclerBase {
     @Override
     public String getTitle() {
 
-        return "Daily";
+        return "7 Days";
     }
 
     @Override
@@ -49,10 +46,9 @@ public class FragmentDaily extends FragmentRecyclerBase {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-        mData = (DayData[]) getArguments().getParcelableArray(FragmentDaily.FORECAST);
         mTimezone = getArguments().getString(Forecast.FORECAST_TIMEZONE);
+        super.onCreate(savedInstanceState);
     }
 
     @Override

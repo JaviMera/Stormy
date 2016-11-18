@@ -10,18 +10,14 @@ import teamtreehouse.com.stormy.model.HourData;
 /**
  * Created by Javi on 11/14/2016.
  */
-public class FragmentHourly extends FragmentRecyclerBase{
-
-    public static final String FORECAST_DATA = "hour_data";
-
-    private HourData[] mHourData;
+public class FragmentHourly extends FragmentRecyclerBase<HourData>{
 
     public static FragmentHourly newInstance(HourData[] data) {
 
         FragmentHourly fragment = new FragmentHourly();
 
         Bundle bundle = new Bundle();
-        bundle.putParcelableArray(FragmentHourly.FORECAST_DATA, data);
+        bundle.putParcelableArray(FORECAST_DATA, data);
         fragment.setArguments(bundle);
 
         return fragment;
@@ -30,16 +26,8 @@ public class FragmentHourly extends FragmentRecyclerBase{
     @Override
     public String getTitle() {
 
-        return "Hourly";
+        return "Today's Forecast";
     }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        mHourData = (HourData[]) getArguments().getParcelableArray(FragmentHourly.FORECAST_DATA);
-    }
-
 
     @Override
     protected int getLayoutId() {
@@ -50,6 +38,6 @@ public class FragmentHourly extends FragmentRecyclerBase{
     @Override
     protected AdapterBase getAdapter() {
 
-        return new FragmentHourAdapter(getActivity(), mHourData, "");
+        return new FragmentHourAdapter(getActivity(), mData, "");
     }
 }

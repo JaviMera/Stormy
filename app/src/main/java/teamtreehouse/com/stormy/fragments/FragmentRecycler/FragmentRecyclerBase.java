@@ -17,15 +17,19 @@ import butterknife.ButterKnife;
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.adapters.AdapterBase;
 import teamtreehouse.com.stormy.fragments.FragmentForecastBase;
+import teamtreehouse.com.stormy.model.HourData;
 
 /**
  * Created by Javi on 11/16/2016.
  */
 
-public abstract class FragmentRecyclerBase extends FragmentForecastBase
+public abstract class FragmentRecyclerBase<T> extends FragmentForecastBase
         implements FragmentRecyclerView {
 
-    private FragmentActivity mFragmentActivity;
+    protected static final String FORECAST_DATA = "forecast_data";
+
+    protected T[] mData;
+    protected FragmentActivity mFragmentActivity;
     private FragmentRecyclerPresenter mPresenter;
 
     protected abstract int getLayoutId();
@@ -39,6 +43,13 @@ public abstract class FragmentRecyclerBase extends FragmentForecastBase
         super.onAttach(context);
 
         mFragmentActivity = getActivity();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mData = (T[]) getArguments().getParcelableArray(FragmentHourly.FORECAST_DATA);
     }
 
     @Nullable
@@ -88,6 +99,7 @@ public abstract class FragmentRecyclerBase extends FragmentForecastBase
                 .getConfiguration()
                 .orientation;
     }
+
 
     private RecyclerView.LayoutManager createLayoutManager(int orientation) {
 
