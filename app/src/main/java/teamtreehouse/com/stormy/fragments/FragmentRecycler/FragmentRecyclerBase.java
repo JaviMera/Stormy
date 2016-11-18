@@ -32,7 +32,6 @@ public abstract class FragmentRecyclerBase<T> extends FragmentForecastBase
     protected FragmentActivity mFragmentActivity;
     private FragmentRecyclerPresenter mPresenter;
 
-    protected abstract int getLayoutId();
     protected abstract AdapterBase getAdapter();
 
     @BindView(R.id.forecastRecycler)

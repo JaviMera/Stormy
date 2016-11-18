@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/recycler_item_background">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="15dp">
+
+            <ImageView
+                android:id="@+id/locationIconImageView"
+                style="@style/LocationIconImageView"
+                tools:src="@drawable/clear_day"/>
+
+            <TextView
+                android:id="@+id/summaryTextView"
+                style="@style/SummaryTextView"
+                tools:text="This is a summary"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/timeTextView"
+            style="@style/TimeTextView"
+            tools:text="AT 8:00 PM it will be"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top|center">
+
+            <TextView
+                android:id="@+id/temperatureMaxTextView"
+                style="@style/TemperatureTextView"
+                tools:text="63.0"/>
+
+            <ImageView
+                android:layout_marginTop="20dp"
+                style="@style/TemperatureIconImageView"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="F"
+                android:textColor="@color/white_color"
+                android:textSize="70sp"
+                android:layout_marginLeft="5dp"
+                android:paddingTop="5dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/humidityLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp"
+            android:layout_marginTop="15dp">
+
+            <TextView
+            style="@style/HumidityTitleTextView"/>
+
+            <TextView
+            android:id="@+id/humidityTextView"
+            style="@style/HumidityValueTextView"
+            tools:text="0.54"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                style="@style/PrecipitationTitleTextView"/>
+
+            <TextView
+                android:id="@+id/precipitationTextView"
+                style="@style/PrecipitationValueTextView"
+                tools:text="0 %"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

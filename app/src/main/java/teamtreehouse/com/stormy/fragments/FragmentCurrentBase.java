@@ -1,4 +1,4 @@
-package teamtreehouse.com.stormy.fragments.FragmentCurrent;
+package teamtreehouse.com.stormy.fragments;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -17,14 +17,19 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import teamtreehouse.com.stormy.R;
-import teamtreehouse.com.stormy.fragments.FragmentForecastBase;
+import teamtreehouse.com.stormy.fragments.FragmentCurrent.FragmentCurrentPresenter;
+import teamtreehouse.com.stormy.fragments.FragmentCurrent.FragmentCurrentView;
 import teamtreehouse.com.stormy.model.Current;
 import teamtreehouse.com.stormy.model.Forecast;
 
-public class FragmentCurrent extends FragmentForecastBase implements
+/**
+ * Created by Javi on 11/18/2016.
+ */
+
+public abstract class FragmentCurrentBase extends FragmentForecastBase implements
         FragmentCurrentView {
 
-    public static final String FORECAST_CURRENT = "FORECAST_CURRENT";
+    protected static final String FORECAST_CURRENT = "FORECAST_CURRENT";
 
     private FragmentActivity mFragmentActivity;
     private FragmentCurrentPresenter mPresenter;
@@ -37,19 +42,6 @@ public class FragmentCurrent extends FragmentForecastBase implements
     @BindView(R.id.humidityTextView) TextView mHumidityTextView;
     @BindView(R.id.precipitationTextView) TextView mPrecipitationTextView;
     @BindView(R.id.summaryTextView) TextView mSummaryTextView;
-
-
-    public static FragmentCurrent newInstance(Current forecastCurrent, String timezone) {
-
-        FragmentCurrent fragment = new FragmentCurrent();
-
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(FORECAST_CURRENT, forecastCurrent);
-        bundle.putString(Forecast.FORECAST_TIMEZONE, timezone);
-        fragment.setArguments(bundle);
-
-        return fragment;
-    }
 
     @Override
     public void onAttach(Context context) {
@@ -72,7 +64,7 @@ public class FragmentCurrent extends FragmentForecastBase implements
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_forecast_current, container, false);
+        View view = inflater.inflate(getLayoutId(), container, false);
 
         ButterKnife.bind(this, view);
 
@@ -121,13 +113,6 @@ public class FragmentCurrent extends FragmentForecastBase implements
         mIconImageView.setImageDrawable(drawable);
     }
 
-    @Override
-    public void setLocationTextView(String timezone) {
-
-//        String locationFormat = getFormattedValue("%s", timezone);
-//        mLocationTextView.setText(locationFormat);
-    }
-
     private String getFormattedValue(String format, Object... args) {
 
         return String.format(Locale.ENGLISH, format, args);
@@ -137,7 +122,6 @@ public class FragmentCurrent extends FragmentForecastBase implements
 
         String time = current.getFormattedTime(timezone);
 
-        mPresenter.setLocationTextView(timezone);
         mPresenter.setTimeTextView(time);
         mPresenter.setTemperatureTextView(current.getTemperature());
         mPresenter.setHumidityTextView(current.getHumidity());

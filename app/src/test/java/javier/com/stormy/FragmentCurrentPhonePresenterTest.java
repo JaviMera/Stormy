@@ -14,7 +14,7 @@ import teamtreehouse.com.stormy.fragments.FragmentCurrent.FragmentCurrentPresent
  * Created by Javi on 11/11/2016.
  */
 @RunWith(MockitoJUnitRunner.class)
-public class FragmentCurrentPresenterTest {
+public class FragmentCurrentPhonePresenterTest {
 
     private FragmentCurrentPresenter mPresenter;
 
