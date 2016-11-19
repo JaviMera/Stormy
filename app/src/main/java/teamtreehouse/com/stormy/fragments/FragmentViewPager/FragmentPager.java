@@ -15,8 +15,8 @@ import butterknife.ButterKnife;
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.fragments.FragmentCurrent.FragmentCurrentPhone;
 import teamtreehouse.com.stormy.fragments.FragmentForecastBase;
-import teamtreehouse.com.stormy.fragments.FragmentRecycler.FragmentDaily;
-import teamtreehouse.com.stormy.fragments.FragmentRecycler.FragmentHourly;
+import teamtreehouse.com.stormy.fragments.FragmentRecycler.FragmentDailyPhone;
+import teamtreehouse.com.stormy.fragments.FragmentRecycler.FragmentHourlyPhone;
 import teamtreehouse.com.stormy.ui.MainActivity.MainActivity;
 import teamtreehouse.com.stormy.model.Forecast;
 
@@ -72,8 +72,8 @@ public class FragmentPager extends Fragment implements FragmentPagerView{
 
         mPresenter.setPagerAdapter(
             FragmentCurrentPhone.newInstance(mForecast.getCurrent(), mForecast.getTimezone()),
-            FragmentHourly.newInstance(mForecast.getHourlyForecast()),
-            FragmentDaily.newInstance(mForecast.getDailyForecast(), mForecast.getTimezone()));
+            FragmentHourlyPhone.newInstance(mForecast.getHourlyForecast()),
+            FragmentDailyPhone.newInstance(mForecast.getDailyForecast(), mForecast.getTimezone()));
 
         mPresenter.setTabLayout(mViewPager);
 

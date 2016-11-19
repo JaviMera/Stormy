@@ -9,25 +9,22 @@ import butterknife.BindView;
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.adapters.AdapterBase;
 import teamtreehouse.com.stormy.adapters.DayAdapterLandscape;
-import teamtreehouse.com.stormy.adapters.DayViewHolderPortrait;
 import teamtreehouse.com.stormy.adapters.DayAdapterPortrait;
-import teamtreehouse.com.stormy.adapters.HourAdapterLandscape;
-import teamtreehouse.com.stormy.adapters.HourAdapterPortrait;
 import teamtreehouse.com.stormy.model.DayData;
 import teamtreehouse.com.stormy.model.Forecast;
 
 /**
  * Created by Javi on 11/14/2016.
  */
-public class FragmentDaily extends FragmentRecyclerBase<DayData> {
+public class FragmentDailyPhone extends FragmentRecyclerBase<DayData> {
 
     private String mTimezone;
 
     @BindView(R.id.forecastRecycler) RecyclerView mRecyclerView;
 
-    public static FragmentDaily newInstance(DayData[] data, String timezone) {
+    public static FragmentDailyPhone newInstance(DayData[] data, String timezone) {
 
-        FragmentDaily fragment = new FragmentDaily();
+        FragmentDailyPhone fragment = new FragmentDailyPhone();
 
         Bundle bundle = new Bundle();
         bundle.putParcelableArray(FORECAST_DATA, data);

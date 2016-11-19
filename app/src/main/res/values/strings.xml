@@ -16,6 +16,6 @@
     <string name="weeks_forecast_text">Week\'s Forecast</string>
     <string name="today_forecast_text">Today\'s Forecast</string>
     <string name="wind_speed_text">Wind Speed</string>
-    <string name="wind_bear_text">Wind Bearing</string>
+    <string name="wind_bear_text">Wind Bear.</string>
 
 </resources>

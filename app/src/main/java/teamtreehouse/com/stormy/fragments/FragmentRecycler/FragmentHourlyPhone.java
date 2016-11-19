@@ -11,11 +11,11 @@ import teamtreehouse.com.stormy.model.HourData;
 /**
  * Created by Javi on 11/14/2016.
  */
-public class FragmentHourly extends FragmentRecyclerBase<HourData>{
+public class FragmentHourlyPhone extends FragmentRecyclerBase<HourData>{
 
-    public static FragmentHourly newInstance(HourData[] data) {
+    public static FragmentHourlyPhone newInstance(HourData[] data) {
 
-        FragmentHourly fragment = new FragmentHourly();
+        FragmentHourlyPhone fragment = new FragmentHourlyPhone();
 
         Bundle bundle = new Bundle();
         bundle.putParcelableArray(FORECAST_DATA, data);

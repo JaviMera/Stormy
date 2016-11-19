@@ -17,7 +17,6 @@ import butterknife.ButterKnife;
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.adapters.AdapterBase;
 import teamtreehouse.com.stormy.fragments.FragmentForecastBase;
-import teamtreehouse.com.stormy.model.HourData;
 
 /**
  * Created by Javi on 11/16/2016.
@@ -48,7 +47,7 @@ public abstract class FragmentRecyclerBase<T> extends FragmentForecastBase
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mData = (T[]) getArguments().getParcelableArray(FragmentHourly.FORECAST_DATA);
+        mData = (T[]) getArguments().getParcelableArray(FragmentHourlyPhone.FORECAST_DATA);
     }
 
     @Nullable
@@ -99,8 +98,9 @@ public abstract class FragmentRecyclerBase<T> extends FragmentForecastBase
                 .orientation;
     }
 
-
-    private RecyclerView.LayoutManager createLayoutManager(int orientation) {
+    // Phone fragment implementations will not override this method, since the layout should change for portrait/landscape.
+    // Tablets will override it in order to still show portrait manager, when the tablet is rotated to landscape
+    protected RecyclerView.LayoutManager createLayoutManager(int orientation) {
 
         switch(orientation) {
 
