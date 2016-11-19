@@ -16,48 +16,5 @@ import teamtreehouse.com.stormy.model.Forecast;
 /**
  * Created by Javi on 11/14/2016.
  */
-public class FragmentDailyPhone extends FragmentRecyclerBase<DayData> {
-
-    private String mTimezone;
-
-    @BindView(R.id.forecastRecycler) RecyclerView mRecyclerView;
-
-    public static FragmentDailyPhone newInstance(DayData[] data, String timezone) {
-
-        FragmentDailyPhone fragment = new FragmentDailyPhone();
-
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArray(FORECAST_DATA, data);
-        bundle.putString(Forecast.FORECAST_TIMEZONE, timezone);
-        fragment.setArguments(bundle);
-        return fragment;
-    }
-
-    @Override
-    public String getTitle() {
-
-        return "7 Days";
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-
-        mTimezone = getArguments().getString(Forecast.FORECAST_TIMEZONE);
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    protected AdapterBase getAdapter() {
-
-        switch(getOrientation()) {
-
-            case Configuration.ORIENTATION_PORTRAIT:
-                return new DayAdapterPortrait(mData, mTimezone);
-
-            case Configuration.ORIENTATION_LANDSCAPE:
-                return new DayAdapterLandscape(mData, mTimezone);
-        }
-
-        return null;
-    }
+public class FragmentDailyPhone extends FragmentDaily {
 }

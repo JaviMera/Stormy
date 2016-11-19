@@ -25,16 +25,14 @@ import teamtreehouse.com.stormy.fragments.FragmentForecastBase;
 public abstract class FragmentRecyclerBase<T> extends FragmentForecastBase
         implements FragmentRecyclerView {
 
+    private FragmentRecyclerPresenter mPresenter;
     protected static final String FORECAST_DATA = "forecast_data";
 
     protected T[] mData;
     protected FragmentActivity mFragmentActivity;
-    private FragmentRecyclerPresenter mPresenter;
-
     protected abstract AdapterBase getAdapter();
 
-    @BindView(R.id.forecastRecycler)
-    RecyclerView mRecycler;
+    @BindView(R.id.forecastRecycler) RecyclerView mRecycler;
 
     @Override
     public void onAttach(Context context) {
@@ -98,8 +96,6 @@ public abstract class FragmentRecyclerBase<T> extends FragmentForecastBase
                 .orientation;
     }
 
-    // Phone fragment implementations will not override this method, since the layout should change for portrait/landscape.
-    // Tablets will override it in order to still show portrait manager, when the tablet is rotated to landscape
     protected RecyclerView.LayoutManager createLayoutManager(int orientation) {
 
         switch(orientation) {

@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.fragments.FragmentCurrent.FragmentCurrentTablet;
+import teamtreehouse.com.stormy.fragments.FragmentRecycler.FragmentDaily;
+import teamtreehouse.com.stormy.fragments.FragmentRecycler.FragmentHourly;
 import teamtreehouse.com.stormy.fragments.FragmentRecycler.FragmentHourlyPhone;
 import teamtreehouse.com.stormy.model.Forecast;
 import teamtreehouse.com.stormy.ui.MainActivity.MainActivity;
@@ -60,9 +62,21 @@ public class FragmentForecastTablet extends Fragment {
         FragmentManager fragmentManager = mActivity.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        fragmentTransaction.replace(R.id.currentFragmentContainer, FragmentCurrentTablet.newInstance(mForecast.getCurrent(), mForecast.getTimezone()));
-        fragmentTransaction.replace(R.id.hourFragmentContainer, FragmentHourlyTablet.newInstance(mForecast.getHourlyForecast()));
-        fragmentTransaction.replace(R.id.dayFragmentContainer, FragmentDailyTablet.newInstance(mForecast.getDailyForecast(), mForecast.getTimezone()));
+        fragmentTransaction.replace(R.id.currentFragmentContainer, FragmentCurrentTablet.newInstance(
+            mForecast.getCurrent(),
+            mForecast.getTimezone())
+        );
+
+        fragmentTransaction.replace(R.id.hourFragmentContainer, FragmentHourly.newInstance(
+            FragmentHourlyTablet.class,
+            mForecast.getHourlyForecast())
+        );
+
+        fragmentTransaction.replace(R.id.dayFragmentContainer, FragmentDaily.newInstance(
+            FragmentDailyTablet.class,
+            mForecast.getDailyForecast(),
+            mForecast.getTimezone())
+        );
 
         fragmentTransaction.commit();
 
