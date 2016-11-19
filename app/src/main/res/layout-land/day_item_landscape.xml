@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="200dp"
     android:layout_height="match_parent"
-    android:padding="10dp"
     android:orientation="vertical"
     style="@style/LRecyclerItemRoot">
 
@@ -12,6 +11,7 @@
         android:id="@+id/dayTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="5dp"
         style="@style/LDayItemDayText"
         tools:text="Wednesday"/>
 
@@ -20,7 +20,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:paddingTop="10dp">
+        android:gravity="center">
 
         <ImageView
             android:id="@+id/iconImageView"
@@ -32,7 +32,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:paddingTop="10dp">
 
             <TextView
                 android:id="@+id/temperatureMinTextView"
@@ -69,7 +70,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp">
+            android:layout_margin="1dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -92,7 +93,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp">
+            android:layout_margin="1dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -116,7 +117,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp">
+            android:layout_margin="1dp">
 
             <TextView
                 android:layout_width="0dp"
