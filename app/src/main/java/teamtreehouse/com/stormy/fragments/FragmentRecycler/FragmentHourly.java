@@ -36,10 +36,10 @@ public class FragmentHourly extends FragmentRecyclerBase<HourData>{
         switch(getOrientation()) {
 
             case Configuration.ORIENTATION_PORTRAIT:
-                return new HourAdapterPortrait(getActivity(), mData, "");
+                return new HourAdapterPortrait(mData, "");
 
             case Configuration.ORIENTATION_LANDSCAPE:
-                return new HourAdapterLandscape(getActivity(), mData, "");
+                return new HourAdapterLandscape(mData, "");
         }
 
         return null;

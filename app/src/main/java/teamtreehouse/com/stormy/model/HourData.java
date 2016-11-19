@@ -39,6 +39,9 @@ public class HourData implements Parcelable{
         mSummary = in.readString();
         mTemperature = in.readDouble();
         mIcon = in.readString();
+        mHumidity = in.readDouble();
+        mWindSpeed = in.readDouble();
+        mWindBearing = in.readInt();
     }
 
     public static final Creator<HourData> CREATOR = new Creator<HourData>() {
@@ -64,6 +67,9 @@ public class HourData implements Parcelable{
         dest.writeString(mSummary);
         dest.writeDouble(mTemperature);
         dest.writeString(mIcon);
+        dest.writeDouble(mHumidity);
+        dest.writeDouble(mWindSpeed);
+        dest.writeInt(mWindBearing);
     }
 
     public String getIcon() {

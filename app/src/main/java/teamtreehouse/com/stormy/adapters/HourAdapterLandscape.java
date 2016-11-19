@@ -11,7 +11,7 @@ import teamtreehouse.com.stormy.model.HourData;
 
 public class HourAdapterLandscape extends AdapterBase<HourData, HourViewHolderLandscape> {
 
-    public HourAdapterLandscape(Context context, HourData[] hourData, String timezone) {
+    public HourAdapterLandscape(HourData[] hourData, String timezone) {
 
         super(hourData, HourViewHolderLandscape.class, timezone);
     }

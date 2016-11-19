@@ -42,13 +42,17 @@ public abstract class AdapterBase<T, H extends ViewHolderBase<T>> extends Recycl
 
             return (H)new HourViewHolderPortrait(view);
         }
-        else if(mType.equals(DayViewHolder.class)) {
+        else if(mType.equals(DayViewHolderPortrait.class)) {
 
-            return (H)new DayViewHolder(view);
+            return (H)new DayViewHolderPortrait(view);
         }
         else if(mType.equals(HourViewHolderLandscape.class)) {
 
             return (H) new HourViewHolderLandscape(view);
+        }
+        else if(mType.equals(DayViewHolderLandscape.class)) {
+
+            return (H) new DayViewHolderLandscape(view);
         }
 
         return null;

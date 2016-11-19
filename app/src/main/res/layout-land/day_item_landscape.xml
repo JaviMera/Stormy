@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="200dp"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical"
+    style="@style/LRecyclerItemRoot">
+
+    <TextView
+        android:id="@+id/dayTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/LDayItemDayText"
+        tools:text="Wednesday"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingTop="10dp">
+
+        <ImageView
+            android:id="@+id/iconImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LDayItemIcon"
+            tools:src="@drawable/partly_cloudy"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/temperatureMinTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/LDayItemTemperature"
+                tools:text="100"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/white_color"
+                android:text=" / "/>
+
+            <TextView
+                android:id="@+id/temperatureMaxTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/LDayItemTemperature"
+                tools:text="100"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="right"
+                style="@style/HumidityTitleTextView"/>
+
+            <TextView
+                android:id="@+id/hourHumidityTextView"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:layout_gravity="center"
+                android:gravity="left|center"
+                android:layout_marginLeft="10dp"
+                style="@style/HumidityValueTextView"
+                tools:text="0.5"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="right"
+                style="@style/WindSpeedTitleTextView"/>
+
+            <TextView
+                android:id="@+id/hourWindSpeedTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:layout_gravity="center"
+                android:gravity="left|center"
+                android:textColor="@color/white_color"
+                android:layout_marginLeft="10dp"
+                tools:text="0.5"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="right"
+                style="@style/WindBearTitleTextView"/>
+
+            <TextView
+                android:id="@+id/hourWindBearTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:layout_gravity="center"
+                android:gravity="left|center"
+                android:textColor="@color/white_color"
+                android:layout_marginLeft="10dp"
+                tools:text="0.5"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

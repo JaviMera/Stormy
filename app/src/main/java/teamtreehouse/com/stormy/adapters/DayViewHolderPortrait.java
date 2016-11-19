@@ -13,14 +13,14 @@ import teamtreehouse.com.stormy.model.DayData;
  * Created by Javi on 11/15/2016.
  */
 
-public class DayViewHolder extends ViewHolderBase<DayData> {
+public class DayViewHolderPortrait extends ViewHolderBase<DayData> {
 
     ImageView mIconImageView;
     TextView mTemperatureMaxTextView;
     TextView mTemperatureMinTextView;
     TextView mDayTextView;
 
-    public DayViewHolder(View itemView) {
+    public DayViewHolderPortrait(View itemView) {
         super(itemView);
     }
 

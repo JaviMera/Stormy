@@ -4,19 +4,20 @@ import android.view.View;
 import android.widget.TextView;
 
 import teamtreehouse.com.stormy.R;
+import teamtreehouse.com.stormy.model.DayData;
 import teamtreehouse.com.stormy.model.HourData;
 
 /**
  * Created by Javi on 11/18/2016.
  */
 
-public class HourViewHolderLandscape extends HourViewHolderPortrait{
+public class DayViewHolderLandscape extends DayViewHolderPortrait {
 
     private TextView mHumidity;
     private TextView mWindSpeed;
     private TextView mWindBearing;
 
-    public HourViewHolderLandscape(View itemView) {
+    public DayViewHolderLandscape(View itemView) {
         super(itemView);
     }
 
@@ -31,7 +32,8 @@ public class HourViewHolderLandscape extends HourViewHolderPortrait{
     }
 
     @Override
-    public void bind(HourData data, int position, String timezone) {
+    public void bind(DayData data, int position, String timezone) {
+
         super.bind(data, position, timezone);
 
         String humidityText = valueFormat("%.2f", data.getHumidity());

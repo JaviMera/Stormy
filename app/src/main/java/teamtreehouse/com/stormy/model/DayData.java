@@ -30,12 +30,24 @@ public class DayData implements Parcelable {
     @SerializedName("icon")
     private String mIcon;
 
+    @SerializedName("humidity")
+    private double mHumidity;
+
+    @SerializedName("windSpeed")
+    private double mWindSpeed;
+
+    @SerializedName("windBearing")
+    private int mWindBearing;
+
     protected DayData(Parcel in) {
         mTime = in.readLong();
         mSummary = in.readString();
         mTemperatureMax = in.readDouble();
         mTemperatureMin = in.readDouble();
         mIcon = in.readString();
+        mHumidity = in.readDouble();
+        mWindSpeed = in.readDouble();
+        mWindBearing = in.readInt();
     }
 
     public static final Creator<DayData> CREATOR = new Creator<DayData>() {
@@ -88,6 +100,17 @@ public class DayData implements Parcelable {
         return Forecast.getIconId(mIcon);
     }
 
+    public double getHumidity() {
+        return mHumidity;
+    }
+
+    public int getWindBearing() {
+        return mWindBearing;
+    }
+
+    public double getWindSpeed() {
+        return mWindSpeed;
+    }
 
     public String getDayOfTheWeek(String timezone) {
 
@@ -111,5 +134,8 @@ public class DayData implements Parcelable {
         dest.writeDouble(mTemperatureMax);
         dest.writeDouble(mTemperatureMin);
         dest.writeString(mIcon);
+        dest.writeDouble(mHumidity);
+        dest.writeDouble(mWindSpeed);
+        dest.writeInt(mWindBearing);
     }
 }

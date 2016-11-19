@@ -10,7 +10,7 @@ import teamtreehouse.com.stormy.model.HourData;
  */
 public class HourAdapterPortrait extends AdapterBase<HourData, HourViewHolderPortrait> {
 
-    public HourAdapterPortrait(Context context, HourData[] hourData, String timezone) {
+    public HourAdapterPortrait(HourData[] hourData, String timezone) {
 
         super(hourData, HourViewHolderPortrait.class, timezone);
     }
