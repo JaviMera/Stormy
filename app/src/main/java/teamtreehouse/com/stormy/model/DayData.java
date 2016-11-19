@@ -13,13 +13,7 @@ import java.util.TimeZone;
  * Created by Javi on 11/10/2016.
  */
 
-public class DayData implements Parcelable {
-
-    @SerializedName("time")
-    private long mTime;
-
-    @SerializedName("summary")
-    private String mSummary;
+public class DayData extends WeatherData  {
 
     @SerializedName("temperatureMax")
     private double mTemperatureMax;
@@ -27,32 +21,17 @@ public class DayData implements Parcelable {
     @SerializedName("temperatureMin")
     private double mTemperatureMin;
 
-    @SerializedName("icon")
-    private String mIcon;
+    DayData(Parcel in) {
+        super(in);
 
-    @SerializedName("humidity")
-    private double mHumidity;
-
-    @SerializedName("windSpeed")
-    private double mWindSpeed;
-
-    @SerializedName("windBearing")
-    private int mWindBearing;
-
-    protected DayData(Parcel in) {
-        mTime = in.readLong();
-        mSummary = in.readString();
         mTemperatureMax = in.readDouble();
         mTemperatureMin = in.readDouble();
-        mIcon = in.readString();
-        mHumidity = in.readDouble();
-        mWindSpeed = in.readDouble();
-        mWindBearing = in.readInt();
     }
 
     public static final Creator<DayData> CREATOR = new Creator<DayData>() {
         @Override
         public DayData createFromParcel(Parcel in) {
+
             return new DayData(in);
         }
 
@@ -62,22 +41,6 @@ public class DayData implements Parcelable {
         }
     };
 
-    public long getTime() {
-        return mTime;
-    }
-
-    public void setTime(long time) {
-        mTime = time;
-    }
-
-    public String getSummary() {
-        return mSummary;
-    }
-
-    public void setSummary(String summary) {
-        mSummary = summary;
-    }
-
     public int getTemperatureMax() {
 
         return (int)Math.round(mTemperatureMax);
@@ -86,30 +49,6 @@ public class DayData implements Parcelable {
     public double getTemperatureMin() {
 
         return (int)Math.round(mTemperatureMin);
-    }
-
-    public String getIcon() {
-        return mIcon;
-    }
-
-    public void setIcon(String icon) {
-        mIcon = icon;
-    }
-
-    public int getIconId() {
-        return Forecast.getIconId(mIcon);
-    }
-
-    public double getHumidity() {
-        return mHumidity;
-    }
-
-    public int getWindBearing() {
-        return mWindBearing;
-    }
-
-    public double getWindSpeed() {
-        return mWindSpeed;
     }
 
     public String getDayOfTheWeek(String timezone) {
@@ -129,13 +68,10 @@ public class DayData implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeLong(mTime);
-        dest.writeString(mSummary);
+
+        super.writeToParcel(dest, flags);
+
         dest.writeDouble(mTemperatureMax);
         dest.writeDouble(mTemperatureMin);
-        dest.writeString(mIcon);
-        dest.writeDouble(mHumidity);
-        dest.writeDouble(mWindSpeed);
-        dest.writeInt(mWindBearing);
     }
 }

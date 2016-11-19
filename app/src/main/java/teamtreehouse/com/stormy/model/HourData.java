@@ -11,37 +11,38 @@ import java.util.Date;
 /**
  * Created by Javi on 11/10/2016.
  */
-public class HourData implements Parcelable{
-
-    @SerializedName("time")
-    private long mTime;
-
-    @SerializedName("summary")
-    private String mSummary;
+public class HourData extends WeatherData {
 
     @SerializedName("temperature")
     private double mTemperature;
 
-    @SerializedName("icon")
-    private String mIcon;
-
-    @SerializedName("humidity")
-    private double mHumidity;
-
-    @SerializedName("windSpeed")
-    private double mWindSpeed;
-
-    @SerializedName("windBearing")
-    private int mWindBearing;
-
     protected HourData(Parcel in) {
-        mTime = in.readLong();
-        mSummary = in.readString();
+
+        super(in);
         mTemperature = in.readDouble();
-        mIcon = in.readString();
-        mHumidity = in.readDouble();
-        mWindSpeed = in.readDouble();
-        mWindBearing = in.readInt();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
+        super.writeToParcel(dest, flags);
+        dest.writeDouble(mTemperature);
+    }
+
+    public double getTemperature() {
+
+        return (int)Math.round(mTemperature);
+    }
+
+    public String getHour() {
+        SimpleDateFormat formatter = new SimpleDateFormat("h a");
+        Date date = new Date(getTime() * 1000);
+        return formatter.format(date);
     }
 
     public static final Creator<HourData> CREATOR = new Creator<HourData>() {
@@ -56,71 +57,4 @@ public class HourData implements Parcelable{
         }
     };
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeLong(mTime);
-        dest.writeString(mSummary);
-        dest.writeDouble(mTemperature);
-        dest.writeString(mIcon);
-        dest.writeDouble(mHumidity);
-        dest.writeDouble(mWindSpeed);
-        dest.writeInt(mWindBearing);
-    }
-
-    public String getIcon() {
-        return mIcon;
-    }
-
-    public void setIcon(String icon) {
-        mIcon = icon;
-    }
-
-    public String getSummary() {
-        return mSummary;
-    }
-
-    public void setSummary(String summary) {
-        mSummary = summary;
-    }
-
-    public double getTemperature() {
-
-        return (int)Math.round(mTemperature);
-    }
-
-    public long getTime() {
-        return mTime;
-    }
-
-    public void setTime(long time) {
-        mTime = time;
-    }
-
-    public double getHumidity() {
-        return mHumidity;
-    }
-
-    public int getWindBearing() {
-        return mWindBearing;
-    }
-
-    public double getWindSpeed() {
-        return mWindSpeed;
-    }
-
-    public String getHour() {
-        SimpleDateFormat formatter = new SimpleDateFormat("h a");
-        Date date = new Date(getTime() * 1000);
-        return formatter.format(date);
-    }
-
-    public int getIconId() {
-
-        return Forecast.getIconId(mIcon);
-    }
 }
