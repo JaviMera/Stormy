@@ -13,26 +13,27 @@ import teamtreehouse.com.stormy.model.HourData;
  * Created by Javi on 11/15/2016.
  */
 
-public class HourViewHolder extends ViewHolderBase<HourData> {
+public class HourViewHolderPortrait extends ViewHolderBase<HourData> {
 
     public TextView mTimeLabel;
     public TextView mSummaryLabel;
     public TextView mTemperatureLabel;
     public ImageView mIconImageView;
 
-    public HourViewHolder(View itemView) {
+
+    public HourViewHolderPortrait(View itemView) {
         super(itemView);
     }
 
     @Override
     public void bind(HourData data, int position, String timezone) {
 
-        String timeText = position == 0 ? "Now" : data.getHour();
+        String timeText = position == 0 ? "Now" : " at " + data.getHour();
         mTimeLabel.setText(timeText);
 
         mSummaryLabel.setText(data.getSummary());
 
-        String temperatureText = temperatureFormat(data.getTemperature());
+        String temperatureText = valueFormat("%.0f", data.getTemperature());
         mTemperatureLabel.setText(temperatureText);
 
         mIconImageView.setImageResource(data.getIconId());
@@ -47,8 +48,4 @@ public class HourViewHolder extends ViewHolderBase<HourData> {
         mIconImageView = (ImageView) itemView.findViewById(R.id.iconImageView);
     }
 
-    private String temperatureFormat(double temperature) {
-
-        return String.format(Locale.ENGLISH, "%d", (int)temperature);
-    }
 }

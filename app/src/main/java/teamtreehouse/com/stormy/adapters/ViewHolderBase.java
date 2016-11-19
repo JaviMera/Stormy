@@ -3,6 +3,9 @@ package teamtreehouse.com.stormy.adapters;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import java.util.Locale;
+import java.util.Objects;
+
 /**
  * Created by Javi on 11/15/2016.
  */
@@ -16,5 +19,10 @@ public abstract class ViewHolderBase<T> extends RecyclerView.ViewHolder {
         super(itemView);
 
         setViews();
+    }
+
+    String valueFormat(String format, Object value) {
+
+        return String.format(Locale.ENGLISH, format, value);
     }
 }

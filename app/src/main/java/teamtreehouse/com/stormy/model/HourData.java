@@ -25,6 +25,15 @@ public class HourData implements Parcelable{
     @SerializedName("icon")
     private String mIcon;
 
+    @SerializedName("humidity")
+    private double mHumidity;
+
+    @SerializedName("windSpeed")
+    private double mWindSpeed;
+
+    @SerializedName("windBearing")
+    private int mWindBearing;
+
     protected HourData(Parcel in) {
         mTime = in.readLong();
         mSummary = in.readString();
@@ -78,16 +87,24 @@ public class HourData implements Parcelable{
         return (int)Math.round(mTemperature);
     }
 
-    public void setTemperature(double temperature) {
-        mTemperature = temperature;
-    }
-
     public long getTime() {
         return mTime;
     }
 
     public void setTime(long time) {
         mTime = time;
+    }
+
+    public double getHumidity() {
+        return mHumidity;
+    }
+
+    public int getWindBearing() {
+        return mWindBearing;
+    }
+
+    public double getWindSpeed() {
+        return mWindSpeed;
     }
 
     public String getHour() {

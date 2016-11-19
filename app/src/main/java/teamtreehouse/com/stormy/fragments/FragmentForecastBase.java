@@ -8,5 +8,4 @@ import android.support.v4.app.Fragment;
 public abstract class FragmentForecastBase extends Fragment {
 
     public abstract String getTitle();
-    protected abstract int getLayoutId();
 }

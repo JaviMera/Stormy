@@ -55,7 +55,7 @@ public abstract class FragmentRecyclerBase<T> extends FragmentForecastBase
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(getLayoutId(), container, false);
+        View view = inflater.inflate(R.layout.fragment_forecast_recycler, container, false);
 
         ButterKnife.bind(this, view);
 
@@ -92,7 +92,7 @@ public abstract class FragmentRecyclerBase<T> extends FragmentForecastBase
         mRecycler.setHasFixedSize(isFixed);
     }
 
-    private int getOrientation() {
+    protected int getOrientation() {
 
         return getResources()
                 .getConfiguration()

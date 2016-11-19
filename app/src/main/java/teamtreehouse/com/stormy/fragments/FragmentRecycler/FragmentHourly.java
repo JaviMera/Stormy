@@ -1,10 +1,11 @@
 package teamtreehouse.com.stormy.fragments.FragmentRecycler;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import teamtreehouse.com.stormy.R;
+
 import teamtreehouse.com.stormy.adapters.AdapterBase;
-import teamtreehouse.com.stormy.adapters.FragmentHourAdapter;
+import teamtreehouse.com.stormy.adapters.HourAdapterLandscape;
+import teamtreehouse.com.stormy.adapters.HourAdapterPortrait;
 import teamtreehouse.com.stormy.model.HourData;
 
 /**
@@ -26,18 +27,21 @@ public class FragmentHourly extends FragmentRecyclerBase<HourData>{
     @Override
     public String getTitle() {
 
-        return "Today's Forecast";
-    }
-
-    @Override
-    protected int getLayoutId() {
-
-        return R.layout.fragment_forecast_hourly;
+        return "Hourly";
     }
 
     @Override
     protected AdapterBase getAdapter() {
 
-        return new FragmentHourAdapter(getActivity(), mData, "");
+        switch(getOrientation()) {
+
+            case Configuration.ORIENTATION_PORTRAIT:
+                return new HourAdapterPortrait(getActivity(), mData, "");
+
+            case Configuration.ORIENTATION_LANDSCAPE:
+                return new HourAdapterLandscape(getActivity(), mData, "");
+        }
+
+        return null;
     }
 }

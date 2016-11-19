@@ -30,6 +30,7 @@ public abstract class FragmentCurrentBase extends FragmentForecastBase implement
         FragmentCurrentView {
 
     protected static final String FORECAST_CURRENT = "FORECAST_CURRENT";
+    protected abstract int getLayoutId();
 
     private FragmentActivity mFragmentActivity;
     private FragmentCurrentPresenter mPresenter;

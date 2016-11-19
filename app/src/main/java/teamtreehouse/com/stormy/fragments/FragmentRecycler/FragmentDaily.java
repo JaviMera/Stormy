@@ -39,12 +39,6 @@ public class FragmentDaily extends FragmentRecyclerBase<DayData> {
     }
 
     @Override
-    protected int getLayoutId() {
-
-        return R.layout.fragment_forecast_daily;
-    }
-
-    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
 
         mTimezone = getArguments().getString(Forecast.FORECAST_TIMEZONE);

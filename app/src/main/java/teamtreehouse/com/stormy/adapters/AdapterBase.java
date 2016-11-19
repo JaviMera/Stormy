@@ -38,13 +38,17 @@ public abstract class AdapterBase<T, H extends ViewHolderBase<T>> extends Recycl
 
         View view = LayoutInflater.from(parent.getContext()).inflate(getLayoutId(), parent, false);
 
-        if(mType.equals(HourViewHolder.class)) {
+        if(mType.equals(HourViewHolderPortrait.class)) {
 
-            return (H)new HourViewHolder(view);
+            return (H)new HourViewHolderPortrait(view);
         }
         else if(mType.equals(DayViewHolder.class)) {
 
             return (H)new DayViewHolder(view);
+        }
+        else if(mType.equals(HourViewHolderLandscape.class)) {
+
+            return (H) new HourViewHolderLandscape(view);
         }
 
         return null;

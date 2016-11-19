@@ -49,38 +49,44 @@
         <item name="android:maxHeight">@dimen/temperature_icon_height</item>
     </style>
 
-    <style name="HumidityView">
+    <style name="WeatherInfoView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="HumidityTitleTextView" parent="HumidityView">
+    <style name="HumidityTitleTextView" parent="WeatherInfoView">
         <item name="android:text">@string/humidity_text</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/humidity_title_text_color</item>
     </style>
 
-    <style name="HumidityValueTextView" parent="HumidityView">
+    <style name="HumidityValueTextView" parent="WeatherInfoView">
         <item name="android:textColor">@color/white_color</item>
         <item name="android:textSize">@dimen/humidity_value_text_size</item>
     </style>
 
-    <style name="PrecipitationView">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center</item>
-    </style>
-
-    <style name="PrecipitationTitleTextView" parent="PrecipitationView">
+    <style name="PrecipitationTitleTextView" parent="WeatherInfoView">
         <item name="android:text">@string/precipitation_text</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/precipitation_title_text_color</item>
     </style>
 
-    <style name="PrecipitationValueTextView" parent="PrecipitationView">
+    <style name="PrecipitationValueTextView" parent="WeatherInfoView">
         <item name="android:textColor">@color/white_color</item>
         <item name="android:textSize">@dimen/humidity_value_text_size</item>
+    </style>
+
+    <style name="WindSpeedTitleTextView" parent="WeatherInfoView">
+        <item name="android:text">@string/wind_speed_text</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/precipitation_title_text_color</item>
+    </style>
+
+    <style name="WindBearTitleTextView" parent="WeatherInfoView">
+        <item name="android:text">@string/wind_bear_text</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/precipitation_title_text_color</item>
     </style>
 
     <style name="SummaryTextView">
@@ -181,7 +187,6 @@
     <style name="LHourTemperature">
         <item name="android:textSize">@dimen/l_hour_temp_text_size</item>
         <item name="android:textColor">@color/white_color</item>
-        <item name="android:padding">@dimen/l_hour_temp_pad</item>
         <item name="android:layout_gravity">center</item>
     </style>
 
