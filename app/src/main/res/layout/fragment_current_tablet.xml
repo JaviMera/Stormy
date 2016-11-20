@@ -25,6 +25,7 @@
 
             <TextView
                 android:id="@+id/temperatureMaxTextView"
+                android:textSize="70sp"
                 style="@style/TemperatureTextView"
                 tools:text="63.0"/>
 
@@ -38,7 +39,7 @@
                 android:layout_height="match_parent"
                 android:text="F"
                 android:textColor="@color/white_color"
-                android:textSize="70sp"
+                android:textSize="@dimen/degree_text_size"
                 android:layout_marginLeft="5dp"
                 android:paddingTop="5dp"/>
         </LinearLayout>

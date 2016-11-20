@@ -7,7 +7,7 @@
     <dimen name="time_text_size">18sp</dimen>
     <dimen name="time_text_pad">15dp</dimen>
     <dimen name="temperature_text_size">100sp</dimen>
-    <dimen name="temperature_icon_height">20dp</dimen>
+    <dimen name="temperature_icon_height">15dp</dimen>
     <dimen name="humidity_value_text_size">24sp</dimen>
     <dimen name="zero">0dp</dimen>
     <dimen name="summary_text_size">18sp</dimen>
@@ -22,4 +22,5 @@
     <dimen name="l_hour_temp_pad">10dp</dimen>
     <dimen name="l_hour_temp_text_size">15sp</dimen>
     <dimen name="recycler_item_margin">1dp</dimen>
+    <dimen name="degree_text_size">70sp</dimen>
 </resources>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:layout_marginTop="20dp"
     android:background="@drawable/recycler_item_background">
 
     <LinearLayout
@@ -32,7 +32,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="top|center">
+        android:gravity="center">
 
         <TextView
             android:id="@+id/temperatureMaxTextView"
@@ -40,7 +40,8 @@
             tools:text="63.0"/>
 
         <ImageView
-            android:layout_marginTop="20dp"
+            android:layout_gravity="top"
+            android:layout_marginTop="30dp"
             style="@style/TemperatureIconImageView"/>
 
         <TextView
@@ -48,9 +49,9 @@
             android:layout_height="match_parent"
             android:text="F"
             android:textColor="@color/white_color"
-            android:textSize="70sp"
+            android:textSize="@dimen/degree_text_size"
             android:layout_marginLeft="5dp"
-            android:paddingTop="5dp"/>
+            android:layout_marginTop="5dp"/>
     </LinearLayout>
 
     <LinearLayout
