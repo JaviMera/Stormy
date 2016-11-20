@@ -12,15 +12,14 @@
         android:id="@+id/timeTextView"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="2"
+        android:layout_weight="3"
         style="@style/PHourItemTime"
         tools:text="12 PM"/>
 
     <ImageView
         android:id="@+id/iconImageView"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         style="@style/PHourItemIcon"
         tools:src="@drawable/partly_cloudy"/>
 
@@ -29,6 +28,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="3"
+        android:gravity="center"
         style="@style/PHourSummaryText"
         tools:text="Partly cloudy"/>
 

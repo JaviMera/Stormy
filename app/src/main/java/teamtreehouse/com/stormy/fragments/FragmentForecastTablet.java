@@ -10,16 +10,16 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.fragments.FragmentCurrent.FragmentCurrentTablet;
 import teamtreehouse.com.stormy.fragments.FragmentRecycler.FragmentDaily;
 import teamtreehouse.com.stormy.fragments.FragmentRecycler.FragmentHourly;
-import teamtreehouse.com.stormy.fragments.FragmentRecycler.FragmentHourlyPhone;
 import teamtreehouse.com.stormy.model.Forecast;
 import teamtreehouse.com.stormy.ui.MainActivity.MainActivity;
 
 /**
- * Created by Javi on 11/17/2016.
+ * Created by Javi on 11/19/2016.
  */
 
 public class FragmentForecastTablet extends Fragment {
@@ -41,15 +41,12 @@ public class FragmentForecastTablet extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
         mActivity = getActivity();
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setRetainInstance(true);
         mForecast = getArguments().getParcelable(MainActivity.FORECAST);
     }
 
@@ -57,14 +54,14 @@ public class FragmentForecastTablet extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_main_tablet_layout, container, false);
+        View view = inflater.inflate(R.layout.fragment_main_tablet, container, false);
 
         FragmentManager fragmentManager = mActivity.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         fragmentTransaction.replace(R.id.currentFragmentContainer, FragmentCurrentTablet.newInstance(
-            mForecast.getCurrent(),
-            mForecast.getTimezone())
+                mForecast.getCurrent(),
+                mForecast.getTimezone())
         );
 
         fragmentTransaction.replace(R.id.hourFragmentContainer, FragmentHourly.newInstance(

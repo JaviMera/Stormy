@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements
             mPresenter.setToolbarTitle(mCurrentPlace.getCityFullName());
 
             toggleRefresh();
-            requestForecast(mCurrentPlace.getLatitude(), mCurrentPlace.getLongitude());
+            setActivityFragment(mForecast);
 
         } else {
 
@@ -136,6 +136,25 @@ public class MainActivity extends AppCompatActivity implements
             else
                 requestUserLocation(mGoogleApiClient);
         }
+    }
+
+    private void setActivityFragment(Forecast forecast) {
+
+        Fragment fragment;
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        if(isTablet) {
+
+            fragment = FragmentForecastTablet.newInstance(forecast);
+        }
+        else {
+
+            fragment = FragmentPager.newInstance(forecast);
+        }
+
+        fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -162,26 +181,28 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onResult(@NonNull PlaceLikelihoodBuffer placeLikelihoods) {
 
-                if(placeLikelihoods.getStatus().isSuccess()) {
+            toggleRefresh();
 
-                    // Get the first place from the buffer.
-                    LatLng latLong = placeLikelihoods.get(0).getPlace().getLatLng();
-                    mCurrentPlace.setCoordinates(latLong);
+            if(placeLikelihoods.getStatus().isSuccess()) {
 
-                    // Get address from Geocoder class with the new lat long values
-                    Address address = getAddress(mCurrentPlace.getLatitude(), mCurrentPlace.getLongitude());
+                // Get the first place from the buffer.
+                LatLng latLong = placeLikelihoods.get(0).getPlace().getLatLng();
+                mCurrentPlace.setCoordinates(latLong);
 
-                    mCurrentPlace.setLocality(address);
-                    mPresenter.setToolbarTitle(mCurrentPlace.getCityFullName());
+                // Get address from Geocoder class with the new lat long values
+                Address address = getAddress(mCurrentPlace.getLatitude(), mCurrentPlace.getLongitude());
 
-                    requestForecast(
-                            mCurrentPlace.getLatitude(),
-                            mCurrentPlace.getLongitude());
-                }
-                else {
+                mCurrentPlace.setLocality(address);
+                mPresenter.setToolbarTitle(mCurrentPlace.getCityFullName());
 
-                    new LocationNullDialog().show(getSupportFragmentManager(), "location_notfound_dialog");
-                }
+                requestForecast(
+                        mCurrentPlace.getLatitude(),
+                        mCurrentPlace.getLongitude());
+            }
+            else {
+
+                new LocationNullDialog().show(getSupportFragmentManager(), "location_notfound_dialog");
+            }
             }
         });
     }
@@ -286,21 +307,7 @@ public class MainActivity extends AppCompatActivity implements
 
             toggleRefresh();
             mForecast = forecast;
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            Fragment fragment;
-
-            if(isTablet) {
-
-                fragment = FragmentForecastTablet.newInstance(mForecast);
-            }
-            else {
-
-                fragment = FragmentPager.newInstance(mForecast);
-            }
-
-            fragmentTransaction.replace(R.id.fragmentContainer, fragment);
-            fragmentTransaction.commit();
+            setActivityFragment(mForecast);
         }
     }
 
@@ -320,6 +327,12 @@ public class MainActivity extends AppCompatActivity implements
     public void setToolbarTextColor(int color) {
 
         mToolBar.setTitleTextColor(color);
+    }
+
+    @Override
+    public void startActivityForResult(String serviceName) {
+
+        startActivityForResult(new Intent(serviceName), USER_GPS_CODE);
     }
 
     @Override
@@ -377,11 +390,6 @@ public class MainActivity extends AppCompatActivity implements
         return null;
     }
 
-    @Override
-    public void startActivityForResult(String serviceName) {
-
-        startActivityForResult(new Intent(serviceName), USER_GPS_CODE);
-    }
 }
 
 

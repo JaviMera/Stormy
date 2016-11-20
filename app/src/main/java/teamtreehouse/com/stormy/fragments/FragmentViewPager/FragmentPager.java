@@ -28,7 +28,6 @@ import teamtreehouse.com.stormy.model.Forecast;
 public class FragmentPager extends Fragment implements FragmentPagerView{
 
     private FragmentActivity mActivity;
-    private String mTimezone;
     private Forecast mForecast;
 
     private FragmentPagerPresenter mPresenter;
@@ -57,8 +56,6 @@ public class FragmentPager extends Fragment implements FragmentPagerView{
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setRetainInstance(true);
         mForecast = getArguments().getParcelable(MainActivity.FORECAST);
     }
 
