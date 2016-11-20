@@ -25,7 +25,7 @@ import teamtreehouse.com.stormy.model.Forecast;
  * Created by Javi on 11/14/2016.
  */
 
-public class FragmentPager extends Fragment implements FragmentPagerView{
+public class FragmentForecastPhone extends Fragment implements FragmentPagerView{
 
     private FragmentActivity mActivity;
     private Forecast mForecast;
@@ -35,9 +35,9 @@ public class FragmentPager extends Fragment implements FragmentPagerView{
     @BindView(R.id.viewPager) ViewPager mViewPager;
     @BindView(R.id.tabLayout) TabLayout mTabLayout;
 
-    public static FragmentPager newInstance(Forecast forecast) {
+    public static FragmentForecastPhone newInstance(Forecast forecast) {
 
-        FragmentPager fragment = new FragmentPager();
+        FragmentForecastPhone fragment = new FragmentForecastPhone();
 
         Bundle bundle = new Bundle();
         bundle.putParcelable(MainActivity.FORECAST, forecast);
@@ -63,7 +63,7 @@ public class FragmentPager extends Fragment implements FragmentPagerView{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_view_pager, container, false);
+        View view = inflater.inflate(R.layout.fragment_main_phone, container, false);
 
         ButterKnife.bind(this, view);
         mPresenter = new FragmentPagerPresenter(this);

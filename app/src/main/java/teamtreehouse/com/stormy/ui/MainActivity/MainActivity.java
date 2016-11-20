@@ -54,7 +54,7 @@ import teamtreehouse.com.stormy.dialogs.InternetErrorDialog;
 import teamtreehouse.com.stormy.dialogs.LocationStateDialog;
 import teamtreehouse.com.stormy.dialogs.LocationNullDialog;
 import teamtreehouse.com.stormy.fragments.FragmentForecastTablet;
-import teamtreehouse.com.stormy.fragments.FragmentViewPager.FragmentPager;
+import teamtreehouse.com.stormy.fragments.FragmentViewPager.FragmentForecastPhone;
 import teamtreehouse.com.stormy.model.WeatherPlace;
 import teamtreehouse.com.stormy.model.Forecast;
 
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements
         }
         else {
 
-            fragment = FragmentPager.newInstance(forecast);
+            fragment = FragmentForecastPhone.newInstance(forecast);
         }
 
         fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -332,6 +332,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void startActivityForResult(String serviceName) {
 
+        toggleRefresh();
         startActivityForResult(new Intent(serviceName), USER_GPS_CODE);
     }
 

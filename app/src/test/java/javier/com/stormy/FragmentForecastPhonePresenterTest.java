@@ -18,7 +18,7 @@ import teamtreehouse.com.stormy.fragments.FragmentViewPager.FragmentPagerView;
  */
 
 @RunWith(MockitoJUnitRunner.class)
-public class FragmentPagerPresenterTest {
+public class FragmentForecastPhonePresenterTest {
 
     @Mock
     public FragmentPagerView mView;
