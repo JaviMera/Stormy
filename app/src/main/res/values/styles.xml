@@ -41,7 +41,6 @@
     <style name="TemperatureIconImageView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_alignParentTop">true</item>
         <item name="android:layout_toRightOf">@+id/temperatureMaxTextView</item>
         <item name="android:src">@drawable/degree</item>
         <item name="android:scaleType">fitStart</item>

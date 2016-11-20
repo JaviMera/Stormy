@@ -29,6 +29,7 @@
                 tools:text="63.0"/>
 
             <ImageView
+                android:layout_gravity="top"
                 android:layout_marginTop="20dp"
                 style="@style/TemperatureIconImageView"/>
 

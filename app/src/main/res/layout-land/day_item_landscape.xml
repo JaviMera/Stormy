@@ -81,8 +81,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:textSize="15sp"
-                android:layout_gravity="center"
-                android:gravity="center"
+                android:gravity="left|center"
                 android:layout_marginLeft="10dp"
                 style="@style/HumidityValueTextView"
                 tools:text="0.5"/>
@@ -105,8 +104,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="15sp"
-                android:layout_gravity="center"
-                android:gravity="center"
+                android:gravity="left|center"
                 android:textColor="@color/white_color"
                 android:layout_marginLeft="10dp"
                 tools:text="0.5"/>
@@ -129,8 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="15sp"
-                android:layout_gravity="center"
-                android:gravity="center"
+                android:gravity="left|center"
                 android:textColor="@color/white_color"
                 android:layout_marginLeft="10dp"
                 tools:text="0.5"/>

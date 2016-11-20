@@ -13,6 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="3"
+        android:paddingRight="5dp"
         style="@style/PHourItemTime"
         tools:text="12 PM"/>
 
@@ -28,7 +29,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="3"
-        android:gravity="center"
+        android:gravity="left|center"
         style="@style/PHourSummaryText"
         tools:text="Partly cloudy"/>
 
