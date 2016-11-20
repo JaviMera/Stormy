@@ -16,13 +16,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.adapters.AdapterBase;
-import teamtreehouse.com.stormy.fragments.FragmentForecastBase;
+import teamtreehouse.com.stormy.fragments.FragmentTabBase;
 
 /**
  * Created by Javi on 11/16/2016.
  */
 
-public abstract class FragmentRecyclerBase<T> extends FragmentForecastBase
+public abstract class FragmentRecyclerBase<T> extends FragmentTabBase
         implements FragmentRecyclerView {
 
     private FragmentRecyclerPresenter mPresenter;

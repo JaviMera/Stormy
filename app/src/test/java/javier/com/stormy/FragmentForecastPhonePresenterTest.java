@@ -9,7 +9,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import teamtreehouse.com.stormy.fragments.FragmentForecastBase;
+import teamtreehouse.com.stormy.fragments.FragmentTabBase;
 import teamtreehouse.com.stormy.fragments.FragmentViewPager.FragmentPagerPresenter;
 import teamtreehouse.com.stormy.fragments.FragmentViewPager.FragmentPagerView;
 
@@ -35,7 +35,7 @@ public class FragmentForecastPhonePresenterTest {
     public void setPagerAdapter() throws Exception {
 
         // Arrange
-        FragmentForecastBase[] fragments = null;
+        FragmentTabBase[] fragments = null;
 
         // Act
         mPresenter.setPagerAdapter(fragments);

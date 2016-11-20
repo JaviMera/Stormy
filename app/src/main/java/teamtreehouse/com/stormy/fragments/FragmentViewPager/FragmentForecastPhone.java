@@ -1,10 +1,8 @@
 package teamtreehouse.com.stormy.fragments.FragmentViewPager;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.*;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,49 +13,21 @@ import butterknife.ButterKnife;
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.fragments.FragmentCurrent.FragmentCurrentPhone;
 import teamtreehouse.com.stormy.fragments.FragmentForecastBase;
+import teamtreehouse.com.stormy.fragments.FragmentTabBase;
 import teamtreehouse.com.stormy.fragments.FragmentRecycler.FragmentDaily;
 import teamtreehouse.com.stormy.fragments.FragmentRecycler.FragmentDailyPhone;
 import teamtreehouse.com.stormy.fragments.FragmentRecycler.FragmentHourlyPhone;
-import teamtreehouse.com.stormy.ui.MainActivity.MainActivity;
-import teamtreehouse.com.stormy.model.Forecast;
 
 /**
  * Created by Javi on 11/14/2016.
  */
 
-public class FragmentForecastPhone extends Fragment implements FragmentPagerView{
-
-    private FragmentActivity mActivity;
-    private Forecast mForecast;
+public class FragmentForecastPhone extends FragmentForecastBase implements FragmentPagerView{
 
     private FragmentPagerPresenter mPresenter;
 
     @BindView(R.id.viewPager) ViewPager mViewPager;
     @BindView(R.id.tabLayout) TabLayout mTabLayout;
-
-    public static FragmentForecastPhone newInstance(Forecast forecast) {
-
-        FragmentForecastPhone fragment = new FragmentForecastPhone();
-
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(MainActivity.FORECAST, forecast);
-        fragment.setArguments(bundle);
-
-        return fragment;
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        mActivity = getActivity();
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mForecast = getArguments().getParcelable(MainActivity.FORECAST);
-    }
 
     @Nullable
     @Override
@@ -89,7 +59,7 @@ public class FragmentForecastPhone extends Fragment implements FragmentPagerView
     }
 
     @Override
-    public void setPagerAdapter(FragmentForecastBase... fragments) {
+    public void setPagerAdapter(FragmentTabBase... fragments) {
 
         FragmentPagerAdapter adapter = new FragmentPagerAdapter(
             getChildFragmentManager(),

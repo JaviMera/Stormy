@@ -1,10 +1,7 @@
 package teamtreehouse.com.stormy.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -15,40 +12,12 @@ import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.fragments.FragmentCurrent.FragmentCurrentTablet;
 import teamtreehouse.com.stormy.fragments.FragmentRecycler.FragmentDaily;
 import teamtreehouse.com.stormy.fragments.FragmentRecycler.FragmentHourly;
-import teamtreehouse.com.stormy.model.Forecast;
-import teamtreehouse.com.stormy.ui.MainActivity.MainActivity;
 
 /**
  * Created by Javi on 11/19/2016.
  */
 
-public class FragmentForecastTablet extends Fragment {
-
-    private FragmentActivity mActivity;
-    private Forecast mForecast;
-
-    public static FragmentForecastTablet newInstance(Forecast forecast) {
-
-        FragmentForecastTablet fragment = new FragmentForecastTablet();
-
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(MainActivity.FORECAST, forecast);
-        fragment.setArguments(bundle);
-
-        return fragment;
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mActivity = getActivity();
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mForecast = getArguments().getParcelable(MainActivity.FORECAST);
-    }
+public class FragmentForecastTablet extends FragmentForecastBase {
 
     @Nullable
     @Override
@@ -60,8 +29,8 @@ public class FragmentForecastTablet extends Fragment {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         fragmentTransaction.replace(R.id.currentFragmentContainer, FragmentCurrentTablet.newInstance(
-                mForecast.getCurrent(),
-                mForecast.getTimezone())
+            mForecast.getCurrent(),
+            mForecast.getTimezone())
         );
 
         fragmentTransaction.replace(R.id.hourFragmentContainer, FragmentHourly.newInstance(

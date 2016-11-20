@@ -26,7 +26,7 @@ import teamtreehouse.com.stormy.model.Forecast;
  * Created by Javi on 11/18/2016.
  */
 
-public abstract class FragmentCurrentBase extends FragmentForecastBase implements
+public abstract class FragmentCurrentBase extends FragmentTabBase implements
         FragmentCurrentView {
 
     protected static final String FORECAST_CURRENT = "FORECAST_CURRENT";

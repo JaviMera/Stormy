@@ -53,6 +53,7 @@ import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.dialogs.InternetErrorDialog;
 import teamtreehouse.com.stormy.dialogs.LocationStateDialog;
 import teamtreehouse.com.stormy.dialogs.LocationNullDialog;
+import teamtreehouse.com.stormy.fragments.FragmentForecastBase;
 import teamtreehouse.com.stormy.fragments.FragmentForecastTablet;
 import teamtreehouse.com.stormy.fragments.FragmentViewPager.FragmentForecastPhone;
 import teamtreehouse.com.stormy.model.WeatherPlace;
@@ -122,7 +123,6 @@ public class MainActivity extends AppCompatActivity implements
 
             mPresenter.setToolbarTitle(mCurrentPlace.getCityFullName());
 
-            toggleRefresh();
             setActivityFragment(mForecast);
 
         } else {
@@ -140,17 +140,23 @@ public class MainActivity extends AppCompatActivity implements
 
     private void setActivityFragment(Forecast forecast) {
 
-        Fragment fragment;
+        FragmentForecastBase fragment;
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         if(isTablet) {
 
-            fragment = FragmentForecastTablet.newInstance(forecast);
+            fragment = FragmentForecastBase.newInstance(
+                FragmentForecastTablet.class,
+                forecast
+            );
         }
         else {
 
-            fragment = FragmentForecastPhone.newInstance(forecast);
+            fragment = FragmentForecastBase.newInstance(
+                FragmentForecastPhone.class,
+                forecast
+            );
         }
 
         fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -392,17 +398,3 @@ public class MainActivity extends AppCompatActivity implements
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
