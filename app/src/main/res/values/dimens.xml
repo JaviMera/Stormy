@@ -25,10 +25,10 @@
     <dimen name="recycler_item_margin">1dp</dimen>
     <dimen name="temp_degree_margin">10dp</dimen>
     <dimen name="temp_degree_icon_margin">20dp</dimen>
-    <dimen name="weather_data_info_margin">5dp</dimen>
+    <dimen name="weather_data_info_margin">2dp</dimen>
     <dimen name="weather_data_info_container_margin">15dp</dimen>
     <dimen name="weather_data_info_pad">10dp</dimen>
-    <dimen name="l_hour_title_text_size">20sp</dimen>
+    <dimen name="weather_data_text_size">20sp</dimen>
     <dimen name="weather_data_info_title_text_size">15sp</dimen>
     <dimen name="l_weather_data_title_pad">5dp</dimen>
     <dimen name="l_weather_data_icon_pad">5dp</dimen>

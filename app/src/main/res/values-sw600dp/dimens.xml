@@ -9,7 +9,7 @@
     <dimen name="weather_data_info_margin">1dp</dimen>
     <dimen name="weather_data_info_container_margin">1dp</dimen>
     <dimen name="weather_data_info_pad">0dp</dimen>
-    <dimen name="l_hour_title_text_size">20sp</dimen>
+    <dimen name="weather_data_text_size">20sp</dimen>
     <dimen name="l_time_text_size">13sp</dimen>
     <dimen name="weather_data_info_title_text_size">13sp</dimen>
     <dimen name="l_weather_data_title_pad">5dp</dimen>

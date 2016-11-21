@@ -55,7 +55,7 @@
             android:padding="@dimen/weather_data_info_pad">
 
             <TextView
-                style="@style/PLHumidityTitleText"/>
+                style="@style/LHumidityTitleText"/>
 
             <TextView
                 android:id="@+id/humidityTextView"
@@ -70,7 +70,7 @@
             android:padding="@dimen/weather_data_info_pad">
 
             <TextView
-                style="@style/WindSpeedTitleText"/>
+                style="@style/LWindSpeedTitleText"/>
 
             <TextView
                 android:id="@+id/windSpeedTextView"
@@ -85,7 +85,7 @@
             android:padding="@dimen/weather_data_info_pad">
 
             <TextView
-                style="@style/WindBearTitleText"/>
+                style="@style/LWindBearTitleText"/>
 
             <TextView
                 android:id="@+id/windBearTextView"

@@ -57,7 +57,7 @@
             android:orientation="vertical">
 
             <TextView
-                style="@style/PPHumidityTitleText"/>
+                style="@style/CPPHumidityTitleText"/>
 
             <TextView
                 android:id="@+id/humidityTextView"
@@ -73,7 +73,7 @@
             android:orientation="vertical">
 
             <TextView
-                style="@style/PPPRecipitationTitleText"/>
+                style="@style/CPPPRecipitationTitleText"/>
 
             <TextView
                 android:id="@+id/precipitationTextView"

@@ -11,17 +11,6 @@
         <item name="android:scaleType">fitEnd</item>
     </style>
 
-    <style name="LocationTextView">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:gravity">center</item>
-        <item name="android:padding">@dimen/location_text_pad</item>
-        <item name="android:layout_centerInParent">true</item>
-        <item name="android:textColor">@color/white_color</item>
-        <item name="android:textSize">@dimen/location_text_size</item>
-    </style>
-
     <style name="TimeTextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -58,15 +47,33 @@
         <item name="android:layout_gravity">top</item>
     </style>
 
-    <style name="PPWeatherDataInfoTitle">
+    <!-- Current Phone Portrait styles -->
+    <style name="CPPWeatherDataInfoTitle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/weather_data_info_title_color</item>
-        <item name="android:textSize">@dimen/l_hour_title_text_size</item>
+        <item name="android:textSize">@dimen/weather_data_text_size</item>
     </style>
 
-    <style name="PLWeatherDataInfoTitle">
+        <style name="CPPHumidityTitleText" parent="CPPWeatherDataInfoTitle">
+            <item name="android:text">@string/humidity_text</item>
+        </style>
+
+        <style name="CPPPRecipitationTitleText" parent="CPPWeatherDataInfoTitle">
+            <item name="android:text">@string/precipitation_text</item>
+        </style>
+
+    <!-- Phone Landscape Weather Data style -->
+    <style name="PLWeatherDataInfoValue">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white_color</item>
+        <item name="android:textSize">@dimen/humidity_value_text_size</item>
+    </style>
+
+    <!-- Landscape Weather Data styles -->
+    <style name="LWeatherDataInfoTitle">
         <item name="android:layout_width">@dimen/zero</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">2</item>
@@ -75,6 +82,18 @@
         <item name="android:textColor">@color/weather_data_info_title_color</item>
         <item name="android:textSize">@dimen/weather_data_info_title_text_size</item>
     </style>
+
+        <style name="LHumidityTitleText" parent="LWeatherDataInfoTitle">
+            <item name="android:text">@string/humidity_text</item>
+        </style>
+
+        <style name="LWindBearTitleText" parent="LWeatherDataInfoTitle">
+            <item name="android:text">@string/wind_bear_text</item>
+        </style>
+
+        <style name="LWindSpeedTitleText" parent="LWeatherDataInfoTitle">
+            <item name="android:text">@string/wind_speed_text</item>
+        </style>
 
     <style name="LWeatherDataInfoValue">
         <item name="android:layout_width">@dimen/zero</item>
@@ -90,14 +109,23 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/weather_data_info_title_color</item>
-        <item name="android:textSize">@dimen/l_hour_title_text_size</item>
+        <item name="android:textSize">@dimen/weather_data_text_size</item>
     </style>
 
-    <style name="PLWeatherDataInfoValue">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/white_color</item>
-        <item name="android:textSize">@dimen/humidity_value_text_size</item>
+    <style name="PLHumidtyTitleText" parent="PWeatherDataInfoTitle">
+        <item name="android:text">@string/humidity_text</item>
+    </style>
+
+    <style name="PLPrecipitationTitleText" parent="PWeatherDataInfoTitle">
+        <item name="android:text">@string/precipitation_text</item>
+    </style>
+
+    <style name="TPHumidityTitleText" parent="PWeatherDataInfoTitle">
+        <item name="android:text">@string/humidity_text</item>
+    </style>
+
+    <style name="TPPrecipitationTitleText" parent="PWeatherDataInfoTitle">
+        <item name="android:text">@string/precipitation_text</item>
     </style>
 
     <style name="PPWeatherDataInfoValue">
@@ -112,7 +140,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:textSize">@dimen/l_hour_title_text_size</item>
+        <item name="android:textSize">@dimen/weather_data_text_size</item>
         <item name="android:textColor">@color/weather_data_info_title_color</item>
     </style>
 
@@ -132,46 +160,10 @@
         <item name="android:padding">@dimen/tl_weather_data_info_value_pad</item>
     </style>
 
-    <style name="PLHumidtyTitleText" parent="PWeatherDataInfoTitle">
-        <item name="android:text">@string/humidity_text</item>
-    </style>
-
     <style name="PHumidityValueText" parent="LWeatherDataInfoValue">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
-    </style>
-
-    <style name="PLPrecipitationTitleText" parent="PWeatherDataInfoTitle">
-        <item name="android:text">@string/precipitation_text</item>
-    </style>
-
-    <style name="PLHumidityTitleText" parent="PLWeatherDataInfoTitle">
-        <item name="android:text">@string/humidity_text</item>
-    </style>
-
-    <style name="TPHumidityTitleText" parent="PWeatherDataInfoTitle">
-        <item name="android:text">@string/humidity_text</item>
-    </style>
-
-    <style name="TPPrecipitationTitleText" parent="PWeatherDataInfoTitle">
-        <item name="android:text">@string/precipitation_text</item>
-    </style>
-
-    <style name="PPHumidityTitleText" parent="PPWeatherDataInfoTitle">
-        <item name="android:text">@string/humidity_text</item>
-    </style>
-
-    <style name="PPPRecipitationTitleText" parent="PPWeatherDataInfoTitle">
-        <item name="android:text">@string/precipitation_text</item>
-    </style>
-
-    <style name="WindSpeedTitleText" parent="PLWeatherDataInfoTitle">
-        <item name="android:text">@string/wind_speed_text</item>
-    </style>
-
-    <style name="WindBearTitleText" parent="PLWeatherDataInfoTitle">
-        <item name="android:text">@string/wind_bear_text</item>
     </style>
 
     <style name="SummaryTextView">
@@ -219,25 +211,6 @@
         <item name="android:padding">@dimen/p_day_temp_pad</item>
     </style>
 
-    <!-- Day recycler Item Views Landscape-->
-
-    <style name="LDayItemDayText">
-        <item name="android:textColor">@color/white_color</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textSize">@dimen/p_day_text_size</item>
-    </style>
-
-    <style name="LDayItemTemperature">
-        <item name="android:textSize">@dimen/l_day_temp_text_size</item>
-        <item name="android:textColor">@color/white_color</item>
-        <item name="android:layout_gravity">center</item>
-    </style>
-
-    <style name="LDayItemIcon">
-        <item name="android:layout_gravity">center</item>
-        <item name="android:scaleType">fitCenter</item>
-    </style>
-
     <!-- Hour recycler item views portrait -->
 
     <style name="PHourItemTime">
@@ -260,13 +233,12 @@
         <item name="android:textSize">@dimen/p_hour_temp_text_size</item>
     </style>
 
-    <!-- Hour recycler item views landscape -->
 
     <style name="LWeatherDataTitleText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">@dimen/l_weather_data_title_pad</item>
-        <item name="android:textSize">@dimen/l_hour_title_text_size</item>
+        <item name="android:textSize">@dimen/weather_data_text_size</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/white_color</item>
     </style>
