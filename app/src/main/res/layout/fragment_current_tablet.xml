@@ -80,7 +80,7 @@
 
             <TextView
             android:id="@+id/humidityTextView"
-            style="@style/HumidityValueTextView"
+            style="@style/PHumidityValueTextView"
             tools:text="0.54"/>
 
         </LinearLayout>
@@ -97,7 +97,7 @@
 
             <TextView
                 android:id="@+id/precipitationTextView"
-                style="@style/PrecipitationValueTextView"
+                style="@style/PPrecipitationValueTextView"
                 tools:text="0 %"/>
 
         </LinearLayout>

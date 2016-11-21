@@ -4,25 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginTop="20dp"
     android:background="@drawable/recycler_item_background">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="30dp">
-
-        <ImageView
-            android:id="@+id/locationIconImageView"
-            style="@style/LocationIconImageView"
-            tools:src="@drawable/clear_day"/>
-
-        <TextView
-            android:id="@+id/summaryTextView"
-            style="@style/SummaryTextView"
-            tools:text="This is a summary"/>
-    </LinearLayout>
 
     <TextView
         android:id="@+id/timeTextView"
@@ -37,21 +19,30 @@
         <TextView
             android:id="@+id/temperatureMaxTextView"
             style="@style/TemperatureTextView"
-            tools:text="63.0"/>
+            tools:text="63"/>
 
         <ImageView
-            android:layout_gravity="top"
-            android:layout_marginTop="30dp"
             style="@style/TemperatureIconImageView"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
             android:text="F"
-            android:textColor="@color/white_color"
-            android:textSize="@dimen/degree_text_size"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"/>
+            style="@style/TemperatureDegreeText"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/locationIconImageView"
+            style="@style/LocationIconImageView"
+            tools:src="@drawable/clear_day"/>
+
+        <TextView
+            android:id="@+id/summaryTextView"
+            style="@style/SummaryTextView"
+            tools:text="This is a summary"/>
     </LinearLayout>
 
     <LinearLayout
@@ -70,7 +61,7 @@
 
             <TextView
                 android:id="@+id/humidityTextView"
-                style="@style/HumidityValueTextView"
+                style="@style/PHumidityValueTextView"
                 tools:text="0.54"/>
 
         </LinearLayout>
@@ -86,7 +77,7 @@
 
             <TextView
                 android:id="@+id/precipitationTextView"
-                style="@style/PrecipitationValueTextView"
+                style="@style/PPrecipitationValueTextView"
                 tools:text="0 %"/>
 
         </LinearLayout>

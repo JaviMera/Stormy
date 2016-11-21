@@ -7,14 +7,15 @@
     android:layout_height="match_parent"
     android:background="@drawable/recycler_item_background">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/timeTextView"
-            android:layout_above="@+id/temperatureLayout"
             style="@style/TimeTextView"
             tools:text="AT 8:00 PM it will be"/>
 
@@ -22,40 +23,26 @@
             android:id="@+id/temperatureLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="top|center">
+            android:gravity="center">
 
             <TextView
-            android:id="@+id/temperatureMaxTextView"
-            style="@style/TemperatureTextView"
-            tools:text="63.0"/>
+                android:id="@+id/temperatureMaxTextView"
+                style="@style/TemperatureTextView"
+                tools:text="63"/>
 
             <ImageView
-            android:layout_marginTop="20dp"
-            style="@style/TemperatureIconImageView"/>
+                style="@style/TemperatureIconImageView"/>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
                 android:text="F"
-                android:textColor="@color/white_color"
-                android:textSize="70sp"
-                android:layout_marginLeft="5dp"
-                android:paddingTop="5dp"/>
+                style="@style/TemperatureDegreeText"/>
         </LinearLayout>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
 
         <LinearLayout
-            android:layout_above="@+id/humPrecipLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="30dp">
+            android:padding="5dp">
 
             <ImageView
                 android:id="@+id/locationIconImageView"
@@ -67,45 +54,44 @@
                 style="@style/SummaryTextView"
                 tools:text="This is a summary"/>
         </LinearLayout>
+    </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/humPrecipLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:paddingBottom="20dp">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="left|center">
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15dp">
 
             <TextView
                 style="@style/HumidityTitleTextView"/>
 
             <TextView
                 android:id="@+id/humidityTextView"
-                style="@style/HumidityValueTextView"
+                style="@style/LHumidityValueTextView"
                 tools:text="0.54"/>
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15dp">
 
             <TextView
                 style="@style/PrecipitationTitleTextView"/>
 
             <TextView
                 android:id="@+id/precipitationTextView"
-                style="@style/PrecipitationValueTextView"
+                style="@style/LPrecipitationValueTextView"
                 tools:text="0 %"/>
-
             </LinearLayout>
-        </LinearLayout>
-    </RelativeLayout>
+    </LinearLayout>
 </LinearLayout>

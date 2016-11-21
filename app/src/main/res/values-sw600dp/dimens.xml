@@ -3,4 +3,6 @@
     <dimen name="temperature_text_size">70sp</dimen>
     <dimen name="degree_text_size">40sp</dimen>
     <dimen name="temperature_icon_height">10dp</dimen>
+    <dimen name="temp_degree_margin">10dp</dimen>
+    <dimen name="temp_degree_icon_margin">20dp</dimen>
 </resources>
