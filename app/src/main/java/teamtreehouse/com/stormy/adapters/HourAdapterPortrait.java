@@ -1,7 +1,5 @@
 package teamtreehouse.com.stormy.adapters;
 
-import android.content.Context;
-
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.model.HourData;
 
@@ -18,7 +16,7 @@ public class HourAdapterPortrait extends AdapterBase<HourData, HourViewHolderPor
     @Override
     protected int getLayoutId() {
 
-        return R.layout.hour_item_portrait;
+        return R.layout.weather_hour_item_portrait;
     }
 }
 

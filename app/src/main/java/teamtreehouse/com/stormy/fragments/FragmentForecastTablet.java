@@ -35,7 +35,8 @@ public class FragmentForecastTablet extends FragmentForecastBase {
 
         fragmentTransaction.replace(R.id.hourFragmentContainer, FragmentHourly.newInstance(
             FragmentHourlyTablet.class,
-            mForecast.getHourlyForecast())
+            mForecast.getHourlyForecast(),
+            mForecast.getTimezone())
         );
 
         fragmentTransaction.replace(R.id.dayFragmentContainer, FragmentDaily.newInstance(

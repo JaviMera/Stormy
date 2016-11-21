@@ -41,14 +41,14 @@ public class DayData extends WeatherData  {
         }
     };
 
-    public int getTemperatureMax() {
+    public double getTemperatureMax() {
 
-        return (int)Math.round(mTemperatureMax);
+        return mTemperatureMax;
     }
 
     public double getTemperatureMin() {
 
-        return (int)Math.round(mTemperatureMin);
+        return mTemperatureMin;
     }
 
     public String getDayOfTheWeek(String timezone) {

@@ -204,7 +204,7 @@
     </style>
 
     <style name="LHourTemperature">
-        <item name="android:textSize">@dimen/l_hour_temp_text_size</item>
+        <item name="android:textSize">@dimen/l_temp_text_size</item>
         <item name="android:textColor">@color/white_color</item>
         <item name="android:layout_gravity">center</item>
     </style>

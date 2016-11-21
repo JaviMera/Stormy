@@ -7,6 +7,7 @@ import teamtreehouse.com.stormy.adapters.AdapterBase;
 import teamtreehouse.com.stormy.adapters.HourAdapterLandscape;
 import teamtreehouse.com.stormy.adapters.HourAdapterPortrait;
 import teamtreehouse.com.stormy.fragments.FragmentHourlyTablet;
+import teamtreehouse.com.stormy.model.Forecast;
 import teamtreehouse.com.stormy.model.HourData;
 
 /**
@@ -15,7 +16,7 @@ import teamtreehouse.com.stormy.model.HourData;
 
 public abstract class FragmentHourly extends FragmentRecyclerBase<HourData>{
 
-    public static FragmentHourly newInstance(Class<?> fType, HourData[] data) {
+    public static FragmentHourly newInstance(Class<?> fType, HourData[] data, String timezone) {
 
         FragmentHourly fragment = null;
 
@@ -30,6 +31,7 @@ public abstract class FragmentHourly extends FragmentRecyclerBase<HourData>{
 
         Bundle bundle = new Bundle();
         bundle.putParcelableArray(FORECAST_DATA, data);
+        bundle.putString(Forecast.FORECAST_TIMEZONE, timezone);
         fragment.setArguments(bundle);
 
         return fragment;
@@ -47,10 +49,10 @@ public abstract class FragmentHourly extends FragmentRecyclerBase<HourData>{
         switch(getOrientation()) {
 
             case Configuration.ORIENTATION_PORTRAIT:
-                return new HourAdapterPortrait(mData, "");
+                return new HourAdapterPortrait(mData, mTimezone);
 
             case Configuration.ORIENTATION_LANDSCAPE:
-                return new HourAdapterLandscape(mData, "");
+                return new HourAdapterLandscape(mData, mTimezone);
         }
 
         return null;

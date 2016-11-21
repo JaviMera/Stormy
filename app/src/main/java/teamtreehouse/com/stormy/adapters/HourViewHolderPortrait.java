@@ -28,7 +28,7 @@ public class HourViewHolderPortrait extends ViewHolderBase<HourData> {
     @Override
     public void bind(HourData data, int position, String timezone) {
 
-        String timeText = position == 0 ? "Now" : " at " + data.getHour();
+        String timeText = position == 0 ? "Now" : data.getHour(timezone);
         mTimeLabel.setText(timeText);
 
         mSummaryLabel.setText(data.getSummary());

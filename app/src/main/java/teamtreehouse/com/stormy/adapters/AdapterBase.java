@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 public abstract class AdapterBase<T, H extends ViewHolderBase<T>> extends RecyclerView.Adapter<H> {
 
     private final Class<H> mType;
-    private String mTimezone;
 
+    protected String mTimezone;
     protected abstract int getLayoutId();
 
     private T[] mData;

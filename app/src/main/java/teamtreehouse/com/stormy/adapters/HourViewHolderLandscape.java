@@ -1,46 +1,30 @@
 package teamtreehouse.com.stormy.adapters;
 
 import android.view.View;
-import android.widget.TextView;
 
-import teamtreehouse.com.stormy.R;
+import java.util.Locale;
+
 import teamtreehouse.com.stormy.model.HourData;
 
 /**
- * Created by Javi on 11/18/2016.
+ * Created by Javi on 11/21/2016.
  */
 
-public class HourViewHolderLandscape extends HourViewHolderPortrait{
-
-    private TextView mHumidity;
-    private TextView mWindSpeed;
-    private TextView mWindBearing;
+public class HourViewHolderLandscape extends WeatherDataViewHolderLandscape<HourData> {
 
     public HourViewHolderLandscape(View itemView) {
         super(itemView);
     }
 
     @Override
-    protected void setViews() {
+    protected String getTemperatureTitle(HourData data, String timezone) {
 
-        super.setViews();
-
-        mHumidity = (TextView) itemView.findViewById(R.id.hourHumidityTextView);
-        mWindSpeed = (TextView) itemView.findViewById(R.id.hourWindSpeedTextView);
-        mWindBearing = (TextView) itemView.findViewById(R.id.hourWindBearTextView);
+        return data.getHour(timezone);
     }
 
     @Override
-    public void bind(HourData data, int position, String timezone) {
-        super.bind(data, position, timezone);
+    protected String getTemperatureValue(HourData data) {
 
-        String humidityText = valueFormat("%.2f", data.getHumidity());
-        mHumidity.setText(humidityText);
-
-        String windSpeedText = valueFormat("%.2f", data.getWindSpeed());
-        mWindSpeed.setText(windSpeedText);
-
-        String windBearingText = valueFormat("%d", data.getWindBearing());
-        mWindBearing.setText(windBearingText);
+        return String.format(Locale.ENGLISH, "%.0f", data.getTemperature());
     }
 }

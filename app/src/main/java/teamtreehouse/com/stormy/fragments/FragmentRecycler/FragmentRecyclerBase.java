@@ -17,6 +17,7 @@ import butterknife.ButterKnife;
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.adapters.AdapterBase;
 import teamtreehouse.com.stormy.fragments.FragmentTabBase;
+import teamtreehouse.com.stormy.model.Forecast;
 
 /**
  * Created by Javi on 11/16/2016.
@@ -29,6 +30,7 @@ public abstract class FragmentRecyclerBase<T> extends FragmentTabBase
     protected static final String FORECAST_DATA = "forecast_data";
 
     protected T[] mData;
+    protected String mTimezone;
     protected FragmentActivity mFragmentActivity;
     protected abstract AdapterBase getAdapter();
 
@@ -46,6 +48,7 @@ public abstract class FragmentRecyclerBase<T> extends FragmentTabBase
         super.onCreate(savedInstanceState);
 
         mData = (T[]) getArguments().getParcelableArray(FragmentHourlyPhone.FORECAST_DATA);
+        mTimezone = getArguments().getString(Forecast.FORECAST_TIMEZONE);
     }
 
     @Nullable

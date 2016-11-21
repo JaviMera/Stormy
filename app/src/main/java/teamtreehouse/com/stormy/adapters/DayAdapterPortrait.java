@@ -16,6 +16,6 @@ public class DayAdapterPortrait extends AdapterBase<DayData, DayViewHolderPortra
     @Override
     protected int getLayoutId() {
 
-        return R.layout.day_item_portrait;
+        return R.layout.weather_day_item_portrait;
     }
 }

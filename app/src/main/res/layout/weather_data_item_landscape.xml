@@ -8,55 +8,41 @@
     style="@style/LRecyclerItemRoot">
 
     <TextView
-        android:id="@+id/dayTextView"
+        android:id="@+id/titleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        style="@style/LDayItemDayText"
-        tools:text="Wednesday"/>
+        style="@style/LHourItemSummary"
+        tools:text="Partly cloudy"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:gravity="center">
 
         <ImageView
             android:id="@+id/iconImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/LDayItemIcon"
+            android:padding="15dp"
+            style="@style/LHourItemIcon"
             tools:src="@drawable/partly_cloudy"/>
 
         <TextView
-            android:id="@+id/temperatureMinTextView"
+            android:id="@+id/temperatureTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/LDayItemTemperature"
-            tools:text="100"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="@color/white_color"
-            android:text=" / "/>
-
-        <TextView
-            android:id="@+id/temperatureMaxTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/LDayItemTemperature"
-            tools:text="100"/>
-
+            style="@style/LHourTemperature"
+            tools:text="100 at 12 PM"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -70,10 +56,11 @@
                 style="@style/HumidityTitleTextView"/>
 
             <TextView
-                android:id="@+id/hourHumidityTextView"
+                android:id="@+id/humidityTextView"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:textSize="15sp"
+                android:layout_gravity="center"
                 android:gravity="left|center"
                 android:layout_marginLeft="10dp"
                 style="@style/LHumidityValueTextView"
@@ -92,11 +79,12 @@
                 style="@style/WindSpeedTitleTextView"/>
 
             <TextView
-                android:id="@+id/hourWindSpeedTextView"
+                android:id="@+id/windSpeedTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="15sp"
+                android:layout_gravity="center"
                 android:gravity="left|center"
                 android:textColor="@color/white_color"
                 android:layout_marginLeft="10dp"
@@ -115,11 +103,12 @@
                 style="@style/WindBearTitleTextView"/>
 
             <TextView
-                android:id="@+id/hourWindBearTextView"
+                android:id="@+id/windBearTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="15sp"
+                android:layout_gravity="center"
                 android:gravity="left|center"
                 android:textColor="@color/white_color"
                 android:layout_marginLeft="10dp"

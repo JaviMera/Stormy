@@ -16,6 +16,6 @@ public class DayAdapterLandscape  extends AdapterBase<DayData, DayViewHolderLand
     @Override
     protected int getLayoutId() {
 
-        return R.layout.day_item_landscape;
+        return R.layout.weather_data_item_landscape;
     }
 }

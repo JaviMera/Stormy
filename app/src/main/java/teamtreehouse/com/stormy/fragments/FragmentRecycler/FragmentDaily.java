@@ -20,8 +20,6 @@ import teamtreehouse.com.stormy.model.Forecast;
 
 public abstract class FragmentDaily extends FragmentRecyclerBase<DayData>{
 
-    private String mTimezone;
-
     @BindView(R.id.forecastRecycler)
     RecyclerView mRecyclerView;
 
@@ -50,13 +48,6 @@ public abstract class FragmentDaily extends FragmentRecyclerBase<DayData>{
     public String getTitle() {
 
         return "7 Days";
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-
-        mTimezone = getArguments().getString(Forecast.FORECAST_TIMEZONE);
-        super.onCreate(savedInstanceState);
     }
 
     @Override

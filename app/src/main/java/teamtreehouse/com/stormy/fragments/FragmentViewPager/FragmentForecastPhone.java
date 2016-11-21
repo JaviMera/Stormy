@@ -45,7 +45,8 @@ public class FragmentForecastPhone extends FragmentForecastBase implements Fragm
             ,
             FragmentHourlyPhone.newInstance(
                 FragmentHourlyPhone.class,
-                mForecast.getHourlyForecast())
+                mForecast.getHourlyForecast(),
+                mForecast.getTimezone())
             ,
             FragmentDaily.newInstance(
                 FragmentDailyPhone.class,
