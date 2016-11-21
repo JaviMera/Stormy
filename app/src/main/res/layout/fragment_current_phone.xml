@@ -57,11 +57,11 @@
             android:orientation="vertical">
 
             <TextView
-                style="@style/HumidityTitleTextView"/>
+                style="@style/PPHumidityTitleText"/>
 
             <TextView
                 android:id="@+id/humidityTextView"
-                style="@style/PHumidityValueTextView"
+                style="@style/PPWeatherDataInfoValue"
                 tools:text="0.54"/>
 
         </LinearLayout>
@@ -73,11 +73,11 @@
             android:orientation="vertical">
 
             <TextView
-                style="@style/PrecipitationTitleTextView"/>
+                style="@style/PPPRecipitationTitleText"/>
 
             <TextView
                 android:id="@+id/precipitationTextView"
-                style="@style/PPrecipitationValueTextView"
+                style="@style/PPWeatherDataInfoValue"
                 tools:text="0 %"/>
 
         </LinearLayout>

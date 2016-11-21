@@ -69,13 +69,13 @@
                 android:orientation="vertical"
                 android:padding="15dp">
 
-            <TextView
-                style="@style/HumidityTitleTextView"/>
+                <TextView
+                    style="@style/PLHumidtyTitleText"/>
 
-            <TextView
-                android:id="@+id/humidityTextView"
-                style="@style/LHumidityValueTextView"
-                tools:text="0.54"/>
+                <TextView
+                    android:id="@+id/humidityTextView"
+                    style="@style/PLWeatherDataInfoValue"
+                    tools:text="0.54"/>
 
             </LinearLayout>
 
@@ -85,13 +85,13 @@
                 android:orientation="vertical"
                 android:padding="15dp">
 
-            <TextView
-                style="@style/PrecipitationTitleTextView"/>
+                <TextView
+                    style="@style/PLPrecipitationTitleText"/>
 
-            <TextView
-                android:id="@+id/precipitationTextView"
-                style="@style/LPrecipitationValueTextView"
-                tools:text="0 %"/>
+                <TextView
+                    android:id="@+id/precipitationTextView"
+                    style="@style/PLWeatherDataInfoValue"
+                    tools:text="0 %"/>
             </LinearLayout>
     </LinearLayout>
 </LinearLayout>

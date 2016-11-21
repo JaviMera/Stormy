@@ -9,7 +9,6 @@
     android:background="@drawable/recycler_item_background">
 
     <LinearLayout
-        android:id="@+id/temperatureLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -28,22 +27,14 @@
             <TextView
                 android:id="@+id/temperatureMaxTextView"
                 style="@style/TemperatureTextView"
-                android:textSize="70sp"
-                tools:text="63.0"/>
+                tools:text="63"/>
 
             <ImageView
-                android:layout_gravity="top"
-                android:layout_marginTop="20dp"
                 style="@style/TemperatureIconImageView"/>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
                 android:text="F"
-                android:textColor="@color/white_color"
-                android:textSize="@dimen/degree_text_size"
-                android:layout_marginLeft="5dp"
-                android:paddingTop="5dp"/>
+                style="@style/TemperatureDegreeText"/>
         </LinearLayout>
 
         <LinearLayout
@@ -77,27 +68,26 @@
             android:orientation="horizontal">
 
             <TextView
-                style="@style/HumidityTitleTextView"/>
+                style="@style/TLHumidityTextView"/>
 
             <TextView
                 android:id="@+id/humidityTextView"
-                android:padding="5dp"
-                style="@style/LHumidityValueTextView"
+                style="@style/TLWeatherDataInfoValue"
                 tools:text="0.54"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginLeft="5dp">
 
             <TextView
-                style="@style/PrecipitationTitleTextView"/>
+                style="@style/TLPrecipitationTextView"/>
 
             <TextView
                 android:id="@+id/precipitationTextView"
-                android:padding="5dp"
-                style="@style/LPrecipitationValueTextView"
+                style="@style/TLWeatherDataInfoValue"
                 tools:text="0 %"/>
         </LinearLayout>
     </LinearLayout>

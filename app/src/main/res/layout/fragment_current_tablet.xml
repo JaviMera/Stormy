@@ -69,19 +69,18 @@
         android:gravity="center">
 
         <LinearLayout
-            android:id="@+id/humidityLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="15dp">
 
             <TextView
-            style="@style/HumidityTitleTextView"/>
+                style="@style/TPHumidityTitleText" />
 
             <TextView
-            android:id="@+id/humidityTextView"
-            style="@style/PHumidityValueTextView"
-            tools:text="0.54"/>
+                android:id="@+id/humidityTextView"
+                style="@style/PPWeatherDataInfoValue"
+                tools:text="0.54"/>
 
         </LinearLayout>
 
@@ -93,11 +92,11 @@
             android:padding="15dp">
 
             <TextView
-                style="@style/PrecipitationTitleTextView"/>
+                style="@style/TPPrecipitationTitleText"/>
 
             <TextView
                 android:id="@+id/precipitationTextView"
-                style="@style/PPrecipitationValueTextView"
+                style="@style/PPWeatherDataInfoValue"
                 tools:text="0 %"/>
 
         </LinearLayout>

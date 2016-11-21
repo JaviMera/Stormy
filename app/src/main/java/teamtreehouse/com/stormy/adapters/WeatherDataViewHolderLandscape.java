@@ -14,6 +14,7 @@ import teamtreehouse.com.stormy.model.WeatherData;
 public abstract class WeatherDataViewHolderLandscape<T extends WeatherData> extends ViewHolderBase<T>{
 
     private TextView mTitle;
+    private TextView mSummary;
     private TextView mTemperatureValue;
     private ImageView mTemperatureIcon;
     private TextView mHumidity;
@@ -31,6 +32,7 @@ public abstract class WeatherDataViewHolderLandscape<T extends WeatherData> exte
     protected void setViews() {
 
         mTitle = (TextView) itemView.findViewById(R.id.titleTextView);
+        mSummary = (TextView) itemView.findViewById(R.id.temperatureSummary);
         mTemperatureValue = (TextView) itemView.findViewById(R.id.temperatureTextView);
         mTemperatureIcon = (ImageView) itemView.findViewById(R.id.iconImageView);
         mHumidity = (TextView) itemView.findViewById(R.id.humidityTextView);
@@ -42,6 +44,7 @@ public abstract class WeatherDataViewHolderLandscape<T extends WeatherData> exte
     public void bind(T data, int position, String timezone) {
 
         mTitle.setText(getTemperatureTitle(data, timezone));
+        mSummary.setText(data.getSummary());
         mTemperatureValue.setText(getTemperatureValue(data));
         mTemperatureIcon.setImageResource(data.getIconId());
 
