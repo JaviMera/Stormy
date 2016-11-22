@@ -201,8 +201,8 @@
     <orderEntry type="library" exported="" name="firebase-storage-9.8.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="mockito-core-1.8.0-rc2" level="project" />
     <orderEntry type="library" exported="" name="support-core-utils-25.0.1" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="multidex-instrumentation-1.0.1" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="objenesis-1.0" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="multidex-instrumentation-1.0.1" level="project" />
     <orderEntry type="library" exported="" name="play-services-games-9.8.0" level="project" />
     <orderEntry type="library" exported="" name="firebase-auth-9.8.0" level="project" />
     <orderEntry type="library" exported="" name="firebase-messaging-9.8.0" level="project" />

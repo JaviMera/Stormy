@@ -2,4 +2,10 @@
 <resources>
     <color name="white_color">@android:color/white</color>
     <color name="weather_data_info_title_color">#80ffffff</color>
+    <color name="movie_dark_purple">#7D66BA</color>
+    <color name="movie_normal_purple">#A384E3</color>
+    <color name="cold_dark_color">#C5B0F2</color>
+    <color name="cold_light_color">#F6F3FF</color>
+    <color name="hot_spring_color">#f9d34c</color>
+    <color name="hot_summer_color">#f25019</color>
 </resources>

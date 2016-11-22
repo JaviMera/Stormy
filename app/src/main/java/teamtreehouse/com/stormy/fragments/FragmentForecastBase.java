@@ -6,7 +6,10 @@ import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
+import android.widget.LinearLayout;
 
+import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.fragments.FragmentViewPager.FragmentForecastPhone;
 import teamtreehouse.com.stormy.model.Forecast;
 import teamtreehouse.com.stormy.ui.MainActivity.MainActivity;
@@ -50,5 +53,17 @@ public abstract class FragmentForecastBase extends Fragment{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mForecast = getArguments().getParcelable(MainActivity.FORECAST);
+    }
+
+    protected void setBackground(View view) {
+
+        if(mForecast.getCurrent().getTemperature() <= 70 ) {
+
+            view.setBackgroundResource(R.drawable.background_cold);
+        }
+        else {
+
+            view.setBackgroundResource(R.drawable.background_hot);
+        }
     }
 }

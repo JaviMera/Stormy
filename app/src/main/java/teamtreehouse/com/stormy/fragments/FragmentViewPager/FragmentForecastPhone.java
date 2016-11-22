@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,6 +29,7 @@ public class FragmentForecastPhone extends FragmentForecastBase implements Fragm
 
     @BindView(R.id.viewPager) ViewPager mViewPager;
     @BindView(R.id.tabLayout) TabLayout mTabLayout;
+    @BindView(R.id.rootLayout) LinearLayout mRootLayout;
 
     @Nullable
     @Override
@@ -55,6 +57,8 @@ public class FragmentForecastPhone extends FragmentForecastBase implements Fragm
         );
 
         mPresenter.setTabLayout(mViewPager);
+
+        setBackground(mRootLayout);
 
         return view;
     }

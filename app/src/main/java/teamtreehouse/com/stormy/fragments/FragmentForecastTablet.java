@@ -7,7 +7,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.fragments.FragmentCurrent.FragmentCurrentTablet;
 import teamtreehouse.com.stormy.fragments.FragmentRecycler.FragmentDaily;
@@ -19,11 +22,16 @@ import teamtreehouse.com.stormy.fragments.FragmentRecycler.FragmentHourly;
 
 public class FragmentForecastTablet extends FragmentForecastBase {
 
+    @BindView(R.id.rootLayout)
+    LinearLayout mRootLayout;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_main_tablet, container, false);
+
+        ButterKnife.bind(this, view);
 
         FragmentManager fragmentManager = mActivity.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -46,6 +54,7 @@ public class FragmentForecastTablet extends FragmentForecastBase {
         );
 
         fragmentTransaction.commit();
+        setBackground(mRootLayout);
 
         return view;
     }
