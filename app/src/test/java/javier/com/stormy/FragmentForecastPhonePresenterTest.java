@@ -10,7 +10,7 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import teamtreehouse.com.stormy.fragments.FragmentTabBase;
-import teamtreehouse.com.stormy.fragments.FragmentPagerPresenter;
+import teamtreehouse.com.stormy.fragments.FragmentForecastPhonePresenter;
 import teamtreehouse.com.stormy.fragments.FragmentPagerView;
 
 /**
@@ -23,12 +23,12 @@ public class FragmentForecastPhonePresenterTest {
     @Mock
     public FragmentPagerView mView;
 
-    private FragmentPagerPresenter mPresenter;
+    private FragmentForecastPhonePresenter mPresenter;
 
     @Before
     public void setUp() throws Exception {
 
-        mPresenter = new FragmentPagerPresenter(mView);
+        mPresenter = new FragmentForecastPhonePresenter(mView);
     }
 
     @Test
@@ -55,5 +55,18 @@ public class FragmentForecastPhonePresenterTest {
 
         // Assert
         Mockito.verify(mView).setTabLayout(pager);
+    }
+
+    @Test
+    public void setPagerCurrentItem() throws Exception {
+
+        // Arrange
+        int currentItem = 2;
+
+        // Act
+        mPresenter.setPagerItem(currentItem);
+
+        // Assert
+        Mockito.verify(mView).setPagerItem(currentItem);
     }
 }

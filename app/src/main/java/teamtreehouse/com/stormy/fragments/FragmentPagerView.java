@@ -11,4 +11,5 @@ public interface FragmentPagerView {
 
     void setPagerAdapter(FragmentTabBase... fragments);
     void setTabLayout(ViewPager pager);
+    void setPagerItem(int currentItem);
 }

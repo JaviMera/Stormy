@@ -22,9 +22,12 @@ import teamtreehouse.com.stormy.fragments.hourly.FragmentHourlyPhone;
  * Created by Javi on 11/14/2016.
  */
 
-public class FragmentForecastPhone extends FragmentForecastBase implements FragmentPagerView {
+public class FragmentForecastPhone extends FragmentForecastBase
+        implements FragmentPagerView {
 
-    private FragmentPagerPresenter mPresenter;
+    private static final String TAB_INDEX = "TAB_INDEX";
+
+    private FragmentForecastPhonePresenter mPresenter;
 
     @BindView(R.id.viewPager) ViewPager mViewPager;
     @BindView(R.id.tabLayout) TabLayout mTabLayout;
@@ -37,7 +40,8 @@ public class FragmentForecastPhone extends FragmentForecastBase implements Fragm
         View view = inflater.inflate(R.layout.fragment_main_phone, container, false);
 
         ButterKnife.bind(this, view);
-        mPresenter = new FragmentPagerPresenter(this);
+
+        mPresenter = new FragmentForecastPhonePresenter(this);
 
         mPresenter.setPagerAdapter(
             FragmentCurrentPhone.newInstance(
@@ -57,9 +61,22 @@ public class FragmentForecastPhone extends FragmentForecastBase implements Fragm
 
         mPresenter.setTabLayout(mViewPager);
 
+        if(savedInstanceState != null) {
+
+            int pageSelected = savedInstanceState.getInt(TAB_INDEX);
+            mPresenter.setPagerItem(pageSelected);
+        }
+
         setBackground(mRootLayout);
 
         return view;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putInt(TAB_INDEX, mViewPager.getCurrentItem());
     }
 
     @Override
@@ -76,5 +93,11 @@ public class FragmentForecastPhone extends FragmentForecastBase implements Fragm
     public void setTabLayout(ViewPager pager) {
 
         mTabLayout.setupWithViewPager(pager);
+    }
+
+    @Override
+    public void setPagerItem(int currentItem) {
+
+        mViewPager.setCurrentItem(currentItem);
     }
 }
