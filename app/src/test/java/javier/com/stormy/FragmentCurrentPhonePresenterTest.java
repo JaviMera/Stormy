@@ -7,8 +7,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import teamtreehouse.com.stormy.fragments.FragmentCurrent.FragmentCurrentView;
-import teamtreehouse.com.stormy.fragments.FragmentCurrent.FragmentCurrentPresenter;
+import teamtreehouse.com.stormy.fragments.current.FragmentCurrentView;
+import teamtreehouse.com.stormy.fragments.current.FragmentCurrentPresenter;
 
 /**
  * Created by Javi on 11/11/2016.

@@ -6,7 +6,7 @@ import android.os.Parcelable;
 
 import com.google.android.gms.maps.model.LatLng;
 
-import javier.com.stormy.network.Coordinates;
+import teamtreehouse.com.stormy.network.Coordinates;
 
 /**
  * Created by Javi on 11/13/2016.

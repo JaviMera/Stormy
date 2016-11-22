@@ -15,7 +15,6 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.multidex.MultiDex;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -45,9 +44,9 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.ButterKnife;
 
-import javier.com.stormy.network.InternetInfo;
-import javier.com.stormy.asynctasks.ForecastAsyncTask;
-import javier.com.stormy.url.ForecastClient;
+import teamtreehouse.com.stormy.network.InternetInfo;
+import teamtreehouse.com.stormy.asynctasks.ForecastAsyncTask;
+import teamtreehouse.com.stormy.clients.ForecastClient;
 
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.dialogs.InternetErrorDialog;
@@ -55,7 +54,7 @@ import teamtreehouse.com.stormy.dialogs.LocationStateDialog;
 import teamtreehouse.com.stormy.dialogs.LocationNullDialog;
 import teamtreehouse.com.stormy.fragments.FragmentForecastBase;
 import teamtreehouse.com.stormy.fragments.FragmentForecastTablet;
-import teamtreehouse.com.stormy.fragments.FragmentViewPager.FragmentForecastPhone;
+import teamtreehouse.com.stormy.fragments.FragmentForecastPhone;
 import teamtreehouse.com.stormy.model.WeatherPlace;
 import teamtreehouse.com.stormy.model.Forecast;
 

@@ -10,8 +10,8 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import teamtreehouse.com.stormy.adapters.AdapterBase;
-import teamtreehouse.com.stormy.fragments.FragmentRecycler.FragmentRecyclerPresenter;
-import teamtreehouse.com.stormy.fragments.FragmentRecycler.FragmentRecyclerView;
+import teamtreehouse.com.stormy.fragments.FragmentRecyclerPresenter;
+import teamtreehouse.com.stormy.fragments.FragmentRecyclerView;
 
 /**
  * Created by Javi on 11/16/2016.

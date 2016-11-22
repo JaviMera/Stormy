@@ -3,7 +3,7 @@ package javier.com.stormy;
 import junit.framework.Assert;
 import org.junit.Test;
 
-import javier.com.stormy.url.ForecastClient;
+import teamtreehouse.com.stormy.clients.ForecastClient;
 
 /**
  * Created by Javi on 11/10/2016.

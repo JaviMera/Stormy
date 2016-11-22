@@ -10,8 +10,8 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import teamtreehouse.com.stormy.fragments.FragmentTabBase;
-import teamtreehouse.com.stormy.fragments.FragmentViewPager.FragmentPagerPresenter;
-import teamtreehouse.com.stormy.fragments.FragmentViewPager.FragmentPagerView;
+import teamtreehouse.com.stormy.fragments.FragmentPagerPresenter;
+import teamtreehouse.com.stormy.fragments.FragmentPagerView;
 
 /**
  * Created by Javi on 11/14/2016.

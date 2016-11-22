@@ -1,6 +1,7 @@
 package teamtreehouse.com.stormy.adapters;
 
 import teamtreehouse.com.stormy.R;
+import teamtreehouse.com.stormy.adapters.viewholders.DayViewHolderPortrait;
 import teamtreehouse.com.stormy.model.DayData;
 
 /**

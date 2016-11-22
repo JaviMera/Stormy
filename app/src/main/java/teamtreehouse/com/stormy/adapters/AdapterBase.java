@@ -5,6 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import teamtreehouse.com.stormy.adapters.viewholders.DayViewHolderLandscape;
+import teamtreehouse.com.stormy.adapters.viewholders.DayViewHolderPortrait;
+import teamtreehouse.com.stormy.adapters.viewholders.HourViewHolderLandscape;
+import teamtreehouse.com.stormy.adapters.viewholders.HourViewHolderPortrait;
+import teamtreehouse.com.stormy.adapters.viewholders.ViewHolderBase;
+
 public abstract class AdapterBase<T, H extends ViewHolderBase<T>> extends RecyclerView.Adapter<H> {
 
     private final Class<H> mType;

@@ -12,9 +12,11 @@ import android.widget.LinearLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import teamtreehouse.com.stormy.R;
-import teamtreehouse.com.stormy.fragments.FragmentCurrent.FragmentCurrentTablet;
-import teamtreehouse.com.stormy.fragments.FragmentRecycler.FragmentDaily;
-import teamtreehouse.com.stormy.fragments.FragmentRecycler.FragmentHourly;
+import teamtreehouse.com.stormy.fragments.current.FragmentCurrentTablet;
+import teamtreehouse.com.stormy.fragments.daily.FragmentDaily;
+import teamtreehouse.com.stormy.fragments.daily.FragmentDailyTablet;
+import teamtreehouse.com.stormy.fragments.hourly.FragmentHourly;
+import teamtreehouse.com.stormy.fragments.hourly.FragmentHourlyTablet;
 
 /**
  * Created by Javi on 11/19/2016.

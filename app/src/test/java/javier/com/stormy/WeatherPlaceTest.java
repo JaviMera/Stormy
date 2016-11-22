@@ -1,8 +1,5 @@
 package javier.com.stormy;
 
-import android.location.Address;
-
-import com.google.android.gms.awareness.state.Weather;
 import com.google.android.gms.maps.model.LatLng;
 
 import junit.framework.Assert;
@@ -10,9 +7,6 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Locale;
-
-import javier.com.stormy.network.Coordinates;
 import teamtreehouse.com.stormy.model.WeatherPlace;
 
 /**

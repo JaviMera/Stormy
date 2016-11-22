@@ -2,15 +2,12 @@ package teamtreehouse.com.stormy.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import teamtreehouse.com.stormy.R;
-import teamtreehouse.com.stormy.fragments.FragmentViewPager.FragmentForecastPhone;
 import teamtreehouse.com.stormy.model.Forecast;
 import teamtreehouse.com.stormy.ui.MainActivity.MainActivity;
 
