@@ -2,6 +2,7 @@ package teamtreehouse.com.stormy.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -24,8 +25,13 @@ import teamtreehouse.com.stormy.fragments.hourly.FragmentHourlyTablet;
 
 public class FragmentForecastTablet extends FragmentForecastBase {
 
-    @BindView(R.id.rootLayout)
-    LinearLayout mRootLayout;
+    public static final String FRAGMENT_CURRENT_TAG = "FRAGMENT_CURRENT";
+    public static final String FRAGMENT_HOURLY_TAG = "FRAGMENT_HOURLY";
+    public static final String FRAGMENT_DAILY_TAG = "FRAGMENT_DAILY";
+
+    private FragmentManager mFragmentManager;
+
+    @BindView(R.id.rootLayout) LinearLayout mRootLayout;
 
     @Nullable
     @Override
@@ -35,29 +41,61 @@ public class FragmentForecastTablet extends FragmentForecastBase {
 
         ButterKnife.bind(this, view);
 
-        FragmentManager fragmentManager = mActivity.getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        mFragmentManager = mActivity.getSupportFragmentManager();
 
-        fragmentTransaction.replace(R.id.currentFragmentContainer, FragmentCurrentTablet.newInstance(
-            mForecast.getCurrent(),
-            mForecast.getTimezone())
-        );
+        // Check if fragment is only re-creating after an orientation change or a home button press
+        // this will avoid replacing it multiple times
+        if(!fragmentPresent(mFragmentManager, FRAGMENT_CURRENT_TAG)) {
 
-        fragmentTransaction.replace(R.id.hourFragmentContainer, FragmentHourly.newInstance(
-            FragmentHourlyTablet.class,
-            mForecast.getHourlyForecast(),
-            mForecast.getTimezone())
-        );
+            FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.currentFragmentContainer, FragmentCurrentTablet.newInstance(
+                mForecast.getCurrent(),
+                mForecast.getTimezone()),
+                FRAGMENT_CURRENT_TAG
+            );
 
-        fragmentTransaction.replace(R.id.dayFragmentContainer, FragmentDaily.newInstance(
-            FragmentDailyTablet.class,
-            mForecast.getDailyForecast(),
-            mForecast.getTimezone())
-        );
+            fragmentTransaction.commit();
+        }
 
-        fragmentTransaction.commit();
+        // Check if fragment is only re-creating after an orientation change or a home button press
+        // this will avoid replacing it multiple times
+        if(!fragmentPresent(mFragmentManager, FRAGMENT_HOURLY_TAG)) {
+
+            FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.hourFragmentContainer, FragmentHourly.newInstance(
+                FragmentHourlyTablet.class,
+                mForecast.getHourlyForecast(),
+                mForecast.getTimezone()),
+                FRAGMENT_HOURLY_TAG
+            );
+
+            fragmentTransaction.commit();
+        }
+
+        // Check if fragment is only re-creating after an orientation change or a home button press
+        // this will avoid replacing it multiple times
+        if(!fragmentPresent(mFragmentManager, FRAGMENT_DAILY_TAG)) {
+
+            FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.dayFragmentContainer, FragmentDaily.newInstance(
+                FragmentDailyTablet.class,
+                mForecast.getDailyForecast(),
+                mForecast.getTimezone()),
+                FRAGMENT_DAILY_TAG
+            );
+
+            fragmentTransaction.commit();
+        }
+
         setBackground(mRootLayout);
 
         return view;
+    }
+
+    private boolean fragmentPresent(FragmentManager fragmentManager, String fragmentTag) {
+
+        Fragment fragment = fragmentManager.findFragmentByTag(fragmentTag);
+
+        return fragment != null;
     }
 }

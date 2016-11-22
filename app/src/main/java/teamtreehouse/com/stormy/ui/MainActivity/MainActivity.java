@@ -15,6 +15,7 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.multidex.MultiDex;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements
     public static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
     public static final int USER_PERMISSIONS_CODE = 10;
     private static final int USER_GPS_CODE = 100;
+    public static final String FRAGMENT_MAIN_TAG = "FRAGMENT_MAIN";
 
     private Forecast mForecast;
     private WeatherPlace mCurrentPlace;
@@ -139,27 +141,31 @@ public class MainActivity extends AppCompatActivity implements
 
     private void setActivityFragment(Forecast forecast) {
 
-        FragmentForecastBase fragment;
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        if(isTablet) {
+        Fragment fragment = fragmentManager.findFragmentByTag(FRAGMENT_MAIN_TAG);
 
-            fragment = FragmentForecastBase.newInstance(
-                FragmentForecastTablet.class,
-                forecast
-            );
+        if(fragment == null) {
+
+            if(isTablet) {
+
+                fragment = FragmentForecastBase.newInstance(
+                    FragmentForecastTablet.class,
+                    forecast
+                );
+            }
+            else {
+
+                fragment = FragmentForecastBase.newInstance(
+                    FragmentForecastPhone.class,
+                    forecast
+                );
+            }
+
+            fragmentTransaction.replace(R.id.fragmentContainer, fragment, FRAGMENT_MAIN_TAG);
+            fragmentTransaction.commit();
         }
-        else {
-
-            fragment = FragmentForecastBase.newInstance(
-                FragmentForecastPhone.class,
-                forecast
-            );
-        }
-
-        fragmentTransaction.replace(R.id.fragmentContainer, fragment);
-        fragmentTransaction.commit();
     }
 
     @Override
