@@ -14,6 +14,9 @@ import teamtreehouse.com.stormy.model.HourData;
  * Created by Javi on 11/19/2016.
  */
 
+// Abstract type to represent both phone and tablet hourly fragment
+// Even though the children types will not have unique code, their creation just serves the purpose
+// to represent an hourly fragment for phone, and another hourly fragment for tablet.
 public abstract class FragmentHourly extends FragmentRecyclerBase<HourData> {
 
     public static FragmentHourly newInstance(Class<?> fType, HourData[] data, String timezone) {

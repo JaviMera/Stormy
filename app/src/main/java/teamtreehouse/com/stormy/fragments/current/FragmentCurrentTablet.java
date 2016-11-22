@@ -12,18 +12,6 @@ import teamtreehouse.com.stormy.model.Forecast;
 
 public class FragmentCurrentTablet extends FragmentCurrentBase{
 
-    public static FragmentCurrentTablet newInstance(Current forecastCurrent, String timezone) {
-
-        FragmentCurrentTablet fragment = new FragmentCurrentTablet();
-
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(FORECAST_CURRENT, forecastCurrent);
-        bundle.putString(Forecast.FORECAST_TIMEZONE, timezone);
-        fragment.setArguments(bundle);
-
-        return fragment;
-    }
-
     @Override
     protected int getLayoutId() {
 

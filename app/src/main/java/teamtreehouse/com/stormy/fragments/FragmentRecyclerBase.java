@@ -23,6 +23,8 @@ import teamtreehouse.com.stormy.model.Forecast;
  * Created by Javi on 11/16/2016.
  */
 
+// Abstract type to represent fragments containing list of items, such as Hourly or Daily fragments
+// T represents the items type class, such as DayData and HourData
 public abstract class FragmentRecyclerBase<T> extends FragmentTabBase
         implements FragmentRecyclerView {
 

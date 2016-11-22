@@ -43,6 +43,27 @@ public abstract class FragmentCurrentBase extends FragmentTabBase implements
     @BindView(R.id.precipitationTextView) TextView mPrecipitationTextView;
     @BindView(R.id.summaryTextView) TextView mSummaryTextView;
 
+    public static FragmentCurrentBase newInstance(Class<?> fType, Current forecastCurrent, String timezone) {
+
+        FragmentCurrentBase fragment = null;
+
+        if(fType.equals(FragmentCurrentPhone.class)) {
+
+            fragment = new FragmentCurrentPhone();
+        }
+        else if(fType.equals(FragmentCurrentTablet.class)) {
+
+            fragment = new FragmentCurrentTablet();
+        }
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(FORECAST_CURRENT, forecastCurrent);
+        bundle.putString(Forecast.FORECAST_TIMEZONE, timezone);
+        fragment.setArguments(bundle);
+
+        return fragment;
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

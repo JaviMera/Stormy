@@ -13,7 +13,9 @@ import teamtreehouse.com.stormy.model.Forecast;
 /**
  * Created by Javi on 11/19/2016.
  */
-
+// Abstract type to represent both phone and tablet daily fragment
+// Even though the children types will not have unique code, their creation just serves the purpose
+// to represent a daily fragment for phone, and another daily fragment for tablet.
 public abstract class FragmentDaily extends FragmentRecyclerBase<DayData> {
 
     public static FragmentDaily newInstance(Class<?> fType, DayData[] data, String timezone) {

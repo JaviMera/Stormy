@@ -45,12 +45,13 @@ public class FragmentForecastTablet extends FragmentForecastBase {
         mFragmentManager = mActivity.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
 
-        fragmentTransaction.replace(R.id.currentFragmentContainer, FragmentCurrentTablet.newInstance(
-            mForecast.getCurrent(),
-            mForecast.getTimezone()),
-            FRAGMENT_CURRENT_TAG
+        fragmentTransaction.replace(R.id.currentFragmentContainer,
+            FragmentCurrentTablet.newInstance(
+                FragmentCurrentTablet.class,
+                mForecast.getCurrent(),
+                mForecast.getTimezone()),
+                FRAGMENT_CURRENT_TAG
         );
-
 
         fragmentTransaction.replace(R.id.hourFragmentContainer, FragmentHourly.newInstance(
             FragmentHourlyTablet.class,

@@ -13,6 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.adapters.PagerAdapter;
+import teamtreehouse.com.stormy.fragments.current.FragmentCurrentBase;
 import teamtreehouse.com.stormy.fragments.current.FragmentCurrentPhone;
 import teamtreehouse.com.stormy.fragments.daily.FragmentDaily;
 import teamtreehouse.com.stormy.fragments.daily.FragmentDailyPhone;
@@ -48,19 +49,20 @@ public class FragmentForecastPhone extends FragmentForecastBase
         mPresenter = new FragmentForecastPhonePresenter(this);
 
         mPresenter.setPagerAdapter(
-                FragmentCurrentPhone.newInstance(
-                        mForecast.getCurrent(),
-                        mForecast.getTimezone())
-                ,
-                FragmentHourlyPhone.newInstance(
-                        FragmentHourlyPhone.class,
-                        mForecast.getHourlyForecast(),
-                        mForecast.getTimezone())
-                ,
-                FragmentDaily.newInstance(
-                        FragmentDailyPhone.class,
-                        mForecast.getDailyForecast(),
-                        mForecast.getTimezone())
+            FragmentCurrentBase.newInstance(
+                FragmentCurrentPhone.class,
+                mForecast.getCurrent(),
+                mForecast.getTimezone())
+            ,
+            FragmentHourlyPhone.newInstance(
+                FragmentHourlyPhone.class,
+                mForecast.getHourlyForecast(),
+                mForecast.getTimezone())
+            ,
+            FragmentDaily.newInstance(
+                FragmentDailyPhone.class,
+                mForecast.getDailyForecast(),
+                mForecast.getTimezone())
         );
 
         mPresenter.setTabLayout(mViewPager);
