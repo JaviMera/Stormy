@@ -7,6 +7,7 @@ import teamtreehouse.com.stormy.model.HourData;
 /**
  * Created by benjakuben on 2/10/15.
  */
+// Recycler Adapter in portrait mode for Hour Items
 public class HourAdapterPortrait extends AdapterBase<HourData, HourViewHolderPortrait> {
 
     public HourAdapterPortrait(HourData[] hourData, String timezone) {

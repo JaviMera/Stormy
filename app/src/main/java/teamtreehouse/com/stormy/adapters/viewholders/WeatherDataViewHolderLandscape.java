@@ -11,6 +11,9 @@ import teamtreehouse.com.stormy.model.WeatherData;
  * Created by Javi on 11/18/2016.
  */
 
+// Abstract type to represent both hour and day items in landscape mode, but allow the children types
+// to specify some of their unique attributes.
+// T represents the item type class, such as DayData and HourData
 public abstract class WeatherDataViewHolderLandscape<T extends WeatherData> extends ViewHolderBase<T>{
 
     private TextView mTitle;

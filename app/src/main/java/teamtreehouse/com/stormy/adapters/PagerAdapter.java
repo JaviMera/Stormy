@@ -9,6 +9,7 @@ import teamtreehouse.com.stormy.fragments.FragmentTabBase;
  * Created by Javi on 11/14/2016.
  */
 
+// View pager adapter for Main Phone Fragment.
 public class PagerAdapter extends android.support.v4.app.FragmentPagerAdapter {
 
     private FragmentTabBase[] mFragments;

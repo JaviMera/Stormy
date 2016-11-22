@@ -11,6 +11,7 @@ import teamtreehouse.com.stormy.model.HourData;
  * Created by Javi on 11/15/2016.
  */
 
+// View holder in portrait mode, for hour items
 public class HourViewHolderPortrait extends ViewHolderBase<HourData> {
 
     public TextView mTimeLabel;

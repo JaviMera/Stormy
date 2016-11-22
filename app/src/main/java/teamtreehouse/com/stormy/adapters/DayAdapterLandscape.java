@@ -8,6 +8,7 @@ import teamtreehouse.com.stormy.model.DayData;
  * Created by Javi on 11/18/2016.
  */
 
+// Recycler Adapter in Landscape mode for Day Items
 public class DayAdapterLandscape  extends AdapterBase<DayData, DayViewHolderLandscape> {
 
     public DayAdapterLandscape(DayData[] data, String timezone) {

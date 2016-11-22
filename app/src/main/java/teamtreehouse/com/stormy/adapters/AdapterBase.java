@@ -11,6 +11,11 @@ import teamtreehouse.com.stormy.adapters.viewholders.HourViewHolderLandscape;
 import teamtreehouse.com.stormy.adapters.viewholders.HourViewHolderPortrait;
 import teamtreehouse.com.stormy.adapters.viewholders.ViewHolderBase;
 
+// Abstract class that will be used to represent each the different layout in portrait or landscape
+// T represents the item type class , such as DayData and HourData
+// H represents the view holder type class.
+// This class along with ViewHolderBase, will give the app flexibility to use a Portrait adapter
+// and viewholder, to be used in landscape orientation without repeating code.
 public abstract class AdapterBase<T, H extends ViewHolderBase<T>> extends RecyclerView.Adapter<H> {
 
     private final Class<H> mType;

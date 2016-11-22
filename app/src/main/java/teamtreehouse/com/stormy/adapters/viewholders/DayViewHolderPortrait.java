@@ -13,6 +13,7 @@ import teamtreehouse.com.stormy.model.DayData;
  * Created by Javi on 11/15/2016.
  */
 
+// View holder in portrait mode, for day items
 public class DayViewHolderPortrait extends ViewHolderBase<DayData> {
 
     ImageView mIconImageView;

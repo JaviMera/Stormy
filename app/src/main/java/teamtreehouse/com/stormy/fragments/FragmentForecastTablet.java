@@ -23,6 +23,7 @@ import teamtreehouse.com.stormy.fragments.hourly.FragmentHourlyTablet;
  * Created by Javi on 11/19/2016.
  */
 
+// Main Activity's fragment for tablet devices
 public class FragmentForecastTablet extends FragmentForecastBase {
 
     public static final String FRAGMENT_CURRENT_TAG = "FRAGMENT_CURRENT";
@@ -42,60 +43,32 @@ public class FragmentForecastTablet extends FragmentForecastBase {
         ButterKnife.bind(this, view);
 
         mFragmentManager = mActivity.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
 
-        // Check if fragment is only re-creating after an orientation change or a home button press
-        // this will avoid replacing it multiple times
-        if(!fragmentPresent(mFragmentManager, FRAGMENT_CURRENT_TAG)) {
+        fragmentTransaction.replace(R.id.currentFragmentContainer, FragmentCurrentTablet.newInstance(
+            mForecast.getCurrent(),
+            mForecast.getTimezone()),
+            FRAGMENT_CURRENT_TAG
+        );
 
-            FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.currentFragmentContainer, FragmentCurrentTablet.newInstance(
-                mForecast.getCurrent(),
-                mForecast.getTimezone()),
-                FRAGMENT_CURRENT_TAG
-            );
 
-            fragmentTransaction.commit();
-        }
+        fragmentTransaction.replace(R.id.hourFragmentContainer, FragmentHourly.newInstance(
+            FragmentHourlyTablet.class,
+            mForecast.getHourlyForecast(),
+            mForecast.getTimezone()),
+            FRAGMENT_HOURLY_TAG
+        );
 
-        // Check if fragment is only re-creating after an orientation change or a home button press
-        // this will avoid replacing it multiple times
-        if(!fragmentPresent(mFragmentManager, FRAGMENT_HOURLY_TAG)) {
-
-            FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.hourFragmentContainer, FragmentHourly.newInstance(
-                FragmentHourlyTablet.class,
-                mForecast.getHourlyForecast(),
-                mForecast.getTimezone()),
-                FRAGMENT_HOURLY_TAG
-            );
-
-            fragmentTransaction.commit();
-        }
-
-        // Check if fragment is only re-creating after an orientation change or a home button press
-        // this will avoid replacing it multiple times
-        if(!fragmentPresent(mFragmentManager, FRAGMENT_DAILY_TAG)) {
-
-            FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.dayFragmentContainer, FragmentDaily.newInstance(
+        fragmentTransaction.replace(R.id.dayFragmentContainer, FragmentDaily.newInstance(
                 FragmentDailyTablet.class,
                 mForecast.getDailyForecast(),
                 mForecast.getTimezone()),
                 FRAGMENT_DAILY_TAG
-            );
+        );
 
-            fragmentTransaction.commit();
-        }
-
+        fragmentTransaction.commit();
         setBackground(mRootLayout);
 
         return view;
-    }
-
-    private boolean fragmentPresent(FragmentManager fragmentManager, String fragmentTag) {
-
-        Fragment fragment = fragmentManager.findFragmentByTag(fragmentTag);
-
-        return fragment != null;
     }
 }

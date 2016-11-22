@@ -54,9 +54,6 @@ public class ForecastAsyncTask extends AsyncTask<ForecastClient, Void, Forecast>
             return forecast;
         }
         catch (IOException e) {
-
-            // TODO implement a custom excpetion type to send back to the activity in case it fails
-            // to retrieve the correct data
         }
 
         return null;

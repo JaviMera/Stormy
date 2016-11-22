@@ -22,6 +22,7 @@ import teamtreehouse.com.stormy.fragments.hourly.FragmentHourlyPhone;
  * Created by Javi on 11/14/2016.
  */
 
+// Main Activity's fragment for phone devices.
 public class FragmentForecastPhone extends FragmentForecastBase
         implements FragmentPagerView {
 
@@ -29,9 +30,12 @@ public class FragmentForecastPhone extends FragmentForecastBase
 
     private FragmentForecastPhonePresenter mPresenter;
 
-    @BindView(R.id.viewPager) ViewPager mViewPager;
-    @BindView(R.id.tabLayout) TabLayout mTabLayout;
-    @BindView(R.id.rootLayout) LinearLayout mRootLayout;
+    @BindView(R.id.viewPager)
+    ViewPager mViewPager;
+    @BindView(R.id.tabLayout)
+    TabLayout mTabLayout;
+    @BindView(R.id.rootLayout)
+    LinearLayout mRootLayout;
 
     @Nullable
     @Override
@@ -44,24 +48,24 @@ public class FragmentForecastPhone extends FragmentForecastBase
         mPresenter = new FragmentForecastPhonePresenter(this);
 
         mPresenter.setPagerAdapter(
-            FragmentCurrentPhone.newInstance(
-                mForecast.getCurrent(),
-                mForecast.getTimezone())
-            ,
-            FragmentHourlyPhone.newInstance(
-                FragmentHourlyPhone.class,
-                mForecast.getHourlyForecast(),
-                mForecast.getTimezone())
-            ,
-            FragmentDaily.newInstance(
-                FragmentDailyPhone.class,
-                mForecast.getDailyForecast(),
-                mForecast.getTimezone())
+                FragmentCurrentPhone.newInstance(
+                        mForecast.getCurrent(),
+                        mForecast.getTimezone())
+                ,
+                FragmentHourlyPhone.newInstance(
+                        FragmentHourlyPhone.class,
+                        mForecast.getHourlyForecast(),
+                        mForecast.getTimezone())
+                ,
+                FragmentDaily.newInstance(
+                        FragmentDailyPhone.class,
+                        mForecast.getDailyForecast(),
+                        mForecast.getTimezone())
         );
 
         mPresenter.setTabLayout(mViewPager);
 
-        if(savedInstanceState != null) {
+        if (savedInstanceState != null) {
 
             int pageSelected = savedInstanceState.getInt(TAB_INDEX);
             mPresenter.setPagerItem(pageSelected);
@@ -83,8 +87,8 @@ public class FragmentForecastPhone extends FragmentForecastBase
     public void setPagerAdapter(FragmentTabBase... fragments) {
 
         PagerAdapter adapter = new PagerAdapter(
-            getChildFragmentManager(),
-            fragments);
+                getChildFragmentManager(),
+                fragments);
 
         mViewPager.setAdapter(adapter);
     }

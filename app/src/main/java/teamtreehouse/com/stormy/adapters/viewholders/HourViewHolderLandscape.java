@@ -10,6 +10,7 @@ import teamtreehouse.com.stormy.model.HourData;
  * Created by Javi on 11/21/2016.
  */
 
+// View holder in landscape mode, for hour items
 public class HourViewHolderLandscape extends WeatherDataViewHolderLandscape<HourData> {
 
     public HourViewHolderLandscape(View itemView) {

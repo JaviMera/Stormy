@@ -15,7 +15,12 @@ import teamtreehouse.com.stormy.ui.MainActivity;
  * Created by Javi on 11/20/2016.
  */
 
+// Abstract type to represent both Phone and Tablet fragments in main activity
+// For example the Phone Fragment will display a view pager for both orientations, but the tablet
+// Fragment will display using frame layouts.
 public abstract class FragmentForecastBase extends Fragment{
+
+    public static final int TEMPERATURE_THRESHOLD = 70;
 
     protected FragmentActivity mActivity;
     protected Forecast mForecast;
@@ -54,7 +59,7 @@ public abstract class FragmentForecastBase extends Fragment{
 
     protected void setBackground(View view) {
 
-        if(mForecast.getCurrent().getTemperature() <= 70 ) {
+        if(mForecast.getCurrent().getTemperature() <= TEMPERATURE_THRESHOLD) {
 
             view.setBackgroundResource(R.drawable.background_cold);
         }

@@ -9,7 +9,7 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
-        multiDexEnabled true
+        multiDexEnabled true // allow app work with more method references than the limit of 64k
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
@@ -24,7 +24,7 @@ android {
     }
     dexOptions {
 
-        javaMaxHeapSize "4g"
+        javaMaxHeapSize "4g" // set this for multi dex
     }
     productFlavors {
     }

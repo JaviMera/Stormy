@@ -10,6 +10,7 @@ import teamtreehouse.com.stormy.model.DayData;
  * Created by Javi on 11/18/2016.
  */
 
+// View holder in landscape mode, for day items
 public class DayViewHolderLandscape extends WeatherDataViewHolderLandscape<DayData> {
 
     public DayViewHolderLandscape(View itemView) {
