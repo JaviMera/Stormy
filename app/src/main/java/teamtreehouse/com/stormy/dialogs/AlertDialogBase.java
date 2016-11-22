@@ -19,6 +19,8 @@ public abstract class AlertDialogBase extends DialogFragment implements DialogIn
     protected ResultView mActivity;
     protected abstract String getTitle();
     protected abstract String getMessage();
+    protected abstract String getPositiveText();
+    protected abstract String getNegativeText();
 
     @Override
     public void onAttach(Context context) {
@@ -33,8 +35,8 @@ public abstract class AlertDialogBase extends DialogFragment implements DialogIn
         AlertDialog.Builder builder = new AlertDialog.Builder(context)
                 .setTitle(getTitle())
                 .setMessage(getMessage())
-                .setPositiveButton(context.getString(R.string.error_ok_button_text), this)
-                .setNegativeButton("Ignore", null);
+                .setPositiveButton(getPositiveText(), this)
+                .setNegativeButton(getNegativeText(), null);
 
         AlertDialog dialog = builder.create();
         return dialog;
@@ -42,6 +44,5 @@ public abstract class AlertDialogBase extends DialogFragment implements DialogIn
 
     @Override
     public void onClick(DialogInterface dialogInterface, int i) {
-
     }
 }

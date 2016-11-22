@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements
     public static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
     public static final int USER_PERMISSIONS_CODE = 10;
     private static final int USER_GPS_CODE = 100;
-    public static final String FRAGMENT_MAIN_TAG = "FRAGMENT_MAIN";
 
     private Forecast mForecast;
     private WeatherPlace mCurrentPlace;
@@ -273,15 +272,7 @@ public class MainActivity extends AppCompatActivity implements
     @OnClick(R.id.locationSearchImageView)
     public void onLocationSearchImageClick(View view) {
 
-        try {
-
-            Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN).build(this);
-            startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
-        }
-
-        catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
-            e.printStackTrace();
-        }
+        startActivityForResult(PLACE_AUTOCOMPLETE_REQUEST_CODE);
     }
 
     @OnClick(R.id.refreshImageView)
@@ -349,6 +340,20 @@ public class MainActivity extends AppCompatActivity implements
     public void startActivityForResult(String serviceName) {
 
         startActivityForResult(new Intent(serviceName), USER_GPS_CODE);
+    }
+
+    @Override
+    public void startActivityForResult(int requestCode) {
+
+        try {
+
+            Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN).build(this);
+            startActivityForResult(intent, requestCode);
+        }
+
+        catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

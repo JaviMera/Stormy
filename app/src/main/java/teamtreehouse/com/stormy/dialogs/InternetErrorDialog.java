@@ -15,6 +15,18 @@ public class InternetErrorDialog extends AlertDialogBase {
     @Override
     protected String getMessage() {
 
-        return "Your device seems to be out of internet my lord.";
+        return "This app requires internet.";
+    }
+
+    @Override
+    protected String getPositiveText() {
+
+        return "OK";
+    }
+
+    @Override
+    protected String getNegativeText() {
+
+        return "";
     }
 }
