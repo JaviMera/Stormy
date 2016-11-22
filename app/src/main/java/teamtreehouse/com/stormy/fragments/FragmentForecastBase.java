@@ -9,7 +9,7 @@ import android.view.View;
 
 import teamtreehouse.com.stormy.R;
 import teamtreehouse.com.stormy.model.Forecast;
-import teamtreehouse.com.stormy.ui.MainActivity.MainActivity;
+import teamtreehouse.com.stormy.ui.MainActivity;
 
 /**
  * Created by Javi on 11/20/2016.

@@ -6,11 +6,10 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
-import android.view.View;
 
 import teamtreehouse.com.stormy.R;
-import teamtreehouse.com.stormy.ui.MainActivity.MainActivity;
-import teamtreehouse.com.stormy.ui.MainActivity.ResultView;
+import teamtreehouse.com.stormy.ui.MainActivity;
+import teamtreehouse.com.stormy.ui.ResultView;
 
 /**
  * Created by benjakuben on 12/3/14.

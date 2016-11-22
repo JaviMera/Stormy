@@ -1,4 +1,4 @@
-package teamtreehouse.com.stormy.ui.MainActivity;
+package teamtreehouse.com.stormy.ui;
 
 import android.location.LocationManager;
 import android.support.annotation.NonNull;
@@ -124,8 +124,6 @@ public class MainActivity extends AppCompatActivity implements
 
             mPresenter.setToolbarTitle(mCurrentPlace.getCityFullName());
 
-            setActivityFragment(mForecast);
-
         } else {
 
             LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
@@ -141,31 +139,27 @@ public class MainActivity extends AppCompatActivity implements
 
     private void setActivityFragment(Forecast forecast) {
 
+        Fragment fragment;
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        Fragment fragment = fragmentManager.findFragmentByTag(FRAGMENT_MAIN_TAG);
+        if(isTablet) {
 
-        if(fragment == null) {
-
-            if(isTablet) {
-
-                fragment = FragmentForecastBase.newInstance(
-                    FragmentForecastTablet.class,
-                    forecast
-                );
-            }
-            else {
-
-                fragment = FragmentForecastBase.newInstance(
-                    FragmentForecastPhone.class,
-                    forecast
-                );
-            }
-
-            fragmentTransaction.replace(R.id.fragmentContainer, fragment, FRAGMENT_MAIN_TAG);
-            fragmentTransaction.commit();
+            fragment = FragmentForecastBase.newInstance(
+                FragmentForecastTablet.class,
+                forecast
+            );
         }
+        else {
+
+            fragment = FragmentForecastBase.newInstance(
+                FragmentForecastPhone.class,
+                forecast
+            );
+        }
+
+        fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+        fragmentTransaction.commit();
     }
 
     @Override

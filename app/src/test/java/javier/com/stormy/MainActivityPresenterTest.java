@@ -9,8 +9,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import teamtreehouse.com.stormy.ui.MainActivity.MainActivityPresenter;
-import teamtreehouse.com.stormy.ui.MainActivity.MainActivityView;
+import teamtreehouse.com.stormy.ui.MainActivityPresenter;
+import teamtreehouse.com.stormy.ui.MainActivityView;
 
 /**
  * Created by Javi on 11/11/2016.

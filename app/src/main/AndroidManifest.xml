@@ -18,7 +18,7 @@
             android:value="AIzaSyAaf6vJD5aoABzkM71m1cMYX2FHUyWIK-0"/>
 
         <activity
-            android:name="teamtreehouse.com.stormy.ui.MainActivity.MainActivity"
+            android:name="teamtreehouse.com.stormy.ui.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

@@ -1,4 +1,4 @@
-package teamtreehouse.com.stormy.ui.MainActivity;
+package teamtreehouse.com.stormy.ui;
 
 import android.view.View;
 

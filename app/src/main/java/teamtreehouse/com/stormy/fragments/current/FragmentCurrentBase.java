@@ -118,7 +118,7 @@ public abstract class FragmentCurrentBase extends FragmentTabBase implements
         return String.format(Locale.ENGLISH, format, args);
     }
 
-    private void updateDisplay(Current current, String timezone) {
+    public void updateDisplay(Current current, String timezone) {
 
         String time = current.getFormattedTime(timezone);
 
