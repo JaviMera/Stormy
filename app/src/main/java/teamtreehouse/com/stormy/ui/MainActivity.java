@@ -180,6 +180,7 @@ public class MainActivity extends AppCompatActivity implements
             return;
         }
 
+        toggleRefresh();
         PendingResult<PlaceLikelihoodBuffer> result = Places.PlaceDetectionApi.getCurrentPlace(client, null);
         result.setResultCallback(new ResultCallback<PlaceLikelihoodBuffer>() {
             @Override
@@ -197,13 +198,14 @@ public class MainActivity extends AppCompatActivity implements
                 mCurrentPlace.setLocality(address);
                 mPresenter.setToolbarTitle(mCurrentPlace.getCityFullName());
 
-                toggleRefresh();
+
                 requestForecast(
                         mCurrentPlace.getLatitude(),
                         mCurrentPlace.getLongitude());
             }
             else {
 
+                toggleRefresh();
                 new LocationNullDialog()
                     .show(getSupportFragmentManager(), "null_location_dialog");
             }
