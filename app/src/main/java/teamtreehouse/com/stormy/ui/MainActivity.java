@@ -180,13 +180,10 @@ public class MainActivity extends AppCompatActivity implements
             return;
         }
 
-        toggleRefresh();
         PendingResult<PlaceLikelihoodBuffer> result = Places.PlaceDetectionApi.getCurrentPlace(client, null);
         result.setResultCallback(new ResultCallback<PlaceLikelihoodBuffer>() {
             @Override
             public void onResult(@NonNull PlaceLikelihoodBuffer placeLikelihoods) {
-
-            toggleRefresh();
 
             if(placeLikelihoods.getStatus().isSuccess()) {
 
@@ -200,6 +197,7 @@ public class MainActivity extends AppCompatActivity implements
                 mCurrentPlace.setLocality(address);
                 mPresenter.setToolbarTitle(mCurrentPlace.getCityFullName());
 
+                toggleRefresh();
                 requestForecast(
                         mCurrentPlace.getLatitude(),
                         mCurrentPlace.getLongitude());
@@ -313,6 +311,8 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onForecastRetrieved(Forecast forecast) {
 
+        toggleRefresh();
+
         if(forecast == null) {
 
             new InternetErrorDialog()
@@ -320,7 +320,6 @@ public class MainActivity extends AppCompatActivity implements
         }
         else {
 
-            toggleRefresh();
             mForecast = forecast;
             setActivityFragment(mForecast);
         }
@@ -347,7 +346,6 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void startActivityForResult(String serviceName) {
 
-        toggleRefresh();
         startActivityForResult(new Intent(serviceName), USER_GPS_CODE);
     }
 

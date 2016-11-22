@@ -12,13 +12,13 @@ public class LocationStateDialog extends AlertDialogBase {
     @Override
     protected String getTitle() {
 
-        return "Device Location Error!";
+        return "Use Location?";
     }
 
     @Override
     protected String getMessage() {
 
-        return "Seems that your GPS is turned off. Turn on?";
+        return "This app needs to use GPS";
     }
 
     @Override

@@ -34,7 +34,7 @@ public abstract class AlertDialogBase extends DialogFragment implements DialogIn
                 .setTitle(getTitle())
                 .setMessage(getMessage())
                 .setPositiveButton(context.getString(R.string.error_ok_button_text), this)
-                .setNegativeButton("No", null);
+                .setNegativeButton("Ignore", null);
 
         AlertDialog dialog = builder.create();
         return dialog;
