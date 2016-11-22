@@ -59,11 +59,14 @@ public class WeatherPlace implements Parcelable {
         mAddress = new Address(address.getLocale());
         mAddress.setLocality(address.getLocality());
         mAddress.setAdminArea(address.getAdminArea());
+        mAddress.setCountryName(address.getCountryName());
     }
 
     public String getCityFullName() {
 
-        return mAddress.getLocality() + ", " + mAddress.getAdminArea();
+        return mAddress.getLocality() == null
+            ? mAddress.getCountryName()
+            : mAddress.getLocality();
     }
 
     @Override

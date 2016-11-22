@@ -206,7 +206,8 @@ public class MainActivity extends AppCompatActivity implements
             }
             else {
 
-                new LocationNullDialog().show(getSupportFragmentManager(), "location_notfound_dialog");
+                new LocationNullDialog()
+                    .show(getSupportFragmentManager(), "null_location_dialog");
             }
             }
         });
@@ -218,6 +219,7 @@ public class MainActivity extends AppCompatActivity implements
         switch (requestCode) {
 
             case USER_PERMISSIONS_CODE:
+
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                     requestUserLocation(mGoogleApiClient);
@@ -240,16 +242,24 @@ public class MainActivity extends AppCompatActivity implements
                     mPresenter.setToolbarTitle(cityName);
 
                     LatLng newCoordinates = place.getLatLng();
-                    mCurrentPlace.setCoordinates(newCoordinates);
+                    Address address = getAddress(newCoordinates.latitude, newCoordinates.longitude);
 
-                    Address address = getAddress(mCurrentPlace.getLatitude(), mCurrentPlace.getLongitude());
-                    mCurrentPlace.setLocality(address);
+                    if(address != null) {
 
-                    toggleRefresh();
-                    requestForecast(
-                            mCurrentPlace.getLatitude(),
-                            mCurrentPlace.getLongitude()
-                    );
+                        mCurrentPlace.setCoordinates(newCoordinates);
+                        mCurrentPlace.setLocality(address);
+
+                        toggleRefresh();
+                        requestForecast(
+                                mCurrentPlace.getLatitude(),
+                                mCurrentPlace.getLongitude()
+                        );
+                    }
+                    else {
+
+                        new LocationNullDialog()
+                            .show(getSupportFragmentManager(), "null_location_dialog");
+                    }
                 }
                 break;
 
@@ -385,6 +395,11 @@ public class MainActivity extends AppCompatActivity implements
         try {
 
             List<Address> addresses = mGeocoder.getFromLocation(latitude, longitude, 1);
+
+            if(addresses == null || addresses.isEmpty()) {
+
+                return null;
+            }
 
             // return the first address from the list
             return addresses.get(0);
